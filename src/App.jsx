@@ -4,6 +4,8 @@ import { Route,Routes } from 'react-router-dom'
 import Register from './pages/Register'
 import { ThemeProvider } from '@mui/material'
 import Styles from "./components/tools/Styles";
+import { Create } from '@mui/icons-material';
+import CreateRequirements from './pages/CreateRequirements';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,9 +13,9 @@ function App() {
   return (
     <ThemeProvider theme={Styles}>
     <Routes>
-      <Route path='/' element={<Register/>}>
+      <Route path='/' element={<Register/>} />
 
-      </Route>
+      <Route path='/create' element={<CreateRequirements/>} />
     </Routes>
   </ThemeProvider>
   )

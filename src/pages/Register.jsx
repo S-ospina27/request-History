@@ -4,6 +4,8 @@ import { Container } from "@mui/system";
 import React, { useState } from "react";
 import "../assets/css/register.css";
 import Teclab from "../assets/img/Teclab.png";
+import pagina from "../assets/img/pagina.png";
+import tiktok from "../assets/img/tiktok.png";
 import SaveIcon from "@mui/icons-material/Save";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import TexfieldLinear from "../components/common/TexfieldLinear";
@@ -12,9 +14,9 @@ import Typography from "@mui/material/Typography";
 import NormalInput from "../components/common/NormalInput";
 import TravelExploreRoundedIcon from "@mui/icons-material/TravelExploreRounded";
 import AddLocationAltRoundedIcon from "@mui/icons-material/AddLocationAltRounded";
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import AudiotrackIcon from '@mui/icons-material/Audiotrack';
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import AudiotrackIcon from "@mui/icons-material/Audiotrack";
 const Register = () => {
   const [loading, setLoading] = useState(false);
   return (
@@ -59,17 +61,6 @@ const Register = () => {
             >
               Enviar
             </Button>
-            {/* <LoadingButton
-          size="large"
-          color="secondary"
-          onClick={()=> setLoading(true)}
-          // loading={loading}
-          loadingPosition="start"
-          startIcon={ loading ===false ? <SaveIcon /> :<CheckCircleOutlineIcon/> }
-          variant="contained"
-        >
-          <span>Save</span>
-        </LoadingButton> */}
           </Grid>
         </Box>
       </Grid>
@@ -95,7 +86,7 @@ const Register = () => {
           </div>
 
           <div className={"center-link"}>
-            <TravelExploreRoundedIcon color="white" mr={2} fontSize={"large"} />
+          <img src={pagina} />
             <a
               className={"link"}
               href="https://www.teclab.com.co/"
@@ -105,9 +96,30 @@ const Register = () => {
             </a>
           </div>
           <div className="center-redes">
-          <FacebookIcon color="white" fontSize={"large"}/>
-          <InstagramIcon color="white" fontSize={"large"}/>
-          <AudiotrackIcon color="white" fontSize={"large"}/>
+            <FacebookIcon
+              color="white"
+              fontSize={"large"}
+              onClick={() =>
+                window.open(
+                  "https://www.facebook.com/profile.php?id=100083192027360"
+                )
+              }
+            />
+            <InstagramIcon
+              color="white"
+              fontSize={"large"}
+              onClick={() =>
+                window.open("https://www.instagram.com/teclab_col/?hl=es")
+              }
+            />
+
+            <img
+              src={tiktok}
+              width={"22px"}
+              onClick={() =>
+                window.open("https://www.tiktok.com/@teclab.com.co")
+              }
+            />
           </div>
         </Box>
       </Grid>
