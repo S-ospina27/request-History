@@ -20,22 +20,44 @@ const CreateRequirements = () => {
   const [loading, setLoading] = useState(false);
   const [display, setDisplay] = useState(true);
   const [helpOpen, setHelpOpen] = useState(null);
+  const [imagendatos, setImagendatos]= useState(true);
+
+  const [name_requirement,setName_requirement]=useState("");
+  const [priority,setPriority]=useState("");
+  const [description,setDescription]=useState("");
+
   const hanledActionForm = () => {
     setDisappear(true);
     setDisplay(false);
+   
   };
-  {/* <MenuHelps 
-helpOpen={helpOpen}
-setHelpOpen={setHelpOpen}
- /> */}
+
+  const handlerCreateRequirements = (e) => {
+    e.preventDefault();
+    console.log(name_requirement);
+    console.log(priority);
+    console.log(description);
+  
+    clearInputs();
+  };
+
+  const clearInputs = () => {
+    setName_requirement("");
+    setPriority("");
+    setDescription("");
+    setLoading(true);
+    setImagendatos(false)
+  };
   return (
     <div className={" container contenedor"}>
     <Draw helpOpen={helpOpen}  setHelpOpen={setHelpOpen}/>
       <img src={Teclab} className={"foto-teclab-req"} />
       <img src={ayuda} className={"img-ayuda"} onClick={ () =>setHelpOpen(true) } />
+
       <Grid className={"pantalla-dividida-requirements"}>
-        <Grid item className={"izquierda-requiremients"}>
-          <Box className={"caja-requirements"}>
+        <Grid item className={"izquierda-requiremients"} >
+
+          <form className={"caja-requirements"} onSubmit={handlerCreateRequirements} >
             <h1 className="h1-requirements">Crea tus requerimientos</h1>
             {display && (
               <button
@@ -50,15 +72,25 @@ setHelpOpen={setHelpOpen}
             {disappear && (
               <>
                 <NormalInput
-                  label={"Nombre del requerimiento"}
+                  label={"Nombre"}
                   type={"text"}
                   placeholder={"Ingrese nombre"}
-                  // disabled={"disabled"}
+                  value={name_requirement}
+                  setValue={setName_requirement}
                   required
                 />
 
-                <PrioritySelect />
-                <TextArea label={"Descripción del Requerimiento"} required />
+                <PrioritySelect 
+                  value={priority} 
+                  setValue={setPriority}
+                  required
+                  />
+
+                <TextArea 
+                  label={"Descripción"}
+                  value={description}
+                  setValue={setDescription}
+                   required />
 
                 <Grid
                   item
@@ -66,6 +98,7 @@ setHelpOpen={setHelpOpen}
                   style={{ marginTop: "2px" }}
                 >
                   <Button
+                  type={"submit"}
                     className={"Botton"}
                     color={"secondary"}
                     variant="contained"
@@ -84,12 +117,18 @@ setHelpOpen={setHelpOpen}
                 </Grid>
               </>
             )}
-          </Box>
+          </form>
         </Grid>
 
         <Grid item className={"derecha_requerimients"}>
           <Box className={"caja-requirements-der"}>
+          {imagendatos &&
             <img src={sindatos} className={"img-sindatos"} />
+          }
+          {loading &&
+
+          <h1 className="h1-requirements">SE AGREGO REQUERIMIENTO</h1>
+          }
           </Box>
         </Grid>
       </Grid>

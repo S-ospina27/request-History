@@ -34,15 +34,15 @@ const Register = () => {
     setTimeout(() =>{
        setLoading(false);
        navigate("/create");
-      }, 2000);
+      }, 1300);
   };
   return (
     <Grid className={"container pantalla-dividida"}>
       <Grid item className={"izquierda"}>
-        <Box className={"caja"}>
-          <form className={"from-register"} onSubmit={handlerRegister}>
+        <form className={"caja"} onSubmit={handlerRegister}>
             <img src={Teclab} className={"foto-teclab"} />
             <h1 className="h1">Bienvenidos (a)</h1>
+            
             <NormalInput
               label={"Razón social"}
               type={"text"}
@@ -82,8 +82,7 @@ const Register = () => {
                 Enviar
               </Button>
             </Grid>
-          </form>
-        </Box>
+        </form>
       </Grid>
 
       <Grid item className={"derecha"}>
@@ -108,6 +107,7 @@ const Register = () => {
 
           <div className={"center-link"}>
             <img src={pagina} />
+         
             <a
               className={"link"}
               href="https://www.teclab.com.co/"
@@ -126,6 +126,7 @@ const Register = () => {
                 )
               }
             />
+            
             <InstagramIcon
               color="white"
               fontSize={"large"}

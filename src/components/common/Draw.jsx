@@ -15,6 +15,8 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import book from  "../../assets/img/book.gif"
+import salir from  "../../assets/img/salir.gif"
 
 const drawerWidth = 240;
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -49,11 +51,11 @@ const DrawerHeader = styled('div')(({ theme }) => ({
         open={helpOpen}
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
+        
+          <img src={salir} onClick={handleDrawerClose} width={"20%"} />
+        
         </DrawerHeader>
-        <h1 className={"titulo-drawer"}>Guia <MenuBookIcon/></h1> 
+        <h1 className={"titulo-drawer"}>Guia  <img src={book} width={"20%"} /></h1> 
         <Divider />
           EN PROCESO.....
       </Drawer>

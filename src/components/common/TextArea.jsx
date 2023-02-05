@@ -1,6 +1,6 @@
 import React from "react";
 
-const TextArea = ({ label, value,required,disabled }) => {
+const TextArea = ({ label, value,required,disabled,setValue }) => {
   return (
     <div className="form__demo-container-name" style={{ marginBottom: "20px" }}>
       <label className={"form__label-name"}>{label}</label>
@@ -10,7 +10,6 @@ const TextArea = ({ label, value,required,disabled }) => {
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
-          event && event(e);
         }}
         required={required}
         disabled={disabled}
