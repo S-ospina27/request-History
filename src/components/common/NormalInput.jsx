@@ -8,6 +8,7 @@ const NormalInput = ({
   disabled,
   readonly,
   value,
+  setValue,
 }) => {
   return (
     <div className="form__demo-container-name" style={{ marginBottom: "20px" }}>
@@ -22,7 +23,7 @@ const NormalInput = ({
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
-          event && event(e);
+          // event && event(e);
         }}
       />
     </div>

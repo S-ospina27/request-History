@@ -11,6 +11,7 @@ body {
     padding: 0;
   }
 .izquierda{
+    /* border: 1px solid red; */
     background: url("/src/assets/img/registrar-fondo-izq.png");
     background-size: cover;
     background-position: center;
@@ -22,6 +23,16 @@ body {
 }
 .link{
     color: white;
+}
+
+.from-register{
+    width: 100vw;
+   height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .center-link{

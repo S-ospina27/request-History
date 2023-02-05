@@ -1,6 +1,7 @@
 import { LoadingButton } from "@mui/lab";
 import { Box, Grid } from "@mui/material";
 import { Container } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import "../assets/css/register.css";
 import Teclab from "../assets/img/Teclab.png";
@@ -8,60 +9,80 @@ import pagina from "../assets/img/pagina.png";
 import tiktok from "../assets/img/tiktok.png";
 import SaveIcon from "@mui/icons-material/Save";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import TexfieldLinear from "../components/common/TexfieldLinear";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import NormalInput from "../components/common/NormalInput";
-import TravelExploreRoundedIcon from "@mui/icons-material/TravelExploreRounded";
 import AddLocationAltRoundedIcon from "@mui/icons-material/AddLocationAltRounded";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import AudiotrackIcon from "@mui/icons-material/Audiotrack";
 const Register = () => {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const [business_name, setBusiness_name] = useState("");
+  const [nit, setNit] = useState("");
+  const [company_name, setCompany_nmae] = useState("");
+
+  const handlerRegister = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    clearInputs();
+  };
+  const clearInputs = () => {
+    setBusiness_name("");
+    setNit("");
+    setCompany_nmae("");
+    setTimeout(() =>{
+       setLoading(false);
+       navigate("/create");
+      }, 2000);
+  };
   return (
     <Grid className={"container pantalla-dividida"}>
       <Grid item className={"izquierda"}>
         <Box className={"caja"}>
-          <img src={Teclab} className={"foto-teclab"} />
-          <h1 className="h1">Bienvenidos (a)</h1>
+          <form className={"from-register"} onSubmit={handlerRegister}>
+            <img src={Teclab} className={"foto-teclab"} />
+            <h1 className="h1">Bienvenidos (a)</h1>
+            <NormalInput
+              label={"Razón social"}
+              type={"text"}
+              placeholder={"Ingrese su razon social"}
+              value={business_name}
+              setValue={setBusiness_name}
+              required
+            />
+            <NormalInput
+              label={"Nit de la Empresa"}
+              type={"number"}
+              placeholder={"Ingrese su nit"}
+              value={nit}
+              setValue={setNit}
+              required
+            />
+            <NormalInput
+              label={"Nombre de la Empresa"}
+              type={"text"}
+              placeholder={"Ingrese su nombre"}
+              value={company_name}
+              setValue={setCompany_nmae}
+              required
+            />
 
-          <NormalInput
-            label={"Razón social"}
-            type={"text"}
-            placeholder={"Ingrese su razon social"}
-            // disabled={"disabled"}
-            required
-          />
-          <NormalInput
-            label={"Nit de la Empresa"}
-            type={"number"}
-            placeholder={"Ingrese su nit"}
-            // disabled={"disabled"}
-            required
-          />
-          <NormalInput
-            label={"Nombre de la Empresa"}
-            type={"text"}
-            placeholder={"Ingrese su nombre"}
-            // disabled={"disabled"}
-            required
-          />
-
-          <Grid item className={"item__botton"} style={{ marginTop: "20px" }}>
-            <Button
-              className={"Botton"}
-              color={"secondary"}
-              variant="contained"
-              size="large"
-              onClick={() => setLoading(true)}
-              startIcon={
-                loading === false ? <SaveIcon /> : <CheckCircleOutlineIcon />
-              }
-            >
-              Enviar
-            </Button>
-          </Grid>
+            <Grid item className={"item__botton"} style={{ marginTop: "20px" }}>
+              <Button
+                type={"submit"}
+                className={"Botton"}
+                color={"secondary"}
+                variant="contained"
+                size="large"
+                startIcon={
+                  loading === false ? <SaveIcon /> : <CheckCircleOutlineIcon />
+                }
+              >
+                Enviar
+              </Button>
+            </Grid>
+          </form>
         </Box>
       </Grid>
 
@@ -86,7 +107,7 @@ const Register = () => {
           </div>
 
           <div className={"center-link"}>
-          <img src={pagina} />
+            <img src={pagina} />
             <a
               className={"link"}
               href="https://www.teclab.com.co/"
