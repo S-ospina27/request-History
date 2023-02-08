@@ -14,6 +14,8 @@ import NormalInput from "../components/common/NormalInput";
 import AddLocationAltRoundedIcon from "@mui/icons-material/AddLocationAltRounded";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import clound from '../assets/img/clound.png'
+
 const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -37,6 +39,8 @@ const Register = () => {
       }, 1300);
   };
   return (
+    <>
+    <img src={clound} className="img-clound"/>
     <Grid className={"container pantalla-dividida"}>
       <Grid item className={"izquierda"}>
         <form className={"caja"} onSubmit={handlerRegister}>
@@ -60,24 +64,25 @@ const Register = () => {
               required
             />
             <NormalInput
-              label={"Nombre de la Empresa"}
-              type={"text"}
-              placeholder={"Ingrese su nombre"}
+              label={"Correo"}
+              type={"email"}
+              placeholder={"Ingrese su correo"}
               value={company_name}
               setValue={setCompany_nmae}
               required
             />
 
-            <Grid item className={"item__botton"} style={{ marginTop: "20px" }}>
+            <Grid item className={"item__botton"} style={{ marginTop: "20px", width: "40%" }}>
               <Button
                 type={"submit"}
-                className={"Botton"}
+                className={"Botton botton-gigante"}
                 color={"secondary"}
                 variant="contained"
                 size="large"
                 startIcon={
                   loading === false ? <SaveIcon /> : <CheckCircleOutlineIcon />
                 }
+                sx={{width:"100%"}}
               >
                 Enviar
               </Button>
@@ -88,13 +93,14 @@ const Register = () => {
       <Grid item className={"derecha"}>
         <Box className={"caja-derecha"}>
           <h1 className={"text-contactanos"}>Contáctanos</h1>
-          <p className="text-conose">Cónose un poco más acerca de nosotros.</p>
+          <p className="text-conoce">Conóce un poco más acerca de nosotros.</p>
 
           <div className={"link-direccon"}>
             <AddLocationAltRoundedIcon
+              style={{marginLeft: "10px"}}
               color={"white"}
               mr={2}
-              fontSize={"large"}
+              fontSize={"medium"}
             />
             <a
               className={"link"}
@@ -107,7 +113,6 @@ const Register = () => {
 
           <div className={"center-link"}>
             <img src={pagina} />
-         
             <a
               className={"link"}
               href="https://www.teclab.com.co/"
@@ -146,6 +151,7 @@ const Register = () => {
         </Box>
       </Grid>
     </Grid>
+    </>
   );
 };
 

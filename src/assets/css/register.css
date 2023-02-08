@@ -11,8 +11,6 @@ body {
     padding: 0;
   }
 .izquierda{
-    /* border: 1px solid red; */
-    background: url("/src/assets/img/registrar-fondo-izq.png");
     background-size: cover;
     background-position: center;
     width: 70%;
@@ -21,8 +19,20 @@ body {
     justify-content: center;
     align-items: center;
 }
+/* image clound */
+.img-clound {
+    position: absolute;
+    height: 290px;
+    left: -90px;
+    bottom: 0;
+}
+
+
+
 .link{
     color: white;
+    font-size: 14px;
+    margin-left: 8px;
 }
 
 .center-link{
@@ -39,7 +49,7 @@ justify-content: center;
 }
 
 .h1{
-    font-size:45px ;
+    font-size:40px ;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,9 +90,8 @@ justify-content: center;
 .caja-derecha{
     margin: auto;
     margin-top: 20%;
-   /* background-color: black; */
     width:90%;
-    height: 70%;
+    height: 80%;
     border-radius: 15%;
     display: flex;
     flex-direction: column;
@@ -92,7 +101,6 @@ justify-content: center;
 .foto-teclab{
     display: flex;
     justify-content: center;
-    /* margin-top: .3rem; */
 }
 /* 
 /*div- botton*/
@@ -109,8 +117,8 @@ justify-content: center;
 .form__demo-container-name{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 50%;
+    align-items: flex-start;
+    width: 60%;
     margin-top: 10px;
 }
 
@@ -123,9 +131,8 @@ justify-content: center;
     color: #414C5B;
     margin-bottom: 3px;
 } 
-.form__label-name::before{
+.form__label-name::after{
     content: "*";
-    color:#B91C1C;
 }
 
 /* inputs */
@@ -137,7 +144,7 @@ justify-content: center;
     color: #757575;
     padding: 0 10px;
     min-width: 150px;
-    width: 80%;
+    width: 100%;
     
 }
 
@@ -182,40 +189,17 @@ justify-content: center;
 }
 
 .text-contactanos{
-    font-size: 51px;
+    font-size: 36px;
     color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 0 auto;
 }
 
-.text-conose{
-    font-size:20px ;
+.text-conoce{
+    font-size:16px ;
     color: white;
+    max-width: 90%;
+    margin: 30px auto;
 }
-/* 
-@media screen and (max-width: 820px) {
-    .derecha {
-        display: none;
-    }
-    .izquierda {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100vw;
-    }
-    .caja {
-        width: 60vw;
-    }
-}
-
-@media screen and (max-width: 425px) {
-
-    .caja {
-        width: 80vw;
-    }
-} */
-
 /*  ****************************************************************CREATE REQUIREMENTS*************************************************************** */
 
 .contenedor{
@@ -242,7 +226,6 @@ justify-content: center;
     top: 10px;
 }
 .pantalla-dividida-requirements{
-    /* border: 1px solid #306485; */
      margin: auto;
     display: flex;
     align-items: center;
@@ -356,3 +339,14 @@ justify-content: center;
     align-items:center;
     justify-content: center;
 }
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+
