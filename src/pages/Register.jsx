@@ -15,14 +15,17 @@ import AddLocationAltRoundedIcon from "@mui/icons-material/AddLocationAltRounded
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import clound from '../assets/img/clound.png'
+import 'animate.css';
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const [business_name, setBusiness_name] = useState("");
+  const [username, setUsername ] =  useState("");
   const [nit, setNit] = useState("");
   const [company_name, setCompany_nmae] = useState("");
+  const isUser = true;
 
   const handlerRegister = (e) => {
     e.preventDefault();
@@ -48,15 +51,7 @@ const Register = () => {
             <h1 className="h1">Bienvenidos (a)</h1>
             
             <NormalInput
-              label={"Razón social"}
-              type={"text"}
-              placeholder={"Ingrese su razon social"}
-              value={business_name}
-              setValue={setBusiness_name}
-              required
-            />
-            <NormalInput
-              label={"Nit de la Empresa"}
+              label={"Nit o Cedula"}
               type={"number"}
               placeholder={"Ingrese su nit"}
               value={nit}
@@ -71,6 +66,26 @@ const Register = () => {
               setValue={setCompany_nmae}
               required
             />
+            <NormalInput
+              label={"Razón social"}
+              type={"text"}
+              placeholder={"Ingrese su razon social"}
+              value={business_name}
+              setValue={setBusiness_name}
+              required
+              animation={"animate__animated animate__backInDown"}
+            />
+            {isUser && <NormalInput
+              label={"Nombre de usuario"}
+              type={"texto"}
+              placeholder={"Ingrese su nombre"}
+              value={username}
+              setValue={setUsername}
+              required
+              animation={"animate__animated animate__backInDown"}
+            />}
+            
+            
 
             <Grid item className={"item__botton"} style={{ marginTop: "20px", width: "40%" }}>
               <Button
@@ -90,14 +105,14 @@ const Register = () => {
         </form>
       </Grid>
 
-      <Grid item className={"derecha"}>
+      <section item className={"derecha"} >
         <Box className={"caja-derecha"}>
           <h1 className={"text-contactanos"}>Contáctanos</h1>
           <p className="text-conoce">Conóce un poco más acerca de nosotros.</p>
 
           <div className={"link-direccon"}>
             <AddLocationAltRoundedIcon
-              style={{marginLeft: "10px"}}
+              style={{marginRight: "10px"}}
               color={"white"}
               mr={2}
               fontSize={"medium"}
@@ -112,7 +127,7 @@ const Register = () => {
           </div>
 
           <div className={"center-link"}>
-            <img src={pagina} />
+            <img src={pagina} style={{marginRight: "10px"}} />
             <a
               className={"link"}
               href="https://www.teclab.com.co/"
@@ -149,7 +164,7 @@ const Register = () => {
             />
           </div>
         </Box>
-      </Grid>
+      </section>
     </Grid>
     </>
   );
