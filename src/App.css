@@ -6,3 +6,7 @@
 .white-light {
   background-color: #F5F5F5;
 }
+
+:root {
+  --animate-duration: 3800ms;
+}

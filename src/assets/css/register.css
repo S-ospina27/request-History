@@ -5,7 +5,9 @@
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
 }
-
+.animate__animated {
+    --animate-duration: 1.5s;
+}
 body {
     margin: 0;
     padding: 0;
@@ -18,6 +20,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 1s linear ;
 }
 /* image clound */
 .img-clound {
@@ -86,12 +89,13 @@ justify-content: center;
 }
 .caja{
     width:80%;
-    height: 70%;
+    max-height: 70%;
     border-radius: 15%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transition: all 1s linear ;
 }
 
 .caja-derecha{
@@ -117,7 +121,7 @@ justify-content: center;
     justify-content: center;
     background: linear-gradient(180deg, #65bce8 0%, #306485 49%, #fbde74 50%, #ff9900 100%);
     background-size: 1px 100px;
-    transition: all .3s;
+    transition: all 1s linear ;
 }
 
 /* div */
@@ -321,11 +325,11 @@ justify-content: center;
     cursor: pointer;
     color: #FFF;
     background-size: 100%;
-    transition: 0.6s;
+    transition: all 1s linear ;
 }
 .botton-gigante {
     background-image: radial-gradient(circle at 0% 0%, #ff78c0 0, #fc6fc6 12.5%, #eb65cc 25%, #d75dd2 37.5%, #be55d8 50%, #a050de 62.5%, #7a4fe3 75%, #4250e9 87.5%, #0052ed 100%);
-  
+    transition: all 1s linear ;
 }
 
 .from-create{
@@ -349,6 +353,7 @@ justify-content: center;
 }
 
 
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -365,6 +370,7 @@ a {
     }
     .izquierda {
         width: 100vw;
+        transition: all 1s linear ;
     }
 }
 @media screen and (max-width: 768px) {
@@ -375,3 +381,4 @@ a {
         font-size: 32px;
     }
 }
+
