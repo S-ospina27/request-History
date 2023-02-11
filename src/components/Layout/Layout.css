@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+}
+
+.white-light {
+    background-color: #e0d7d72b ;
+}
+
+.contenerdor-avatar{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* background-color: aqua; */
+    /* border: 1px solid red; */
+}
+
+.avatar{
+    width:75%;
+    height: auto;
+    margin: auto;
+    display: block;
+    border-radius: 50px;
+    /* box-shadow:5px 5px 0px #424242 ; */
+    box-shadow:5px 15px 25px 
+    rgba(0, 0,0,0.50) ;
+    cursor:pointer;
+
+}
+.TeclabLayout{
+    margin: auto;
+}
+.h1-padre{
+    font-size:20px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contenedor-info{
+    width: 100%;
+    margin-top: 2px;
+    margin-bottom: 30px;
+    /* border: 1px solid red; */
+    text-align: center;
+}
+.label-saludo{
+    font-size: 2rem;
+}
+
+.contenedor-requirement{
+    margin-top:2% ;
+
+
+}
+.contenedor-body{
+    /* display: flex; */
+  
+    /* background-color: black;  */
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 100%;
+
+}
+
+.conteniedor-informativo{
+    display: flex;
+    margin:auto;
+    margin-top:1% ;
+    border: 1px solid transparent;
+    background: #cccccc2b;
+    border-radius: 1%;
+    width: 95% ;
+    height: 20vh;
+}
+
+.conteniedor-tabla{
+    margin:auto;
+    margin-top:2% ;
+    border: 1px solid transparent;
+    background: #cccccc2b;
+    border-radius:2% ;
+    width: 95% ;
+    height: 75vh;
+}
+.contenedores-hijos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:2%;
+    margin-left:12.5% ;
+    border: 1px solid red;
+    border-radius: 10%;
+    width: 15% ;
+    height: 63%;
+
+}

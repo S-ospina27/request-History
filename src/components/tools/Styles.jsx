@@ -34,6 +34,7 @@ const Styles = createTheme({
       main: "#6C757D",
       contrastText: "#FFFFFF",
     },
+   
   },
 });
 

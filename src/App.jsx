@@ -6,16 +6,15 @@ import { ThemeProvider } from '@mui/material'
 import Styles from "./components/tools/Styles";
 import { Create } from '@mui/icons-material';
 import CreateRequirements from './pages/CreateRequirements';
-
+import Requeriments from './pages/Requeriments';
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <ThemeProvider theme={Styles}>
     <Routes>
-      <Route path='/' element={<Register/>} />
-
+      <Route path='/register' element={<Register/>} />
       <Route path='/create' element={<CreateRequirements/>} />
+      <Route path='/' element={<Requeriments/>} />
     </Routes>
   </ThemeProvider>
   )
