@@ -14,13 +14,18 @@ import NormalInput from "../components/common/NormalInput";
 import AddLocationAltRoundedIcon from "@mui/icons-material/AddLocationAltRounded";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import clound from '../assets/img/clound.png'
+import 'animate.css';
+
 const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const [business_name, setBusiness_name] = useState("");
+  const [username, setUsername ] =  useState("");
   const [nit, setNit] = useState("");
-  const [company_name, setCompany_nmae] = useState("");
+  const [company_name, setCompany_name] = useState("");
+  const isUser = company_name == 'santiago.sierra@teclab.com.co' ? true : false;
 
   const handlerRegister = (e) => {
     e.preventDefault();
@@ -30,29 +35,23 @@ const Register = () => {
   const clearInputs = () => {
     setBusiness_name("");
     setNit("");
-    setCompany_nmae("");
+    setCompany_name("");
     setTimeout(() =>{
-       setLoading(false);
-       navigate("/create");
-      }, 1300);
+      setLoading(false);
+      navigate("/create");
+    }, 1300);
   };
   return (
+    <>
+    <img src={clound} className="img-clound animate__animated animate__zoomInDown "/>
     <Grid className={"container pantalla-dividida"}>
       <Grid item className={"izquierda"}>
-        <form className={"caja"} onSubmit={handlerRegister}>
+        <form className={"caja animate__animated animate__zoomInDown animate__delay-1s"} onSubmit={handlerRegister}>
             <img src={Teclab} className={"foto-teclab"} />
             <h1 className="h1">Bienvenidos (a)</h1>
             
             <NormalInput
-              label={"Razón social"}
-              type={"text"}
-              placeholder={"Ingrese su razon social"}
-              value={business_name}
-              setValue={setBusiness_name}
-              required
-            />
-            <NormalInput
-              label={"Nit de la Empresa"}
+              label={"Nit o Cedula"}
               type={"number"}
               placeholder={"Ingrese su nit"}
               value={nit}
@@ -60,41 +59,63 @@ const Register = () => {
               required
             />
             <NormalInput
-              label={"Nombre de la Empresa"}
-              type={"text"}
-              placeholder={"Ingrese su nombre"}
+              label={"Correo"}
+              type={"email"}
+              placeholder={"Ingrese su correo"}
               value={company_name}
-              setValue={setCompany_nmae}
+              setValue={setCompany_name}
               required
             />
+            {isUser && <NormalInput
+              label={"Razón social"}
+              type={"text"}
+              placeholder={"Ingrese su razon social"}
+              value={business_name}
+              setValue={setBusiness_name}
+              required
+              animation={"animate__animated animate__backInDown"}
+            /> }
+            {isUser && <NormalInput
+              label={"Nombre de usuario"}
+              type={"texto"}
+              placeholder={"Ingrese su nombre"}
+              value={username}
+              setValue={setUsername}
+              required
+              animation={"animate__animated animate__backInDown"}
+            />}
+            
+            
 
-            <Grid item className={"item__botton"} style={{ marginTop: "20px" }}>
+            <div item className={"item__botton"} style={{ marginTop: "20px", width: "40%" }}>
               <Button
                 type={"submit"}
-                className={"Botton"}
+                className={"Botton botton-gigante"}
                 color={"secondary"}
                 variant="contained"
                 size="large"
                 startIcon={
                   loading === false ? <SaveIcon /> : <CheckCircleOutlineIcon />
                 }
+                sx={{width:"100%"}}
               >
                 Enviar
               </Button>
-            </Grid>
+            </div>
         </form>
       </Grid>
 
-      <Grid item className={"derecha"}>
-        <Box className={"caja-derecha"}>
+      <section item className={"derecha"} >
+        <Box className={"caja-derecha animate__animated animate__zoomInDown"}>
           <h1 className={"text-contactanos"}>Contáctanos</h1>
-          <p className="text-conose">Cónose un poco más acerca de nosotros.</p>
+          <p className="text-conoce">Conóce un poco más acerca de nosotros.</p>
 
           <div className={"link-direccon"}>
             <AddLocationAltRoundedIcon
+              style={{marginRight: "10px"}}
               color={"white"}
               mr={2}
-              fontSize={"large"}
+              fontSize={"medium"}
             />
             <a
               className={"link"}
@@ -106,8 +127,7 @@ const Register = () => {
           </div>
 
           <div className={"center-link"}>
-            <img src={pagina} />
-         
+            <img src={pagina} style={{marginRight: "10px"}} />
             <a
               className={"link"}
               href="https://www.teclab.com.co/"
@@ -144,8 +164,9 @@ const Register = () => {
             />
           </div>
         </Box>
-      </Grid>
+      </section>
     </Grid>
+    </>
   );
 };
 
