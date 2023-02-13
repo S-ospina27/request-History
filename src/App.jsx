@@ -12,8 +12,8 @@ function App() {
   return (
     <ThemeProvider theme={Styles}>
       <Routes>
-        <Route path='/' element={<Register/>} />
-
+        <Route path='/' element={<Requeriments/>} />
+        <Route path='/register' element={<Register/>} />
         <Route path='/create' element={<CreateRequirements/>} />
       </Routes>
   </ThemeProvider>

@@ -60,7 +60,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
       >
         <DrawerHeader>
         
-          <img src={salir} onClick={handleDrawerClose} width={"15%"} />
+          <img src={salir} style={{cursor:"pointer"}} onClick={handleDrawerClose} width={"15%"} />
 
           <img className={"TeclabLayout"} src={Teclab} onClick={handleDrawerClose}  />
         
