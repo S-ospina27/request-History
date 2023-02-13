@@ -25,7 +25,7 @@ const Register = () => {
   const [username, setUsername ] =  useState("");
   const [nit, setNit] = useState("");
   const [company_name, setCompany_name] = useState("");
-  const isUser = company_name == 'santiago.sierra@teclab.com.co' ? true : false;
+  const isUser = company_name == 'santiago@gmail.com' ? true : false;
 
   const handlerRegister = (e) => {
     e.preventDefault();
