@@ -11,19 +11,11 @@ function App() {
 
   return (
     <ThemeProvider theme={Styles}>
-<<<<<<< HEAD
-    <Routes>
-      <Route path='/register' element={<Register/>} />
-      <Route path='/create' element={<CreateRequirements/>} />
-      <Route path='/' element={<Requeriments/>} />
-    </Routes>
-=======
       <Routes>
         <Route path='/' element={<Register/>} />
 
         <Route path='/create' element={<CreateRequirements/>} />
       </Routes>
->>>>>>> 682a5719716426f3d5cf19ddb4695fad4cb7b9fa
   </ThemeProvider>
   )
 }

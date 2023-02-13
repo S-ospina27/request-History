@@ -15,6 +15,7 @@ import Cards from "../components/common/Cards";
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import MenuHelps from "../components/common/MenuHelps";
 import Draw from "../components/common/Draw";
+
 const CreateRequirements = () => {
   const [disappear, setDisappear] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -29,7 +30,6 @@ const CreateRequirements = () => {
   const hanledActionForm = () => {
     setDisappear(true);
     setDisplay(false);
-   
   };
 
   const handlerCreateRequirements = (e) => {
@@ -90,7 +90,7 @@ const CreateRequirements = () => {
                   label={"Descripción"}
                   value={description}
                   setValue={setDescription}
-                   required />
+                  required />
 
                 <Grid
                   item
