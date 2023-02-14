@@ -11,7 +11,7 @@ const Requeriments = () => {
   return (
     <div className={"contaniner contenedor-requirement"}>
            <DrawerLayout helpOpen={helpOpen}  setHelpOpen={setHelpOpen}/>
-         <img src={menu} width="50px" className={"img-menu"} onClick={ () => setHelpOpen(true) } />
+         <img src={menu} className={"img-menu"} onClick={ () => setHelpOpen(true) } />
           <h1 className={"h1-padre"}>Requerimientos</h1>
          <div className={"contenedor-body"}>
            <div className={"contenedor-informativo"}>
