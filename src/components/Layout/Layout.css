@@ -15,8 +15,9 @@
     margin-bottom: 10px;
 }
 .img-menu {
+    width: 50px;
     position:absolute;
-    right: 40px;
+    right: 60px;
     top: 30px;
     cursor: pointer;
 }
@@ -109,9 +110,18 @@
     .h1-padre {
         font-size: 28px;
     }
+    .img-menu {
+        right: 30px;
+        top: 20px
+    }
 }
 @media screen and (max-width: 425px) {
     .h1-padre {
         font-size: 24px;
+    }
+    .img-menu {
+        width: 40px;
+        right: 5px;
+        top: 20px
     }
 }
