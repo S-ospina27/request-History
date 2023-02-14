@@ -1,6 +1,5 @@
 import { Box, Grid } from '@mui/material';
 import React, { useState } from 'react'
-// import DrawersPages from '../components/Layout/Drawerspages';
 import menu from "../assets/img/menu.png"
 import DrawerLayout from '../components/Layout/DrawerLayout';
 
