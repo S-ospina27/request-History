@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import "../assets/css/register.css";
 import Teclab from "../assets/img/Teclab.png";
 import ayuda from "../assets/img/ayuda.png";
-import sindatos from "../assets/img/imagen-sindatos.png";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Button from "@mui/material/Button";
 import NormalInput from "../components/common/NormalInput";
@@ -17,8 +16,9 @@ import RoutesList from "../components/tools/RoutesList";
 import DataTable from "../components/tools/DataTable";
 import { getHeader } from "../components/tools/SessionSettings";
 import ColumnsTable from "../components/tools/ColumnsTable";
-import {remove} from "../components/tools/SessionSettings";
-import { useNavigate } from "react-router-dom";
+import { remove } from "../components/tools/SessionSettings";
+import { Form, useNavigate } from "react-router-dom";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 const CreateRequirements = ({ setAlert }) => {
   const navigate = useNavigate();
@@ -57,7 +57,7 @@ const CreateRequirements = ({ setAlert }) => {
             severity: res.data.status,
           });
           setLoading(true);
-          handlerReadrequirements();
+          handlerReadrequirementsByClients();
         }
         setAlert({
           open: true,
@@ -75,9 +75,11 @@ const CreateRequirements = ({ setAlert }) => {
     setImagendatos(false);
   };
 
-  const handlerReadrequirements = () => {
+  const handlerReadrequirementsByClients = () => {
+    const form = new FormData();
+    form.append("idcompanies", idcompanies);
     axios
-      .get(RoutesList.api.companies.requirements.read, getHeader())
+      .post(RoutesList.api.companies.requirements.read.read_requirementsByclients,form, getHeader())
       .then((res) => {
         setReadrequirements(res.data);
       });
@@ -86,12 +88,12 @@ const CreateRequirements = ({ setAlert }) => {
   const handlerClosepage = () => {
     remove("companies_nit");
     navigate("/register");
-  }
+  };
+  
   useEffect(() => {
-    handlerReadrequirements();
+    handlerReadrequirementsByClients();
   }, []);
 
-  
   return (
     <div className={" container contenedor"}>
       <Draw helpOpen={helpOpen} setHelpOpen={setHelpOpen} />
@@ -172,10 +174,9 @@ const CreateRequirements = ({ setAlert }) => {
 
         <Grid item className={"derecha_requerimients"}>
           <Box className={"caja-requirements-der"}>
-  
             <div className="table-contenedor">
-              <DataTable 
-                reload={handlerReadrequirements}
+              <DataTable
+                reload={handlerReadrequirementsByClients}
                 rows={readRequirements}
                 columns={ColumnsTable.requirements}
                 getRowId={"idrequirements"}
@@ -205,26 +206,19 @@ const CreateRequirements = ({ setAlert }) => {
                   },
                 }}
               />
-              
             </div>
-            <div  className={"Botton-cerrar"}>
-            <Button
+            <div className={"Botton-cerrar"}>
+              <Button
                 type={"submit"}
                 color={"secondary"}
                 variant="contained"
                 size="large"
-                onClick={()=> handlerClosepage()}
-                startIcon={
-                    loading === false ? (
-                      <MenuBookIcon />
-                    ) : (
-                      <CheckCircleOutlineIcon />
-                     )
-                    }
-                  >
-                    Salir
-                  </Button>
-                  </div>
+                onClick={() => handlerClosepage()}
+                startIcon={<ExitToAppIcon />}
+              >
+                Salir
+              </Button>
+            </div>
           </Box>
         </Grid>
       </Grid>

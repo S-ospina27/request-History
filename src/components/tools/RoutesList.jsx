@@ -7,7 +7,12 @@ export default {
       create: `${host}/companies/create`,
       requirements:{
         create: `${host}/companies/requirements/create`,
-        read: `${host}/companies/requirements/read`,
+        read: {
+          read_requirementsByclients:`${host}/companies/requirements/requirementsByclients`,
+          read_pending:`${host}/companies/requirements/pending`,
+          read_accept:`${host}/companies/requirements/accepted`,
+          read_finished:`${host}/companies/requirements/finished`,
+        }
       }
     },
   },

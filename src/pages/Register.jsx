@@ -32,13 +32,14 @@ const Register = ({ setAlert }) => {
 
   const handlerRegister = (e) => {
     e.preventDefault();
-    console.log(RoutesList.api.companies.create);
+  
     const form = new FormData();
     form.append("companies_nit", companies_nit);
     form.append("companies_business_name", companies_business_name);
     form.append("companies_email", companies_email);
     form.append("companies_username", companies_username);
     axios.post(RoutesList.api.companies.create, form).then((res) => {
+
       if (res.data.status === "info") {
         set("companies_nit",companies_nit);
         setAlert({
@@ -77,6 +78,7 @@ const Register = ({ setAlert }) => {
       navigate("/create");
     }, 2000);
   };
+  
   return (
     <>
       <img
