@@ -20,6 +20,8 @@ import "../components/Layout/Layout.css";
 import DialogTransition from "../components/common/DialogTransition";
 import PrioritySelect from "../components/common/PrioritySelect";
 import { display } from "@mui/system";
+import NormalInput from "../components/common/NormalInput";
+import RequirementsSelector from "../components/common/RequirementsSelector";
 const Requeriments = () => {
   const [pending, setPending] = useState([]);
   const [accepted, setAccepted] = useState([]);
@@ -152,8 +154,9 @@ const Requeriments = () => {
         </div>
       </div>
       <Dialog
+      // fullScreen={true}
         fullWidth
-        maxWidth={"lg"}
+        maxWidth={"xl"}
         open={open}
         sx={{
           borderRadius: "55px",
@@ -168,33 +171,31 @@ const Requeriments = () => {
 
           <DialogContent dividers>
             <Grid container >
-              <Grid item xs={12} sm={12} md={5} sx={{border :"1px solid red",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
-                <Grid item xs={12} sm={12} md={10} sx={{border :"1px solid blue", margin:"auto", display:"flex", justifyContent:"center",alignItems:"center"}}>
-                  <PrioritySelect
-                  // value={priority}
-                  // setValue={setPriority}
+              <Grid 
+              item xs={12} sm={12} md={8} lg={7}
+              sx={{border :"1px solid red",display:"flex",justifyContent:"center",
+                alignItems:"center",flexDirection:"column"
+                }}
+              > 
+               <form className="form-asignacion">
+                <RequirementsSelector/>
+                <NormalInput
+                  label={"Fecha de entrega"}
+                  type={"date"}
+                  min={"2023-02-14"}
+                  placeholder={"Ingrese nombre"}
+                  // value={name_requirement}
+                  // setValue={setName_requirement}
                   required
-                  />
-                  <PrioritySelect
-                  // value={priority}
-                  // setValue={setPriority}
-                  required
-                  />
-                </Grid>
-                <Grid item xs={12} sm={12} md={11} sx={{border :"1px solid blue", margin:"auto", display:"flex", justifyContent:"center",alignItems:"center"}}>
-                  <PrioritySelect
-                  // value={priority}
-                  // setValue={setPriority}
-                  required
-                  />
-                  <PrioritySelect
-                  // value={priority}
-                  // setValue={setPriority}
-                  required
-                  />
-                </Grid>
+                />
+
+               </form>
+
+               <div className="form-asignacion">
+
+               </div>
               </Grid>
-              <Grid item xs={12} sm={12} md={7}>
+              <Grid item xs={12} sm={12} md={4} lg={5}>
                 <DataTable
                   reload={readRequirementsByAdmin}
                   rows={readRequirementsAdm}
@@ -205,8 +206,8 @@ const Requeriments = () => {
                   //   set: setFields,
                   // }}
                   sx={{
-                    margin: "auto",
-                    width: "650px",
+                    // margin: "auto",
+                    width: "640px",
                     height: "420px",
                     borderRadius: "15px",
                     borderColor: "#0000000",

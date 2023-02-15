@@ -10,6 +10,8 @@ const NormalInput = ({
   value,
   setValue,
   animation,
+  min,
+  max
 }) => {
   return (
     <div className={`form__demo-container-name ${animation}`} style={{ marginBottom: "20px" }}>
@@ -20,6 +22,8 @@ const NormalInput = ({
         placeholder={placeholder}
         required={required}
         disabled={disabled}
+        min={min}
+        max={max}
         // readonly={readonly}
         value={value}
         onChange={(e) => {
