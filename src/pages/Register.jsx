@@ -18,7 +18,7 @@ import clound from "../assets/img/clound.png";
 import "animate.css";
 import axios from "axios";
 import RoutesList from "../components/tools/RoutesList";
-import {set}   from "../components/tools/SessionSettings"
+import {set,getHeader}   from "../components/tools/SessionSettings"
 
 const Register = ({ setAlert }) => {
   const [loading, setLoading] = useState(false);
@@ -38,7 +38,7 @@ const Register = ({ setAlert }) => {
     form.append("companies_business_name", companies_business_name);
     form.append("companies_email", companies_email);
     form.append("companies_username", companies_username);
-    axios.post(RoutesList.api.companies.create, form).then((res) => {
+    axios.post(RoutesList.api.companies.create, form, getHeader()).then((res) => {
 
       if (res.data.status === "info") {
         set("companies_nit",companies_nit);

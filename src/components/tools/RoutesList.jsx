@@ -12,6 +12,7 @@ export default {
           read_pending:`${host}/companies/requirements/pending`,
           read_accept:`${host}/companies/requirements/accepted`,
           read_finished:`${host}/companies/requirements/finished`,
+          read_requirementsByadmin:`${host}/companies/requirements/requirementsByadmin`,
         }
       }
     },

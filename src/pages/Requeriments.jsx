@@ -1,17 +1,32 @@
-import { Box, Grid } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+} from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import menu from "../assets/img/menu.png";
 import DrawerLayout from "../components/Layout/DrawerLayout";
+import DataTable from "../components/tools/DataTable";
 import RoutesList from "../components/tools/RoutesList";
 import { getHeader } from "../components/tools/SessionSettings";
-
+import ColumnsTable from "../components/tools/ColumnsTable";
+import "../components/Layout/Layout.css";
+import DialogTransition from "../components/common/DialogTransition";
+import PrioritySelect from "../components/common/PrioritySelect";
+import { display } from "@mui/system";
 const Requeriments = () => {
   const [pending, setPending] = useState([]);
   const [accepted, setAccepted] = useState([]);
   const [finished, setFinished] = useState([]);
+  const [readRequirementsAdm, setReadRequirementsAdm] = useState([]);
   const [helpOpen, setHelpOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handlerPending = () => {
     axios
@@ -31,44 +46,212 @@ const Requeriments = () => {
 
   const handlerfinished = () => {
     axios
-      .get(RoutesList.api.companies.requirements.read.read_finished, getHeader())
+      .get(
+        RoutesList.api.companies.requirements.read.read_finished,
+        getHeader()
+      )
       .then((res) => {
         setFinished(res.data.terminado);
       });
-    };
-    
-    console.log(finished)
+  };
+
+  const readRequirementsByAdmin = () => {
+    axios
+      .get(
+        RoutesList.api.companies.requirements.read.read_requirementsByadmin,
+        getHeader()
+      )
+      .then((res) => {
+        setReadRequirementsAdm(res.data);
+      });
+  };
+
+  const handleCreateAssingments = () => {};
+
   useEffect(() => {
     handlerPending();
     handlerAccept();
     handlerfinished();
+    readRequirementsByAdmin();
   }, []);
 
   return (
-    <div className={"contaniner contenedor-requirement"}>
-      <DrawerLayout helpOpen={helpOpen} setHelpOpen={setHelpOpen} />
-      <img
-        src={menu}
-        className={"img-menu"}
-        onClick={() => setHelpOpen(true)}
-      />
-      <h1 className={"h1-padre"}>Requerimientos</h1>
-      <div className={"contenedor-body"}>
-        <div className={"contenedor-informativo"}>
-          <div className={"contenedores-hijos"}>
-            <label>Pendientes: {pending}</label>
+    <>
+      <div className={"contaniner contenedor-requirement"}>
+        <DrawerLayout helpOpen={helpOpen} setHelpOpen={setHelpOpen} />
+        <img
+          src={menu}
+          className={"img-menu"}
+          onClick={() => setHelpOpen(true)}
+        />
+        <h1 className={"h1-padre"}>Requerimientos</h1>
+        <div className={"contenedor-body"}>
+          <div className={"contenedor-informativo"}>
+            <div className={"contenedores-hijos"}>
+              <label>Pendientes: {pending}</label>
+            </div>
+
+            <div className={"contenedores-hijos"}>
+              <label>Aceptadas: {accepted}</label>
+            </div>
+
+            <div className={"contenedores-hijos"}>
+              <label>Terminadas: {finished}</label>
+            </div>
           </div>
-          <div className={"contenedores-hijos"}>
-            <label>Aceptadas: {accepted}</label>
-          </div>
-          <div className={"contenedores-hijos"}>
-            <label>Terminadas: {finished}</label>
+
+          <div className={"conteniedor-tabla"}>
+            <div className="tabla-admin">
+              <DataTable
+                reload={readRequirementsByAdmin}
+                rows={readRequirementsAdm}
+                columns={ColumnsTable.requirementsAdmin}
+                getRowId={"idrequirements"}
+                // onRowClick={{
+                //   open: setOpenCreatTechnical,
+                //   set: setFields,
+                // }}
+                sx={{
+                  margin: "auto",
+                  width: "500px",
+                  height: "340px",
+                  borderRadius: "15px",
+                  borderColor: "#FFFFFF",
+                  color: "#FFFFFF",
+                  "& .MuiDataGrid-iconButtonContainer": {
+                    button: {
+                      color: "#FFFFFF",
+                    },
+                  },
+                  ".MuiTablePagination-root": {
+                    color: "#FFFFFF",
+                  },
+                  "& .MuiDataGrid-columnHeaders": {
+                    borderColor: "#FFFFFF",
+                  },
+                  "& .MuiDataGrid-cell": {
+                    borderColor: "#FFFFFF",
+                  },
+                }}
+                toolbar={
+                  <Button
+                    type="button"
+                    color="white"
+                    // disabled={items.length > 0 ? false : true}
+                    onClick={() => {
+                      setOpen(true);
+                    }}
+                    // startIcon={<PriceCheckIcon />}
+                  >
+                    {"Asignaciónes"}
+                  </Button>
+                }
+              />
+            </div>
           </div>
         </div>
-
-        <div className={"conteniedor-tabla"}></div>
       </div>
-    </div>
+      <Dialog
+        fullWidth
+        maxWidth={"lg"}
+        open={open}
+        sx={{
+          borderRadius: "55px",
+        }}
+        onClose={() => {
+          setOpen(false);
+        }}
+        TransitionComponent={DialogTransition}
+      >
+        <form onSubmit={handleCreateAssingments}>
+          <DialogTitle>Crear Asignaciónes</DialogTitle>
+
+          <DialogContent dividers>
+            <Grid container >
+              <Grid item xs={12} sm={12} md={5} sx={{border :"1px solid red",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
+                <Grid item xs={12} sm={12} md={10} sx={{border :"1px solid blue", margin:"auto", display:"flex", justifyContent:"center",alignItems:"center"}}>
+                  <PrioritySelect
+                  // value={priority}
+                  // setValue={setPriority}
+                  required
+                  />
+                  <PrioritySelect
+                  // value={priority}
+                  // setValue={setPriority}
+                  required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12} md={11} sx={{border :"1px solid blue", margin:"auto", display:"flex", justifyContent:"center",alignItems:"center"}}>
+                  <PrioritySelect
+                  // value={priority}
+                  // setValue={setPriority}
+                  required
+                  />
+                  <PrioritySelect
+                  // value={priority}
+                  // setValue={setPriority}
+                  required
+                  />
+                </Grid>
+              </Grid>
+              <Grid item xs={12} sm={12} md={7}>
+                <DataTable
+                  reload={readRequirementsByAdmin}
+                  rows={readRequirementsAdm}
+                  columns={ColumnsTable.requirementsAdmin}
+                  getRowId={"idrequirements"}
+                  // onRowClick={{
+                  //   open: setOpenCreatTechnical,
+                  //   set: setFields,
+                  // }}
+                  sx={{
+                    margin: "auto",
+                    width: "650px",
+                    height: "420px",
+                    borderRadius: "15px",
+                    borderColor: "#0000000",
+                    color: "#0000000",
+                    "& .MuiDataGrid-iconButtonContainer": {
+                      button: {
+                        color: "#0000000",
+                      },
+                    },
+                    ".MuiTablePagination-root": {
+                      color: "#0000000",
+                    },
+                    "& .MuiDataGrid-columnHeaders": {
+                      borderColor: "#0000000",
+                    },
+                    "& .MuiDataGrid-cell": {
+                      borderColor: "#00000",
+                    },
+                  }}
+                  toolbar={
+                    <Button
+                      type="button"
+                      color="white"
+                      // disabled={items.length > 0 ? false : true}
+                      onClick={() => {
+                        setOpen(true);
+                      }}
+                      // startIcon={<PriceCheckIcon />}
+                    >
+                      {"Asignaciónes"}
+                    </Button>
+                  }
+                />
+              </Grid>
+            </Grid>
+          </DialogContent>
+
+          <DialogActions>
+            <Button variant={"contained"} size={"small"} type="submit">
+              Crear
+            </Button>
+          </DialogActions>
+        </form>
+      </Dialog>
+    </>
   );
 };
 

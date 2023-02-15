@@ -48,7 +48,7 @@ const CreateRequirements = ({ setAlert }) => {
     form.append("requirements_priority", priority);
     form.append("requirements_description", description);
     axios
-      .post(RoutesList.api.companies.requirements.create, form)
+      .post(RoutesList.api.companies.requirements.create, form, getHeader())
       .then((res) => {
         if (res.data.status === "success") {
           setAlert({
