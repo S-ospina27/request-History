@@ -18,12 +18,13 @@ import clound from "../assets/img/clound.png";
 import "animate.css";
 import axios from "axios";
 import RoutesList from "../components/tools/RoutesList";
+import {set}   from "../components/tools/SessionSettings"
 
 const Register = ({ setAlert }) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [isuser, setIsuser] = useState(false);
-  // const isUser = companies_email == 'santiago@gmail.com' ? true : false;
+  
   const [companies_nit, setCompanies_nit] = useState("");
   const [companies_business_name, setCompanies_business_name] = useState("");
   const [companies_email, setCompanies_email] = useState("");
@@ -39,24 +40,22 @@ const Register = ({ setAlert }) => {
     form.append("companies_username", companies_username);
     axios.post(RoutesList.api.companies.create, form).then((res) => {
       if (res.data.status === "info") {
-        clearInputs();
-        setLoading(true);
+        set("companies_nit",companies_nit);
         setAlert({
           open: true,
           message: res.data.message,
           severity: res.data.status,
-        });
-        setTimeout(() => navigate("/create"),2000);
+        });        
+        clearInputs();
 
       } else if (res.data.status === "success") {
-        clearInputs();
-        setLoading(true);
+        set("companies_nit",companies_nit);
         setAlert({
           open: true,
           message: res.data.message,
           severity: res.data.status,
         });
-        setTimeout(() => navigate("/create"),2000);
+        clearInputs();
       } else {
         setIsuser(true);
         setAlert({
@@ -73,10 +72,10 @@ const Register = ({ setAlert }) => {
     setCompanies_business_name("");
     setCompanies_email("");
     setCompanies_username("");
-    // setTimeout(() =>{
-    //   setLoading(false);
-    //   navigate("/create");
-    // }, 1300);
+    setTimeout(() =>{
+      setLoading(false);
+      navigate("/create");
+    }, 2000);
   };
   return (
     <>

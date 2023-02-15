@@ -5,6 +5,10 @@ export default {
   api: {
     companies: {
       create: `${host}/companies/create`,
+      requirements:{
+        create: `${host}/companies/requirements/create`,
+        read: `${host}/companies/requirements/read`,
+      }
     },
   },
 };
