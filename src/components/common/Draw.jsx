@@ -52,7 +52,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
       >
         <DrawerHeader>
         
-          <img src={salir} onClick={handleDrawerClose} width={"20%"} />
+          <img src={salir} onClick={handleDrawerClose} width={"20%"} style={{cursor:"pointer"}} />
         
         </DrawerHeader>
         <h1 className={"titulo-drawer"}>Guia  <img src={book} width={"20%"} /></h1> 

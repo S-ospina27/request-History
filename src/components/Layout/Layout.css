@@ -102,7 +102,32 @@
 .contenedor-informativo .contenedores-hijos label{
     text-align:center;
 }
+.tabla-admin{
+    width: 90vw;
+    height: 54vh;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+}
+ /* //requirement */
+.form-asignacion{
+    margin: 0 auto;
+    display: flex;
+    justify-content:flex-start;
+    border: 1px solid blue;
+    margin-bottom: 6px;
+    border-radius: 23px;
+    height: 28vh;
+    width: 90%;
+}
+/* 
+.selector-requirements-asig{
+    border: 1px solid blueviolet;
+    height: 18vh;
+    width: 20vw;
+} */
 @media screen and (max-width: 768px) {
     .contenedores-hijos{
         width: 28%;
