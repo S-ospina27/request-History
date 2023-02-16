@@ -14,6 +14,7 @@ export default {
           read_finished:`${host}/companies/requirements/finished`,
           read_requirementsByadmin:`${host}/companies/requirements/requirementsByadmin`,
           read_requirementSelector:`${host}/companies/requirements/requirementselector`,
+          read_StateSelector:`${host}/companies/requirements/stateselector`,
         }
       }
     },

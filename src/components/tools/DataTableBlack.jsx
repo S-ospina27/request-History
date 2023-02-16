@@ -20,16 +20,16 @@ const StyledGridOverlay = styled("div")(({ theme }) => ({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  color: "white",
+  color: "secondary",
   height: "100%",
   "& .ant-empty-img-1": {
-    fill: theme.palette.mode === "light" ? "#aeb8c2" : "#262626",
+    fill: theme.palette.mode === "light" ? "#7B1FA2" : "#262626",
   },
   "& .ant-empty-img-2": {
     fill: theme.palette.mode === "light" ? "#f5f5f7" : "#595959",
   },
   "& .ant-empty-img-3": {
-    fill: theme.palette.mode === "light" ? "#dce0e6" : "#434343",
+    fill: theme.palette.mode === "light" ? "#7B1FA2" : "#434343",
   },
   "& .ant-empty-img-4": {
     fill: theme.palette.mode === "light" ? "#fff" : "#1c1c1c",
@@ -89,7 +89,7 @@ export function CustomNoRowsOverlay() {
   );
 }
 
-function DataTable({
+function DataTableBlack({
   rows,
   columns,
   getRowId,
@@ -114,12 +114,12 @@ function DataTable({
           disabled={disabled}
           size="small"
           onClick={handleReload}
-          color={"white"}
+          color={"secondary"}
           startIcon={
             disabled ? (
               <ScheduleIcon color="warning" />
             ) : (
-              <CachedIcon color={"white"} />
+              <CachedIcon color={"secondary"} />
             )
           }
         >
@@ -154,9 +154,9 @@ function DataTable({
         Toolbar: () => {
           return (
             <GridToolbarContainer>
-              <GridToolbarColumnsButton color={"white"} />
-              <GridToolbarFilterButton color={"white"} />
-              <GridToolbarDensitySelector color={"white"} />
+              <GridToolbarColumnsButton color={"secondary"} />
+              <GridToolbarFilterButton color={"secondary"} />
+              <GridToolbarDensitySelector color={"secondary"} />
               <DefaultButtons />
               {toolbar}
             </GridToolbarContainer>
@@ -168,4 +168,4 @@ function DataTable({
   );
 }
 
-export default DataTable;
+export default DataTableBlack;

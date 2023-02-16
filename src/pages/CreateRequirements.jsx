@@ -77,11 +77,14 @@ const CreateRequirements = ({ setAlert }) => {
 
   const handlerReadrequirementsByClients = () => {
     const form = new FormData();
-    form.append("idcompanies", idcompanies);
+    if (![undefined,null].includes(idcompanies)) {
+      form.append("idcompanies", idcompanies);
+
+    }
     axios
       .post(RoutesList.api.companies.requirements.read.read_requirementsByclients,form, getHeader())
       .then((res) => {
-        setReadrequirements(res.data);
+        setReadrequirements(res.data.status === "success"? []: res.data);
       });
   };
 

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import RoutesList from "../tools/RoutesList";
 import { getHeader } from "../tools/SessionSettings";
+
 const RequirementsSelector = ({ value, setValue, required }) => {
   const [Selector, setSelector] = useState([]);
 
@@ -9,7 +10,7 @@ const RequirementsSelector = ({ value, setValue, required }) => {
     axios.get(RoutesList.api.companies.requirements.read.read_requirementSelector,getHeader()
       ).then((res) => {
         // console.log(res.data)
-        setSelector(res.data)
+        setSelector(res.data.status === "success" ? [] : res.data)
       });
   };
 
@@ -20,7 +21,7 @@ const RequirementsSelector = ({ value, setValue, required }) => {
     
     <div className="form__demo-container-name" style={{ marginBottom: "20px" }}>
    
-      <label className={"form__label-name"}>Seleccione requerimiento</label>
+      <label className={"form__label-name"}>Requerimiento</label>
       <select
         className={"form__select-name"}
         style={{width:"98%"}}

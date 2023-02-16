@@ -5,6 +5,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Divider,
   Grid,
 } from "@mui/material";
 import axios from "axios";
@@ -22,7 +23,17 @@ import PrioritySelect from "../components/common/PrioritySelect";
 import { display } from "@mui/system";
 import NormalInput from "../components/common/NormalInput";
 import RequirementsSelector from "../components/common/RequirementsSelector";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import StatesSelector from "../components/common/StatesSelector";
+import DataTableBlack from "../components/tools/DataTableBlack";
+import { Margin } from "@mui/icons-material";
+
+// export default function SimpleMediaQuery() {
+
+//   return <span>{`(min-width:600px) matches: ${matches}`}</span>;
+// }
 const Requeriments = () => {
+  const matches = useMediaQuery("(min-width:600px)");
   const [pending, setPending] = useState([]);
   const [accepted, setAccepted] = useState([]);
   const [finished, setFinished] = useState([]);
@@ -114,9 +125,12 @@ const Requeriments = () => {
                 //   set: setFields,
                 // }}
                 sx={{
-                  margin: "auto",
+                  "@media screen and (max-width: 768px)": {
+                    height: "98%",
+                  },
+                  marginTop: "4%",
                   width: "500px",
-                  height: "340px",
+                  height: "370px",
                   borderRadius: "15px",
                   borderColor: "#FFFFFF",
                   color: "#FFFFFF",
@@ -154,7 +168,7 @@ const Requeriments = () => {
         </div>
       </div>
       <Dialog
-      // fullScreen={true}
+        // fullScreen={true}
         fullWidth
         maxWidth={"xl"}
         open={open}
@@ -167,19 +181,19 @@ const Requeriments = () => {
         TransitionComponent={DialogTransition}
       >
         <form onSubmit={handleCreateAssingments}>
-          <DialogTitle>Crear Asignaciónes</DialogTitle>
+          <div>
+            <DialogTitle>Crear Asignaciónes</DialogTitle>
+          </div>
+            <p className="button--close">cerrar</p>
+          <Divider/>
 
-          <DialogContent dividers>
-            <Grid container >
-              <Grid 
-              item xs={12} sm={12} md={8} lg={7}
-              sx={{border :"1px solid red",display:"flex",justifyContent:"center",
-                alignItems:"center",flexDirection:"column"
-                }}
-              > 
-               <form className="form-asignacion">
-                <div>
-                  <RequirementsSelector/>
+          <div className="asignaciones__container">
+            <section className="asignaciones__container--form">
+
+              <form className="form-asignacion">
+
+                <div className="contenedor-inputs-asign">
+                  <RequirementsSelector />
                   <NormalInput
                     label={"Fecha de entrega"}
                     type={"date"}
@@ -188,18 +202,65 @@ const Requeriments = () => {
                     required
                   />
                 </div>
-                <div>
-                  <RequirementsSelector/>
+
+                <div className="contenedor-inputs-asign">
+                  <StatesSelector
+                    ignore={["ASIGNADO", "PENDIENTE", "INACTIVO", "NOVEDAD"]}
+                  />
                 </div>
 
-               </form>
+                <div className="botton-assigrequirement">
+                  <Button
+                    type="button"
+                    color="secondary"
+                    variant="contained"
+                    // disabled={items.length > 0 ? false : true}
+                    onClick={() => {
+                      setOpen(true);
+                    }}
+                    // startIcon={<PriceCheckIcon />}
+                  >
+                    {"Asignaciónes"}
+                  </Button>
+                </div>
 
-               <form className="form-asignacion">
+              </form>
+              <Divider/>
 
-               </form>
-              </Grid>
-              <Grid item xs={12} sm={12} md={4} lg={5}>
-                <DataTable
+              <form className="form-asignacion">
+              <div className="contenedor-inputs-asign">
+                  <RequirementsSelector />
+                  <NormalInput
+                    label={"Desarrollador"}
+                    type={"text"}
+                    min={"2023-02-16"}
+                    placeholder={"Ingrese nombre"}
+                    required
+                  />
+                </div>
+                <div className="contenedor-inputs-asign">
+                  <StatesSelector
+                    ignore={["ASIGNADO", "PENDIENTE", "INACTIVO", "NOVEDAD"]}
+                  />
+                </div>
+                <div className="botton-assigrequirement">
+                  <Button
+                    type="button"
+                    color="secondary"
+                    variant="contained"
+                    // disabled={items.length > 0 ? false : true}
+                    onClick={() => {
+                      setOpen(true);
+                    }}
+                    // startIcon={<PriceCheckIcon />}
+                  >
+                    {"Asignaciónes"}
+                  </Button>
+                </div>
+              </form>
+            </section>
+            <section className="asignaciones__container--table">
+              <DataTableBlack
                   reload={readRequirementsByAdmin}
                   rows={readRequirementsAdm}
                   columns={ColumnsTable.requirementsAdmin}
@@ -209,10 +270,14 @@ const Requeriments = () => {
                   //   set: setFields,
                   // }}
                   sx={{
+                    "@media screen and (max-width: 1024px)":{
+                      width:"96%",
+                      margin:"auto"
+                    },
                     // margin: "auto",
                     width: "640px",
-                    height: "420px",
-                    borderRadius: "15px",
+                    height: "520px",
+                    // borderRadius: "15px",
                     borderColor: "#0000000",
                     color: "#0000000",
                     "& .MuiDataGrid-iconButtonContainer": {
@@ -230,29 +295,31 @@ const Requeriments = () => {
                       borderColor: "#00000",
                     },
                   }}
-                  toolbar={
-                    <Button
-                      type="button"
-                      color="white"
-                      // disabled={items.length > 0 ? false : true}
-                      onClick={() => {
-                        setOpen(true);
-                      }}
-                      // startIcon={<PriceCheckIcon />}
-                    >
-                      {"Asignaciónes"}
-                    </Button>
-                  }
+                  // toolbar={
+                  //   <Button
+                  //     type="button"
+                  //     color="secondary"
+                  //     // disabled={items.length > 0 ? false : true}
+                  //     onClick={() => {
+                  //       setOpen(true);
+                  //     }}
+                  //     // startIcon={<PriceCheckIcon />}
+                  //   >
+                  //     {"Asignaciónes"}
+                  //   </Button>
+                  // }
                 />
-              </Grid>
-            </Grid>
-          </DialogContent>
+            </section>
+          </div>
 
-          <DialogActions>
-            <Button variant={"contained"} size={"small"} type="submit">
-              Crear
-            </Button>
-          </DialogActions>
+          {/* <DialogContent dividers>
+            
+                
+              </div>
+            </div>
+          </DialogContent> */}
+
+          
         </form>
       </Dialog>
     </>

@@ -80,7 +80,7 @@
     background-position: center;
     border-radius: 23px ;
     width: 95% ;
-    height: 55vh;
+    height: 60vh;
 }
 .contenedores-hijos{
     display: flex;
@@ -116,11 +116,45 @@
     margin: 0 auto;
     display: flex;
     justify-content:flex-start;
-    border: 1px solid blue;
     margin-bottom: 6px;
     border-radius: 23px;
-    height: 28vh;
+    height: 45%;
+    padding: 10px ;
     width: 90%;
+    flex-direction: column;
+}
+
+.contenedor-inputs-asign{
+display: flex;
+flex-direction: row;
+width: 100% ;
+}
+.botton-assigrequirement{
+    display: flex;
+}
+
+/* modal crear asignaciones */
+.asignaciones__container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+.asignaciones__container--form{
+    width: 50%;
+    height: 100%;
+}
+.asignaciones__container--table{
+    width: 50%;
+    height: 100%;
+}
+.button--close{
+    position: absolute;
+    right: 25px;
+    top: 3px;
+}
+.contenedor-inputs-asign .form__demo-container-name .form__select-name{
+    width: 81%;
 }
 /* 
 .selector-requirements-asig{
@@ -128,6 +162,17 @@
     height: 18vh;
     width: 20vw;
 } */
+@media screen and (max-width: 1024px) {
+    .asignaciones__container{
+        flex-direction: column;
+    } 
+    .asignaciones__container--form{
+        width: 100%;
+    }
+    .asignaciones__container--table{
+        width: 100%;
+    }
+}
 @media screen and (max-width: 768px) {
     .contenedores-hijos{
         width: 28%;
@@ -139,11 +184,25 @@
         right: 30px;
         top: 20px
     }
+   
+    
 }
+
 @media screen and (max-width: 425px) {
     .h1-padre {
         font-size: 24px;
     }
+    .contenedor-inputs-asign{
+        flex-direction: column;
+        width: 100%;
+    }
+    .contenedor-inputs-asign .form__demo-container-name{
+        width: 100%;
+    }
+    .contenedor-inputs-asign .form__demo-container-name .form__select-name{
+        width: 100%;
+    }
+
     .img-menu {
         width: 40px;
         right: 5px;
