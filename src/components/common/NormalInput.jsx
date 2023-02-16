@@ -18,6 +18,7 @@ const NormalInput = ({
       <label className={"form__label-name"}>{label}</label>
       <input
         className={"form__input-name"}
+        style={{width:"98%"}}
         type={type}
         placeholder={placeholder}
         required={required}

@@ -178,22 +178,25 @@ const Requeriments = () => {
                 }}
               > 
                <form className="form-asignacion">
-                <RequirementsSelector/>
-                <NormalInput
-                  label={"Fecha de entrega"}
-                  type={"date"}
-                  min={"2023-02-14"}
-                  placeholder={"Ingrese nombre"}
-                  // value={name_requirement}
-                  // setValue={setName_requirement}
-                  required
-                />
+                <div>
+                  <RequirementsSelector/>
+                  <NormalInput
+                    label={"Fecha de entrega"}
+                    type={"date"}
+                    min={"2023-02-16"}
+                    placeholder={"Ingrese nombre"}
+                    required
+                  />
+                </div>
+                <div>
+                  <RequirementsSelector/>
+                </div>
 
                </form>
 
-               <div className="form-asignacion">
+               <form className="form-asignacion">
 
-               </div>
+               </form>
               </Grid>
               <Grid item xs={12} sm={12} md={4} lg={5}>
                 <DataTable

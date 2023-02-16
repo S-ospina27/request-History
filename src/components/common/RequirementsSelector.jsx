@@ -23,6 +23,7 @@ const RequirementsSelector = ({ value, setValue, required }) => {
       <label className={"form__label-name"}>Seleccione requerimiento</label>
       <select
         className={"form__select-name"}
+        style={{width:"98%"}}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         required={required}
