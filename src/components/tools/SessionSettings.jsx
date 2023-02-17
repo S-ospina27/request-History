@@ -27,6 +27,10 @@ export function set(key, item) {
   sessionStorage.setItem(key, item);
 }
 
+export function clientsession() {
+  return [undefined, null].includes(get("companies_nit")) ? false : true;
+
+}
 // export function getRol(rol, display = false) {
 //   if (!display) {
 //     return roles[rol];
