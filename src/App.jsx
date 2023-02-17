@@ -53,14 +53,11 @@ function App() {
 
       <Routes>
         <Route path="/register" element={<Register setAlert={setAlert} />} />
+        <Route path="/create" element={<CreateRequirements setAlert={setAlert} />}/>
         
         <Route path="/" element={<Requeriments setAlert={setAlert} />} />
         <Route path="/create-assignments" element={<CreateAssignments />} />
         <Route path="/Developers-assignments" element={<AssignDevelopers />} />
-        <Route
-          path="/create"
-          element={<CreateRequirements setAlert={setAlert} />}
-        />
       </Routes>
     </ThemeProvider>
   );
