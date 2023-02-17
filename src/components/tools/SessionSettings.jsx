@@ -1,19 +1,19 @@
 
 // import RouteListNavigation from "./RouteListNavigation";
 
-// const roles = {
-//   administrator: 1,
-//   technical: 2,
-//   distributor: 3,
-//   provider: 4,
-// };
+const roles = {
+  administrator: 1,
+  technical: 2,
+  distributor: 3,
+  provider: 4,
+};
 
-// const rolesDisplay = {
-//   1: "Administrador",
-//   2: "Técnico",
-//   3: "Distribuidor",
-//   4: "Proveedor",
-// };
+const rolesDisplay = {
+  1: "Administrador",
+  2: "Técnico",
+  3: "Distribuidor",
+  4: "Proveedor",
+};
 
 export function remove(item) {
   sessionStorage.removeItem(item);

@@ -27,11 +27,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import StatesSelector from "../components/common/StatesSelector";
 import DataTableBlack from "../components/tools/DataTableBlack";
 import { Margin } from "@mui/icons-material";
-
-// export default function SimpleMediaQuery() {
-
-//   return <span>{`(min-width:600px) matches: ${matches}`}</span>;
-// }
+import CloseIcon from '@mui/icons-material/Close';
 const Requeriments = () => {
   const matches = useMediaQuery("(min-width:600px)");
   const [pending, setPending] = useState([]);
@@ -168,7 +164,6 @@ const Requeriments = () => {
         </div>
       </div>
       <Dialog
-        // fullScreen={true}
         fullWidth
         maxWidth={"xl"}
         open={open}
@@ -182,7 +177,7 @@ const Requeriments = () => {
       >
         <form onSubmit={handleCreateAssingments}>
           <div>
-            <DialogTitle>Crear Asignaciónes</DialogTitle>
+        <span className="parrafo-modal">Crear Asignaciónes</span>
           </div>
             <p className="button--close">cerrar</p>
           <Divider/>
@@ -205,7 +200,15 @@ const Requeriments = () => {
 
                 <div className="contenedor-inputs-asign">
                   <StatesSelector
-                    ignore={["ASIGNADO", "PENDIENTE", "INACTIVO", "NOVEDAD"]}
+                    ignore={[
+                       "INACTIVO",
+                       "NOVEDAD",
+                       "ACEPTADO",
+                       "ACTIVO",
+                       "RECHAZADO",
+                       "DESARROLLO",
+                       "RETRAZADO"
+                       ]}
                   />
                 </div>
 
@@ -214,11 +217,9 @@ const Requeriments = () => {
                     type="button"
                     color="secondary"
                     variant="contained"
-                    // disabled={items.length > 0 ? false : true}
                     onClick={() => {
                       setOpen(true);
                     }}
-                    // startIcon={<PriceCheckIcon />}
                   >
                     {"Asignaciónes"}
                   </Button>
@@ -248,11 +249,9 @@ const Requeriments = () => {
                     type="button"
                     color="secondary"
                     variant="contained"
-                    // disabled={items.length > 0 ? false : true}
                     onClick={() => {
                       setOpen(true);
                     }}
-                    // startIcon={<PriceCheckIcon />}
                   >
                     {"Asignaciónes"}
                   </Button>
@@ -295,31 +294,9 @@ const Requeriments = () => {
                       borderColor: "#00000",
                     },
                   }}
-                  // toolbar={
-                  //   <Button
-                  //     type="button"
-                  //     color="secondary"
-                  //     // disabled={items.length > 0 ? false : true}
-                  //     onClick={() => {
-                  //       setOpen(true);
-                  //     }}
-                  //     // startIcon={<PriceCheckIcon />}
-                  //   >
-                  //     {"Asignaciónes"}
-                  //   </Button>
-                  // }
                 />
             </section>
           </div>
-
-          {/* <DialogContent dividers>
-            
-                
-              </div>
-            </div>
-          </DialogContent> */}
-
-          
         </form>
       </Dialog>
     </>

@@ -156,6 +156,12 @@ width: 100% ;
 .contenedor-inputs-asign .form__demo-container-name .form__select-name{
     width: 81%;
 }
+
+.parrafo-modal{
+    font-size:30px;
+    font-weight:900;
+   padding: 5px;
+}
 /* 
 .selector-requirements-asig{
     border: 1px solid blueviolet;
