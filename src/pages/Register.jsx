@@ -18,13 +18,13 @@ import clound from "../assets/img/clound.png";
 import "animate.css";
 import axios from "axios";
 import RoutesList from "../components/tools/RoutesList";
-import {set,getHeader}   from "../components/tools/SessionSettings"
+import { set, getHeader } from "../components/tools/SessionSettings";
 
 const Register = ({ setAlert }) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [isuser, setIsuser] = useState(false);
-  
+
   const [companies_nit, setCompanies_nit] = useState("");
   const [companies_business_name, setCompanies_business_name] = useState("");
   const [companies_email, setCompanies_email] = useState("");
@@ -32,40 +32,38 @@ const Register = ({ setAlert }) => {
 
   const handlerRegister = (e) => {
     e.preventDefault();
-  
+
     const form = new FormData();
     form.append("companies_nit", companies_nit);
     form.append("companies_business_name", companies_business_name);
     form.append("companies_email", companies_email);
     form.append("companies_username", companies_username);
-    axios.post(RoutesList.api.companies.create, form, getHeader()).then((res) => {
 
-      if (res.data.status === "info") {
-        set("companies_nit",companies_nit);
-        setAlert({
-          open: true,
-          message: res.data.message,
-          severity: res.data.status,
-        });        
-        clearInputs();
+    axios
+      .post(RoutesList.api.companies.create, form, getHeader())
+      .then((res) => {
+        // console.log(res.data);
 
-      } else if (res.data.status === "success") {
-        set("companies_nit",companies_nit);
-        setAlert({
-          open: true,
-          message: res.data.message,
-          severity: res.data.status,
-        });
-        clearInputs();
-      } else {
-        setIsuser(true);
-        setAlert({
-          open: true,
-          message: res.data.message,
-          severity: res.data.status,
-        });
-      }
-    });
+        if (res.data.status === "info") {
+          clearInputs();
+          set("companies_nit", res.data.data.companies_nit);
+          set("idroles", res.data.data.idroles);
+          set("idcompanies", res.data.data.idcompanies);
+
+          setAlert({
+            open: true,
+            message: res.data.message,
+            severity: res.data.status,
+          });
+        } else {
+          setIsuser(true);
+          setAlert({
+            open: true,
+            message: res.data.message,
+            severity: res.data.status,
+          });
+        }
+      });
   };
 
   const clearInputs = () => {
@@ -73,18 +71,20 @@ const Register = ({ setAlert }) => {
     setCompanies_business_name("");
     setCompanies_email("");
     setCompanies_username("");
-    setTimeout(() =>{
+
+    setTimeout(() => {
       setLoading(false);
       navigate("/create");
     }, 2000);
   };
-  
+
   return (
     <>
       <img
         src={clound}
         className="img-clound animate__animated animate__zoomInDown "
       />
+
       <Grid className={"container pantalla-dividida"}>
         <Grid item className={"izquierda"}>
           <form
@@ -134,8 +134,9 @@ const Register = ({ setAlert }) => {
                 />
               </>
             )}
+
             <div
-              item
+              item="true"
               className={"item__botton"}
               style={{ marginTop: "20px", width: "40%" }}
             >
@@ -156,7 +157,7 @@ const Register = ({ setAlert }) => {
           </form>
         </Grid>
 
-        <section item className={"derecha"}>
+        <section item="true" className={"derecha"}>
           <Box className={"caja-derecha animate__animated animate__zoomInDown"}>
             <h1 className={"text-contactanos"}>Contáctanos</h1>
             <p className="text-conoce">
