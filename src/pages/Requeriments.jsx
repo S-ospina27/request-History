@@ -28,14 +28,20 @@ import StatesSelector from "../components/common/StatesSelector";
 import DataTableBlack from "../components/tools/DataTableBlack";
 import { Margin } from "@mui/icons-material";
 import CloseIcon from '@mui/icons-material/Close';
+import CompaniesSelect from "../components/common/CompaniesSelect";
 const Requeriments = () => {
-  const matches = useMediaQuery("(min-width:600px)");
   const [pending, setPending] = useState([]);
   const [accepted, setAccepted] = useState([]);
   const [finished, setFinished] = useState([]);
   const [readRequirementsAdm, setReadRequirementsAdm] = useState([]);
   const [helpOpen, setHelpOpen] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const[idcompanies,setIdcompanies]= useState("");
+  const[idrequirements,setIdrequirements]= useState("");
+  const[assignment_requirements_deadline,setAssignment_requirements_deadline]= useState("");
+
+ 
 
   const handlerPending = () => {
     axios
@@ -71,11 +77,19 @@ const Requeriments = () => {
         getHeader()
       )
       .then((res) => {
+        // console.log(res.data)
         setReadRequirementsAdm(res.data);
       });
   };
 
-  const handleCreateAssingments = () => {};
+  const handleCreateAssingments = (e) => {
+    e.preventDefault();
+    console.log(idcompanies)
+    console.log(assignment_requirements_deadline)
+    console.log(consultRequeriments)
+    console.log("submit")
+    
+  };
 
   useEffect(() => {
     handlerPending();
@@ -124,7 +138,7 @@ const Requeriments = () => {
                   "@media screen and (max-width: 768px)": {
                     height: "98%",
                   },
-                  marginTop: "4%",
+                  marginTop: "3%",
                   width: "500px",
                   height: "370px",
                   borderRadius: "15px",
@@ -175,47 +189,49 @@ const Requeriments = () => {
         }}
         TransitionComponent={DialogTransition}
       >
-        <form onSubmit={handleCreateAssingments}>
           <div>
         <span className="parrafo-modal">Crear Asignaciónes</span>
           </div>
-            <p className="button--close">cerrar</p>
+            <span className="button--close" onClick={() => {setOpen(false)} }>x</span>
           <Divider/>
 
           <div className="asignaciones__container">
             <section className="asignaciones__container--form">
 
-              <form className="form-asignacion">
+              <form className="form-asignacion" onSubmit={handleCreateAssingments}>
 
                 <div className="contenedor-inputs-asign">
-                  <RequirementsSelector />
-                  <NormalInput
-                    label={"Fecha de entrega"}
-                    type={"date"}
-                    min={"2023-02-16"}
-                    placeholder={"Ingrese nombre"}
+                  <CompaniesSelect
+                    value={idcompanies}
+                    setValue={setIdcompanies}
                     required
                   />
+                  <RequirementsSelector 
+                    value={idrequirements}
+                    setValue={setIdrequirements}
+                  
+                  />
+
+                
                 </div>
 
                 <div className="contenedor-inputs-asign">
-                  <StatesSelector
-                    ignore={[
-                       "INACTIVO",
-                       "NOVEDAD",
-                       "ACEPTADO",
-                       "ACTIVO",
-                       "RECHAZADO",
-                       "DESARROLLO",
-                       "RETRAZADO"
-                       ]}
+                <NormalInput
+                    value={assignment_requirements_deadline}
+                    setValue={setAssignment_requirements_deadline}
+                    label={"Fecha limite"}
+                    type={"date"}
+                    min={"2023-02-16"}
+                    required
                   />
+                 
                 </div>
 
                 <div className="botton-assigrequirement">
                   <Button
-                    type="button"
-                    color="secondary"
+                    type="submit"
+                    // style={{backgroundImage: "radial-gradient(circle at -11.24% 85.36%, #ade5ff 0, #7dcefb 25%, #3cb5f2 50%, #009ce9 75%, #0085e0 100%);"}}
+                    // color="secondary"
                     variant="contained"
                     onClick={() => {
                       setOpen(true);
@@ -226,7 +242,6 @@ const Requeriments = () => {
                 </div>
 
               </form>
-              <Divider/>
 
               <form className="form-asignacion">
               <div className="contenedor-inputs-asign">
@@ -247,7 +262,8 @@ const Requeriments = () => {
                 <div className="botton-assigrequirement">
                   <Button
                     type="button"
-                    color="secondary"
+                    // style={{backgroundImage: "radial-gradient(circle at 85.36% 111.24%, #1dbfaf 0, #00bfb9 5.56%, #00bec2 11.11%, #00becc 16.67%, #00bdd4 22.22%, #00bcdc 27.78%, #00bbe3 33.33%, #00b9e9 38.89%, #1eb7ee 44.44%, #3cb5f2 50%, #52b2f5 55.56%, #66b0f6 61.11%, #78adf6 66.67%, #89a9f5 72.22%, #99a6f2 77.78%, #a7a2ef 83.33%, #b49fea 88.89%, #c19be4 94.44%, #cc98dd 100%);"}}
+                    // color="secondary"
                     variant="contained"
                     onClick={() => {
                       setOpen(true);
@@ -257,6 +273,7 @@ const Requeriments = () => {
                   </Button>
                 </div>
               </form>
+
             </section>
             <section className="asignaciones__container--table">
               <DataTableBlack
@@ -297,7 +314,6 @@ const Requeriments = () => {
                 />
             </section>
           </div>
-        </form>
       </Dialog>
     </>
   );

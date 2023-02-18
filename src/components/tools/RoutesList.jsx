@@ -5,6 +5,9 @@ export default {
   api: {
     companies: {
       create: `${host}/companies/create`,
+      read:{
+        read_companies_selector:`${host}/companies/readCompaniesSelector`,
+      },
       requirements:{
         create: `${host}/companies/requirements/create`,
         read: {

@@ -1,36 +1,40 @@
-import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import book from  "../../assets/img/book.gif"
-import salir from  "../../assets/img/salir.gif"
-import Teclab from  "../../assets/img/Teclab.png"
+import * as React from "react";
+import { styled, useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import CssBaseline from "@mui/material/CssBaseline";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import book from "../../assets/img/book.gif";
+import salir from "../../assets/img/salir.gif";
+import Teclab from "../../assets/img/Teclab.png";
 import Avatar from "../../assets/img/avatar.png";
-import { ExpandLess, ExpandMore, StarBorder } from '@mui/icons-material';
-import { Collapse } from '@mui/material';
+import { ExpandLess, ExpandMore, StarBorder } from "@mui/icons-material";
+import { Collapse } from "@mui/material";
 import "./Layout.css";
-const drawerWidth = 240;
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
+import RouteNavigations from "../tools/RouteNavigations";
+import { Link } from "react-router-dom";
+
+const drawerWidth = 270;
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: 'flex-start',
+  justifyContent: "flex-start",
 }));
 
- function DrawerLayout({helpOpen,setHelpOpen}) {
+function DrawerLayout({ helpOpen, setHelpOpen }) {
   const theme = useTheme();
   const [openDrown, setOpenDrown] = React.useState(false);
+  const [openCompaniesDrown, setopenCompaniesDrown] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -39,18 +43,22 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   const handleClick = () => {
     setOpenDrown(!openDrown);
   };
+
+  const handleCompaniesClick = () => {
+    setopenCompaniesDrown(!openCompaniesDrown);
+  };
   const handleDrawerClose = () => {
     setHelpOpen(false);
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <Drawer
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          '& .MuiDrawer-paper': {
+          "& .MuiDrawer-paper": {
             width: drawerWidth,
           },
         }}
@@ -59,11 +67,18 @@ const DrawerHeader = styled('div')(({ theme }) => ({
         open={helpOpen}
       >
         <DrawerHeader>
-        
-          <img src={salir} style={{cursor:"pointer"}} onClick={handleDrawerClose} width={"15%"} />
+          <img
+            src={salir}
+            style={{ cursor: "pointer" }}
+            onClick={handleDrawerClose}
+            width={"15%"}
+          />
 
-          <img className={"TeclabLayout"} src={Teclab} onClick={handleDrawerClose}  />
-        
+          <img
+            className={"TeclabLayout"}
+            src={Teclab}
+            onClick={handleDrawerClose}
+          />
         </DrawerHeader>
         {/* <h1 className={"titulo-drawer"}>Guia  <img src={book} width={"10%"} /></h1>  */}
         <Divider />
@@ -75,44 +90,35 @@ const DrawerHeader = styled('div')(({ theme }) => ({
         </div>
         <Divider />
         <List>
-      <ListItemButton onClick={handleClick}>
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
-        <ListItemText primary="Requerimientos" />
-        {openDrown ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
-      <Collapse in={openDrown} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary="Visualizar" />
-          </ListItemButton>
+          {RouteNavigations.administrator.requeriments.map((routes,index) => (
+            <ListItemButton key={index} component={Link} to={routes.url} sx={{ pl: 2 }}>
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText primary={routes.label} />
+            </ListItemButton>
+          ))}
 
-          <ListItemButton sx={{ pl: 4 }}>
+          <ListItemButton onClick={handleCompaniesClick}>
             <ListItemIcon>
-              <StarBorder />
+              <InboxIcon />
             </ListItemIcon>
-            <ListItemText primary="Asignar" />
+            <ListItemText primary="Compañias" />
+            {openCompaniesDrown ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
-
-          <ListItemButton sx={{ pl: 4 }}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary="Asignar Developers" />
-          </ListItemButton>
+          <Collapse in={openCompaniesDrown} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              {RouteNavigations.administrator.companies.map((routes,index) => (
+                <ListItemButton key={index} component={Link} to={routes.url} sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <StarBorder />
+                  </ListItemIcon>
+                  <ListItemText primary={routes.label} />
+                </ListItemButton>
+              ))}
+            </List>
+          </Collapse>
         </List>
-      </Collapse>
-      <ListItemButton>
-        <ListItemIcon>
-        <ExpandLess />
-        </ListItemIcon>
-        <ListItemText primary="COMPANIES" />
-      </ListItemButton>
-    </List>
       </Drawer>
     </Box>
   );

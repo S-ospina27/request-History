@@ -2,25 +2,22 @@ export default {
     administrator :{
         requeriments:[
             {
+            label:"Requerimientos",
+            icon:"",
+            url:"/",
+            }
+        ],
+        companies:[
+            {
                 label:"visualizar",
                 icon:"",
-                url:"/",
+                url:"/visualizar"
             },
             {
-                label:"creacion y asignación",
+                label:"loguin",
                 icon:"",
-                url:"/create-assignments",
-            },
-            {
-                label:"Desarrolladores",
-                icon:"",
-                url:"/developers",
-            },
-        ],
-        companies:{
-            label:"compañias",
-            icon:"",
-            url:""
-        }
+                url:"/register"
+            }
+        ]
     }
 }

@@ -8,6 +8,7 @@ import CreateRequirements from "./pages/CreateRequirements";
 import Requeriments from "./pages/Requeriments";
 import CreateAssignments from "./pages/CreateAssignments";
 import AssignDevelopers from "./pages/AssignDevelopers";
+import ClientsWithAuthenticationMiddleware from "./middleware/ClientsWithAuthenticationMiddleware";
 function App() {
   const [alert, setAlert] = useState({
     open: false,
@@ -52,8 +53,23 @@ function App() {
       )}
 
       <Routes>
-        <Route path="/register" element={<Register setAlert={setAlert} />} />
-        <Route path="/create" element={<CreateRequirements setAlert={setAlert} />}/>
+        <Route 
+          path="/register" 
+          element={
+          <ClientsWithAuthenticationMiddleware setAlert={setAlert}  >
+            <Register setAlert={setAlert} />
+          </ClientsWithAuthenticationMiddleware>
+          } 
+        />
+
+        <Route 
+          path="/create"
+          element={
+            <ClientsWithAuthenticationMiddleware setAlert={setAlert}  >
+              <CreateRequirements setAlert={setAlert} />
+            </ClientsWithAuthenticationMiddleware>
+          }
+        />
         
         <Route path="/" element={<Requeriments setAlert={setAlert} />} />
         <Route path="/create-assignments" element={<CreateAssignments />} />
