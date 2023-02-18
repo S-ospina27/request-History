@@ -90,8 +90,8 @@ function DrawerLayout({ helpOpen, setHelpOpen }) {
         </div>
         <Divider />
         <List>
-          {RouteNavigations.administrator.requeriments.map((routes) => (
-            <ListItemButton component={Link} to={routes.url} sx={{ pl: 2 }}>
+          {RouteNavigations.administrator.requeriments.map((routes,index) => (
+            <ListItemButton key={index} component={Link} to={routes.url} sx={{ pl: 2 }}>
               <ListItemIcon>
                 <StarBorder />
               </ListItemIcon>
@@ -108,8 +108,8 @@ function DrawerLayout({ helpOpen, setHelpOpen }) {
           </ListItemButton>
           <Collapse in={openCompaniesDrown} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {RouteNavigations.administrator.companies.map((routes) => (
-                <ListItemButton component={Link} to={routes.url} sx={{ pl: 4 }}>
+              {RouteNavigations.administrator.companies.map((routes,index) => (
+                <ListItemButton key={index} component={Link} to={routes.url} sx={{ pl: 4 }}>
                   <ListItemIcon>
                     <StarBorder />
                   </ListItemIcon>

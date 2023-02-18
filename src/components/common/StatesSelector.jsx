@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import RoutesList from "../tools/RoutesList";
 import { getHeader } from "../tools/SessionSettings";
 
-const StatesSelector = ({ value, setValue, required,ignore=[] }) => {
+const StatesSelector = ({ value, setValue, required,ignore=[],style={} }) => {
   const [states, setStates] = useState([]);
 
   const readStatesSelector = () => {
@@ -23,6 +23,7 @@ const StatesSelector = ({ value, setValue, required,ignore=[] }) => {
    
       <label className={"form__label-name"}>Seleccione estado</label>
       <select
+        style={style}
         className={"form__select-name"}
         value={value}
         onChange={(e) => setValue(e.target.value)}

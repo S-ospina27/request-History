@@ -29,7 +29,7 @@ const CreateRequirements = ({ setAlert }) => {
   const [imagendatos, setImagendatos] = useState(false);
   const [readRequirements, setReadrequirements] = useState([]);
 
-  const [idcompanies, setIdcompanies] = useState(sessionStorage.companies_nit);
+  const [idcompanies, setIdcompanies] = useState(sessionStorage.idcompanies);
   const [name_requirement, setName_requirement] = useState("");
   const [priority, setPriority] = useState("");
   const [description, setDescription] = useState("");
@@ -45,11 +45,12 @@ const CreateRequirements = ({ setAlert }) => {
     const form = new FormData();
     form.append("idcompanies", idcompanies);
     form.append("requirements_name", name_requirement);
-    form.append("requirements_priority", priority);
+    form.append("requirements_priority",priority);
     form.append("requirements_description", description);
     axios
       .post(RoutesList.api.companies.requirements.create, form, getHeader())
       .then((res) => {
+        console.log(res.data)
         if (res.data.status === "success") {
           setAlert({
             open: true,
