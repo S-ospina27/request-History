@@ -15,8 +15,11 @@ import RequirementsSelector from "../components/common/RequirementsSelector";
 import StatesSelector from "../components/common/StatesSelector";
 import DataTableBlack from "../components/tools/DataTableBlack";
 import CompaniesSelect from "../components/common/CompaniesSelect";
+import InputDate from "../components/common/InputDate";
+import dayjs from "dayjs";
 
-const Requeriments = () => {
+
+const Requeriments = ({ setAlert }) => {
   const [render, setRender] = useState(false);
   const [pending, setPending] = useState([]);
   const [accepted, setAccepted] = useState([]);
@@ -31,6 +34,9 @@ const Requeriments = () => {
     assignment_requirements_deadline,
     setAssignment_requirements_deadline,
   ] = useState("");
+  
+
+   
 
   const handlerPending = () => {
     axios
@@ -73,11 +79,29 @@ const Requeriments = () => {
 
   const handleCreateAssingments = (e) => {
     e.preventDefault();
+    const form = new FormData();
+    form.append("idrequirements", idrequirements);
+    form.append(
+      "assignment_requirements_deadline",
+      assignment_requirements_deadline
+    );
 
-    console.log(idcompanies);
-    console.log(idrequirements);
-    console.log(assignment_requirements_deadline);
+    axios
+      .post(RoutesList.api.assignment.create, form, getHeader)
+      .then((res) => {
+        setIdcompanies("");
+        setIdrequirements("");
+        setAssignment_requirements_deadline("");
+        setAlert({
+          open: true,
+          message: res.data.message,
+          severity: res.data.status,
+        });
+      });
   };
+  // useEffect(() => {
+  //     clean && clean();
+  // }, [open]);
 
   useEffect(() => {
     handlerPending();
@@ -90,7 +114,6 @@ const Requeriments = () => {
     <>
       <div className={"contaniner contenedor-requirement"}>
         <DrawerLayout helpOpen={helpOpen} setHelpOpen={setHelpOpen} />
-
         <img
           src={menu}
           className={"img-menu"}
@@ -220,12 +243,12 @@ const Requeriments = () => {
               </div>
 
               <div className="contenedor-inputs-asign">
-                <NormalInput
+                <InputDate
+                  style={{ width: "82%" }}
                   value={assignment_requirements_deadline}
                   setValue={setAssignment_requirements_deadline}
                   label={"Fecha limite"}
-                  type={"date"}
-                  min={"2023-02-16"}
+                  // min={"2023-02-16"}
                   required
                 />
               </div>

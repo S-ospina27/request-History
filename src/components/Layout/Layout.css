@@ -113,7 +113,7 @@
 }
  /* //requirement */
 .form-asignacion{
-    /* background-image: radial-gradient(circle at 50% -20.71%, #a9d9f1 0, #add8f3 6.25%, #b2d6f5 12.5%, #b7d5f6 18.75%, #bdd3f7 25%, #c3d2f6 31.25%, #c9d0f6 37.5%, #cfcff4 43.75%, #d5cdf2 50%, #dbcbef 56.25%, #e0caec 62.5%, #e5c9e9 68.75%, #eac8e5 75%, #eec7e1 81.25%, #f2c6dc 87.5%, #f4c5d7 93.75%, #f7c5d3 100%); */
+    background-image: radial-gradient(circle at 50% -20.71%, #a9d9f1 0, #add8f3 6.25%, #b2d6f5 12.5%, #b7d5f6 18.75%, #bdd3f7 25%, #c3d2f6 31.25%, #c9d0f6 37.5%, #cfcff4 43.75%, #d5cdf2 50%, #dbcbef 56.25%, #e0caec 62.5%, #e5c9e9 68.75%, #eac8e5 75%, #eec7e1 81.25%, #f2c6dc 87.5%, #f4c5d7 93.75%, #f7c5d3 100%);
     margin: 0 auto;
     display: flex;
     justify-content:flex-start;

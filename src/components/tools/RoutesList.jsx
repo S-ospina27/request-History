@@ -21,5 +21,8 @@ export default {
         }
       }
     },
+    assignment:{
+      create: `${host}/assignment/create`,
+    }
   },
 };
