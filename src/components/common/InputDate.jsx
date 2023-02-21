@@ -28,12 +28,12 @@ const InputDate = ({
         disabled={disabled}
         min={dayjs().format("YYYY-MM-DD")}
         max={max}
-        // readonly={readonly}
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
           // event && event(e);
         }}
+        readOnly={readonly}
       />
     </div>
   );

@@ -117,10 +117,10 @@
     margin: 0 auto;
     display: flex;
     justify-content:flex-start;
-    margin-bottom: 6px;
+    margin-bottom: 30px;
     border-radius: 23px;
     height: 45%;
-    padding: 10px ;
+    padding: 15px ;
     width: 90%;
     flex-direction: column;
 }
@@ -168,6 +168,38 @@ width: 100% ;
     font-weight:900;
    padding: 5px;
 }
+
+/* EDITAR REQUERMIENTOS */
+.asignaciones__edit-container{
+    /* margin: 5px; */
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.asignaciones__edit-container--form{
+    margin: auto;
+    width: 90%;
+    height: 90%;
+}
+
+.form-asignacionedit{
+    background-image: radial-gradient(circle at 50% -20.71%, #a9d9f1 0, #add8f3 6.25%, #b2d6f5 12.5%, #b7d5f6 18.75%, #bdd3f7 25%, #c3d2f6 31.25%, #c9d0f6 37.5%, #cfcff4 43.75%, #d5cdf2 50%, #dbcbef 56.25%, #e0caec 62.5%, #e5c9e9 68.75%, #eac8e5 75%, #eec7e1 81.25%, #f2c6dc 87.5%, #f4c5d7 93.75%, #f7c5d3 100%);
+    margin: 0 auto;
+    display: flex;
+    justify-content:flex-start;
+    margin-bottom: 6px;
+    border-radius: 23px;
+    height: 95%;
+    padding: 10px ;
+    width: 97%;
+    flex-direction: column;
+}
+/* -------------------------------- */
+
 /* 
 .selector-requirements-asig{
     border: 1px solid blueviolet;

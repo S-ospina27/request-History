@@ -8,7 +8,7 @@ const RequirementsSelector = ({ value, setValue, required, idcompanies }) => {
 
   const readRequirementsSelector = () => {
     if (![undefined, null, ""].includes(idcompanies)) {
-      const id = idcompanies.trim();
+      const id = idcompanies;
       const route =
         RoutesList.api.companies.requirements.read.read_requirementSelector;
 

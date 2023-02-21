@@ -11,26 +11,27 @@ const NormalInput = ({
   setValue,
   animation,
   min,
-  max
+  max,
+  style={}
 }) => {
   return (
     <div className={`form__demo-container-name ${animation}`} style={{ marginBottom: "20px" }}>
       <label className={"form__label-name"}>{label}</label>
       <input
         className={"form__input-name"}
-        style={{width:"98%"}}
+        style={style  }
         type={type}
         placeholder={placeholder}
         required={required}
         disabled={disabled}
         min={min}
         max={max}
-        // readonly={readonly}
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
           // event && event(e);
         }}
+        readOnly={readonly}
       />
     </div>
   );

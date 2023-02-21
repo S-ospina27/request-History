@@ -10,6 +10,7 @@ export default {
       },
       requirements:{
         create: `${host}/companies/requirements/create`,
+        update: `${host}/companies/requirements/update`,
         read: {
           read_requirementsByclients:`${host}/companies/requirements/requirementsByclients`,
           read_pending:`${host}/companies/requirements/pending`,

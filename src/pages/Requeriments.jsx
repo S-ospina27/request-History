@@ -19,6 +19,7 @@ import InputDate from "../components/common/InputDate";
 import dayjs from "dayjs";
 import AssigmentSelector from "../components/common/AssigmentSelector";
 import DeveloperSelector from "../components/common/DeveloperSelector";
+import TextArea from "../components/common/TextArea";
 
 const Requeriments = ({ setAlert }) => {
   const [pending, setPending] = useState([]);
@@ -29,11 +30,13 @@ const Requeriments = ({ setAlert }) => {
   );
   const [readRequirementsAdm, setReadRequirementsAdm] = useState([]);
   const [render, setRender] = useState(false);
+  const [renderAssigments, setRenderAssigments] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openDialogRequirements, setOpenDialogRequirements] = useState(false);
 
-  const [idcompanies, setIdcompanies] = useState("");
   const [idrequirements, setIdrequirements] = useState("");
+  const [idcompanies, setIdcompanies] = useState("");
   const [
     assignment_requirements_deadline,
     setAssignment_requirements_deadline,
@@ -41,6 +44,30 @@ const Requeriments = ({ setAlert }) => {
   const [idassignment_requirements, setIdassignment_requirements] =
     useState("");
   const [iddevelopers, setIddevelopers] = useState("");
+
+  const [requirements_name, setRequirements_name] = useState("");
+  const [requirements_description, setRequirements_description] = useState("");
+  const [idstates, setIdstates] = useState("");
+  const [requirements_date, setRequirements_date] = useState("");
+
+  const setFields = (
+    row = {
+      idrequirements: "",
+      idcompanies: "",
+      requirements_name: "",
+      requirements_description: "",
+      idstates: "",
+      requirements_date: "",
+    }
+  ) => {
+    // console.log(row);
+    setIdrequirements(row.idrequirements);
+    setIdcompanies(row.idcompanies);
+    setRequirements_name(row.requirements_name);
+    setRequirements_description(row.requirements_description);
+    setIdstates(row.idstates);
+    setRequirements_date(row.requirements_date);
+  };
 
   const handlerPending = () => {
     axios
@@ -93,6 +120,7 @@ const Requeriments = ({ setAlert }) => {
     axios
       .post(RoutesList.api.assignment.create, form, getHeader())
       .then((res) => {
+        setRenderAssigments(true)
         setIdcompanies("");
         setIdrequirements("");
         setAssignment_requirements_deadline("");
@@ -113,6 +141,7 @@ const Requeriments = ({ setAlert }) => {
     axios
       .post(RoutesList.api.assignment.developer.create, form, getHeader())
       .then((res) => {
+        handleReadAssigmentHasDevelopers();
         setIdassignment_requirements("");
         setIddevelopers("");
         setAlert({
@@ -128,9 +157,31 @@ const Requeriments = ({ setAlert }) => {
       .get(RoutesList.api.assignment.developer.read.assigment, getHeader())
       .then((res) => {
         setReadAssigmentHasDevelopers(res.data);
-        console.log(res.data)
       });
+
   };
+
+  const handleEditRequirements = (e) => {
+    e.preventDefault();
+    const form = new FormData();
+      form.append("idrequirements",idrequirements);
+      form.append("idcompanies",idcompanies);
+      form.append("requirements_name",requirements_name);
+      form.append("requirements_description",requirements_description);
+      form.append("idstates",idstates);
+      form.append("requirements_date",requirements_date);
+    axios.post(RoutesList.api.companies.requirements.update,form,getHeader()).then((res) => {
+      readRequirementsByAdmin();
+      setAlert({
+        open: true,
+        message: res.data.message,
+        severity: res.data.status,
+      });
+      setFields();
+      setOpenDialogRequirements(false)
+    });
+  }
+
   useEffect(() => {
     handlerPending();
     handlerAccept();
@@ -172,10 +223,10 @@ const Requeriments = ({ setAlert }) => {
                 rows={readRequirementsAdm}
                 columns={ColumnsTable.requirementsAdmin}
                 getRowId={"idrequirements"}
-                // onRowClick={{
-                //   open: setOpenCreatTechnical,
-                //   set: setFields,
-                // }}
+                onRowClick={{
+                  open: setOpenDialogRequirements,
+                  set: setFields,
+                }}
                 sx={{
                   "@media screen and (max-width: 768px)": {
                     height: "98%",
@@ -295,45 +346,47 @@ const Requeriments = ({ setAlert }) => {
                 </Button>
               </div>
             </form>
-
+             
             <form
-              className="form-asignacion"
-              onSubmit={HandleAsigmentDevelopers}
-            >
-              <div className="contenedor-inputs-asign">
-                <AssigmentSelector
-                  value={idassignment_requirements}
-                  setValue={setIdassignment_requirements}
-                  style={{ width: "95%" }}
-                  ignore={["ASIGNADO", "TERMINADO"]}
-                  required
-                />
-
-                <DeveloperSelector
-                  value={iddevelopers}
-                  setValue={setIddevelopers}
-                  ignore={["INACTIVO"]}
-                  required
-                />
-
-                {/* <StatesSelector
-                  style={{width:"95%"}}
-                  ignore={["ACEPTADO", "TERMINADO", "INACTIVO", "NOVEDAD"]}
-                /> */}
-              </div>
-
-              <div className="botton-assigrequirement">
-                <Button
-                  type="submit"
-                  variant="contained"
-                  onClick={() => {
-                    setOpen(true);
-                  }}
+                  className="form-asignacion"
+                  onSubmit={HandleAsigmentDevelopers}
                 >
-                  {"Asignar"}
-                </Button>
-              </div>
+                  <div className="contenedor-inputs-asign">
+                  {renderAssigments &&(
+                    <AssigmentSelector
+                      value={idassignment_requirements}
+                      setValue={setIdassignment_requirements}
+                      style={{ width: "95%" }}
+                      ignore={["ASIGNADO", "TERMINADO"]}
+                      required
+                    />
+                  )}
+                    <DeveloperSelector
+                      value={iddevelopers}
+                      setValue={setIddevelopers}
+                      ignore={["INACTIVO"]}
+                      required
+                    />
+
+                    {/* <StatesSelector
+                      style={{width:"95%"}}
+                      ignore={["ACEPTADO", "TERMINADO", "INACTIVO", "NOVEDAD"]}
+                    /> */}
+                  </div>
+
+                  <div className="botton-assigrequirement">
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      onClick={() => {
+                        setOpen(true);
+                      }}
+                    >
+                      {"Asignar"}
+                    </Button>
+                  </div>
             </form>
+            
           </section>
 
           <section className="asignaciones__container--table">
@@ -374,6 +427,118 @@ const Requeriments = ({ setAlert }) => {
                 },
               }}
             />
+          </section>
+        </div>
+      </Dialog>
+
+      <Dialog
+        fullWidth
+        maxWidth={"xl"}
+        open={openDialogRequirements}
+        sx={{
+          borderRadius: "55px",
+        }}
+        onClose={() => {
+          setOpenDialogRequirements(false);
+        }}
+        TransitionComponent={DialogTransition}
+      >
+        <div>
+          <span className="parrafo-modal">Editar requerimientos</span>
+        </div>
+
+        <span
+          className="button--close"
+          onClick={() => {
+            setOpenDialogRequirements(false);
+          }}
+        >
+          x
+        </span>
+
+        <Divider />
+
+        <div className="asignaciones__edit-container">
+          <section className="asignaciones__edit-container--form">
+            <form
+              className="form-asignacionedit"
+              onSubmit={handleEditRequirements}
+            >
+              <div className="contenedor-inputs-asign">
+                <StatesSelector
+                style={{width:"90%"}}
+                  value={idstates}
+                  setValue={setIdstates}
+                  ignore={[
+                    "ACTIVO",
+                    "INACTIVO",
+                    "ASIGNADO",
+                    "RETRAZADO",
+                    "NOVEDAD",
+                    "RECHAZADO",
+                    "DESARROLLO"
+                    
+                    ]}
+                  required
+                />
+
+                <NormalInput
+                  style={{ width: "95%" }}
+                  value={requirements_date}
+                  setValue={setRequirements_date}
+                  label={"Fecha de creación"}
+                  required
+                 readonly
+                />
+              </div>
+
+              <div className="contenedor-inputs-asign">
+                <NormalInput
+                  style={{ width: "95%" }}
+                  value={idrequirements}
+                  setValue={setAssignment_requirements_deadline}
+                  label={"Requerimiento"}
+                  readonly
+                  required
+                />
+                <CompaniesSelect
+                  style={{ width: "95%" }}
+                  value={idcompanies}
+                  setValue={setIdcompanies}
+                  required
+                  disabled
+                />
+
+                <NormalInput
+                  style={{ width: "95%" }}
+                  value={requirements_name}
+                  setValue={setRequirements_name}
+                  label={"Nombre"}
+                  readonly
+                  required
+                />
+              </div>
+              <div className="contenedor-inputs-asign">
+              <TextArea
+                style={{width:"100%"}}
+                  label={"Descripción"}
+                  value={requirements_description}
+                  setValue={setRequirements_description}
+                  required
+                />
+              </div>
+
+              <div className="botton-assigrequirement">
+                <Button
+                  type="submit"
+                   style={{marginBottom:"10px"}}
+                  // color="secondary"
+                  variant="contained"
+                >
+                  {"Editar"}
+                </Button>
+              </div>
+            </form>
           </section>
         </div>
       </Dialog>

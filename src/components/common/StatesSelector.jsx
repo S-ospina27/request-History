@@ -3,7 +3,14 @@ import React, { useEffect, useState } from "react";
 import RoutesList from "../tools/RoutesList";
 import { getHeader } from "../tools/SessionSettings";
 
-const StatesSelector = ({ value, setValue, required,ignore=[],style={} }) => {
+const StatesSelector = ({
+    value,
+    setValue,
+    required,
+    ignore=[],
+    style={} 
+  }) => {
+
   const [states, setStates] = useState([]);
 
   const readStatesSelector = () => {
@@ -29,7 +36,7 @@ const StatesSelector = ({ value, setValue, required,ignore=[],style={} }) => {
         onChange={(e) => setValue(e.target.value)}
         required={required}
       >
-      {/* {console.log(selector)} */}
+      <option value={""}>Seleccione</option>
         {states.map((item)=>
          !ignore.includes(item.states_name) && (
           <option key={item.idstates} value={item.idstates}>
