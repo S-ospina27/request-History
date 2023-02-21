@@ -73,6 +73,7 @@ function App() {
         
         <Route path="/" element={<Requeriments setAlert={setAlert} />} />
         <Route path="/create-assignments" element={<CreateAssignments />} />
+        
         <Route path="/Developers-assignments" element={<AssignDevelopers />} />
       </Routes>
     </ThemeProvider>

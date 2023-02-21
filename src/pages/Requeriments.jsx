@@ -17,14 +17,18 @@ import DataTableBlack from "../components/tools/DataTableBlack";
 import CompaniesSelect from "../components/common/CompaniesSelect";
 import InputDate from "../components/common/InputDate";
 import dayjs from "dayjs";
-
+import AssigmentSelector from "../components/common/AssigmentSelector";
+import DeveloperSelector from "../components/common/DeveloperSelector";
 
 const Requeriments = ({ setAlert }) => {
-  const [render, setRender] = useState(false);
   const [pending, setPending] = useState([]);
   const [accepted, setAccepted] = useState([]);
   const [finished, setFinished] = useState([]);
+  const [readAssigmentHasDevelopers, setReadAssigmentHasDevelopers] = useState(
+    []
+  );
   const [readRequirementsAdm, setReadRequirementsAdm] = useState([]);
+  const [render, setRender] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -34,9 +38,9 @@ const Requeriments = ({ setAlert }) => {
     assignment_requirements_deadline,
     setAssignment_requirements_deadline,
   ] = useState("");
-  
-
-   
+  const [idassignment_requirements, setIdassignment_requirements] =
+    useState("");
+  const [iddevelopers, setIddevelopers] = useState("");
 
   const handlerPending = () => {
     axios
@@ -87,7 +91,7 @@ const Requeriments = ({ setAlert }) => {
     );
 
     axios
-      .post(RoutesList.api.assignment.create, form, getHeader)
+      .post(RoutesList.api.assignment.create, form, getHeader())
       .then((res) => {
         setIdcompanies("");
         setIdrequirements("");
@@ -99,15 +103,40 @@ const Requeriments = ({ setAlert }) => {
         });
       });
   };
-  // useEffect(() => {
-  //     clean && clean();
-  // }, [open]);
 
+  const HandleAsigmentDevelopers = (e) => {
+    e.preventDefault();
+    const form = new FormData();
+    form.append("idassignment_requirements", idassignment_requirements);
+    form.append("iddevelopers", iddevelopers);
+
+    axios
+      .post(RoutesList.api.assignment.developer.create, form, getHeader())
+      .then((res) => {
+        setIdassignment_requirements("");
+        setIddevelopers("");
+        setAlert({
+          open: true,
+          message: res.data.message,
+          severity: res.data.status,
+        });
+      });
+  };
+
+  const handleReadAssigmentHasDevelopers = () => {
+    axios
+      .get(RoutesList.api.assignment.developer.read.assigment, getHeader())
+      .then((res) => {
+        setReadAssigmentHasDevelopers(res.data);
+        console.log(res.data)
+      });
+  };
   useEffect(() => {
     handlerPending();
     handlerAccept();
     handlerfinished();
     readRequirementsByAdmin();
+    handleReadAssigmentHasDevelopers();
   }, []);
 
   return (
@@ -176,11 +205,9 @@ const Requeriments = ({ setAlert }) => {
                   <Button
                     type="button"
                     color="white"
-                    // disabled={items.length > 0 ? false : true}
                     onClick={() => {
                       setOpen(true);
                     }}
-                    // startIcon={<PriceCheckIcon />}
                   >
                     {"Asignaciónes"}
                   </Button>
@@ -226,6 +253,7 @@ const Requeriments = ({ setAlert }) => {
             >
               <div className="contenedor-inputs-asign">
                 <CompaniesSelect
+                  ignore={["TERMINADO", "PENDIENTE"]}
                   value={idcompanies}
                   setValue={setIdcompanies}
                   setRender={setRender}
@@ -263,48 +291,57 @@ const Requeriments = ({ setAlert }) => {
                     setOpen(true);
                   }}
                 >
-                  {"Asignaciónes"}
+                  {"Crear"}
                 </Button>
               </div>
             </form>
 
-            <form className="form-asignacion">
+            <form
+              className="form-asignacion"
+              onSubmit={HandleAsigmentDevelopers}
+            >
               <div className="contenedor-inputs-asign">
-                <RequirementsSelector />
-                <NormalInput
-                  label={"Desarrollador"}
-                  type={"text"}
-                  min={"2023-02-16"}
-                  placeholder={"Ingrese nombre"}
+                <AssigmentSelector
+                  value={idassignment_requirements}
+                  setValue={setIdassignment_requirements}
+                  style={{ width: "95%" }}
+                  ignore={["ASIGNADO", "TERMINADO"]}
                   required
                 />
-              </div>
-              <div className="contenedor-inputs-asign">
-                <StatesSelector
-                  ignore={["ASIGNADO", "PENDIENTE", "INACTIVO", "NOVEDAD"]}
+
+                <DeveloperSelector
+                  value={iddevelopers}
+                  setValue={setIddevelopers}
+                  ignore={["INACTIVO"]}
+                  required
                 />
+
+                {/* <StatesSelector
+                  style={{width:"95%"}}
+                  ignore={["ACEPTADO", "TERMINADO", "INACTIVO", "NOVEDAD"]}
+                /> */}
               </div>
+
               <div className="botton-assigrequirement">
                 <Button
-                  type="button"
-                  // style={{backgroundImage: "radial-gradient(circle at 85.36% 111.24%, #1dbfaf 0, #00bfb9 5.56%, #00bec2 11.11%, #00becc 16.67%, #00bdd4 22.22%, #00bcdc 27.78%, #00bbe3 33.33%, #00b9e9 38.89%, #1eb7ee 44.44%, #3cb5f2 50%, #52b2f5 55.56%, #66b0f6 61.11%, #78adf6 66.67%, #89a9f5 72.22%, #99a6f2 77.78%, #a7a2ef 83.33%, #b49fea 88.89%, #c19be4 94.44%, #cc98dd 100%);"}}
-                  // color="secondary"
+                  type="submit"
                   variant="contained"
                   onClick={() => {
                     setOpen(true);
                   }}
                 >
-                  {"Asignaciónes"}
+                  {"Asignar"}
                 </Button>
               </div>
             </form>
           </section>
+
           <section className="asignaciones__container--table">
             <DataTableBlack
-              reload={readRequirementsByAdmin}
-              rows={readRequirementsAdm}
-              columns={ColumnsTable.requirementsAdmin}
-              getRowId={"idrequirements"}
+              reload={handleReadAssigmentHasDevelopers}
+              rows={readAssigmentHasDevelopers}
+              columns={ColumnsTable.assigmentHasDevelopers}
+              getRowId={"idassignment_requirements"}
               // onRowClick={{
               //   open: setOpenCreatTechnical,
               //   set: setFields,
@@ -314,10 +351,11 @@ const Requeriments = ({ setAlert }) => {
                   width: "96%",
                   margin: "auto",
                 },
-                // margin: "auto",
+                marginTop: "10px",
+                marginBottom: "20px",
                 width: "640px",
-                height: "520px",
-                // borderRadius: "15px",
+                height: "470px",
+                borderRadius: "15px",
                 borderColor: "#0000000",
                 color: "#0000000",
                 "& .MuiDataGrid-iconButtonContainer": {

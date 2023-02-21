@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import RoutesList from "../tools/RoutesList";
 import { getHeader } from "../tools/SessionSettings";
 
-const CompaniesSelect = ({ value, setValue, required, setRender }) => {
+const CompaniesSelect = ({ value, setValue, required, setRender,ignore=[] }) => {
   const [companies, setCompanies] = useState([]);
 
   const readCompaniessSelector = () => {
@@ -40,7 +40,8 @@ const CompaniesSelect = ({ value, setValue, required, setRender }) => {
       >
         <option value={""}>{"Seleccione"}</option>
 
-        {companies.map((companie, index) => (
+        {companies.map((companie, index) =>
+          !ignore.includes(companie.states_name) &&  (
           <option key={index} value={companie.idcompanies}>
             {`${companie.companies_nit} - ${companie.companies_business_name} `}
           </option>

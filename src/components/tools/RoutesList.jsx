@@ -23,6 +23,21 @@ export default {
     },
     assignment:{
       create: `${host}/assignment/create`,
+      read:{
+        select:`${host}/assignment/read/select`,
+      },
+      developer:{
+        create:`${host}/assignment/developers/create`,
+        read:{
+          assigment:`${host}/assignment/developers/read/assigment`,
+        }
+      }
+    },
+    developer:{
+     
+      read:{
+        select:`${host}/developers/read/select`,
+      }
     }
   },
 };

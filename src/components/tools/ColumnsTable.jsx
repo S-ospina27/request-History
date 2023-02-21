@@ -1,4 +1,12 @@
 export default {
+  assigmentHasDevelopers:[
+    { field: "idassignment_requirements", headerName: "ASIGNACIÓN", width: 180,valueFormatter: ({ value }) => {
+      return  "AS-"+ value;
+      }
+    },
+    { field: "developers_name", headerName: "DESARROLLADOR", width: 240 },
+    { field: "states_name", headerName: "ESTADO", width: 190 }
+  ],
   requirements:[
     { field: "idrequirements", headerName: "IDENTIFICADOR", width: 180,valueFormatter: ({ value }) => {
       return  "RQ-"+ value;
