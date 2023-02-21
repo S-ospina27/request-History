@@ -29,6 +29,8 @@ export default {
       },
       developer:{
         create:`${host}/assignment/developers/create`,
+        delete:`${host}/assignment/developers/delete`,
+        update:`${host}/assignment/developers/update`,
         read:{
           assigment:`${host}/assignment/developers/read/assigment`,
         }

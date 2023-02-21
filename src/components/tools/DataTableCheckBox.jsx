@@ -1,6 +1,5 @@
 import { Button, styled } from "@mui/material";
 import { Box } from "@mui/system";
-// import sindatos from "../../assets/img/imagen-sindatos.png"
 import {
   DataGrid,
   GridToolbarFilterButton,
@@ -20,16 +19,15 @@ const StyledGridOverlay = styled("div")(({ theme }) => ({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  color: "secondary",
   height: "100%",
   "& .ant-empty-img-1": {
-    fill: theme.palette.mode === "light" ? "#7B1FA2" : "#262626",
+    fill: theme.palette.mode === "light" ? "#aeb8c2" : "#262626",
   },
   "& .ant-empty-img-2": {
     fill: theme.palette.mode === "light" ? "#f5f5f7" : "#595959",
   },
   "& .ant-empty-img-3": {
-    fill: theme.palette.mode === "light" ? "#7B1FA2" : "#434343",
+    fill: theme.palette.mode === "light" ? "#dce0e6" : "#434343",
   },
   "& .ant-empty-img-4": {
     fill: theme.palette.mode === "light" ? "#fff" : "#1c1c1c",
@@ -43,7 +41,6 @@ const StyledGridOverlay = styled("div")(({ theme }) => ({
 export function CustomNoRowsOverlay() {
   return (
     <StyledGridOverlay>
-    {/* <img src={sindatos} width="230px" /> */}
       <svg
         width="120"
         height="100"
@@ -84,12 +81,13 @@ export function CustomNoRowsOverlay() {
         </g>
       </svg>
 
-      <Box sx={{ mt: 1 }}>Aun no hay registros</Box>
+      <Box sx={{ mt: 1 }}>No hay registros</Box>
     </StyledGridOverlay>
   );
 }
 
-function DataTableBlack({
+function DataTableCheckBox({
+  setValue,
   rows,
   columns,
   getRowId,
@@ -114,12 +112,12 @@ function DataTableBlack({
           disabled={disabled}
           size="small"
           onClick={handleReload}
-          color={"primary"}
+          color={"blue"}
           startIcon={
             disabled ? (
               <ScheduleIcon color="warning" />
             ) : (
-              <CachedIcon color={"primary"} />
+              <CachedIcon color={"blue"} />
             )
           }
         >
@@ -133,6 +131,10 @@ function DataTableBlack({
 
   return (
     <DataGrid
+      onSelectionModelChange={(items) => setValue(items)}
+      checkboxSelection
+      disableSelectionOnClick
+      experimentalFeatures={{ newEditingApi: true }}
       disableColumnMenu
       density="compact"
       rows={!rows.status ? rows : []}
@@ -154,9 +156,9 @@ function DataTableBlack({
         Toolbar: () => {
           return (
             <GridToolbarContainer>
-              {/* <GridToolbarColumnsButton color={"primary"} /> */}
-              <GridToolbarFilterButton color={"primary"} />
-              {/* <GridToolbarDensitySelector color={"primary"} /> */}
+              {/* <GridToolbarColumnsButton color={"blue"} /> */}
+              <GridToolbarFilterButton color={"blue"} />
+              {/* <GridToolbarDensitySelector color={"blue"} /> */}
               <DefaultButtons />
               {toolbar}
             </GridToolbarContainer>
@@ -168,4 +170,4 @@ function DataTableBlack({
   );
 }
 
-export default DataTableBlack;
+export default DataTableCheckBox;

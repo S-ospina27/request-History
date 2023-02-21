@@ -198,6 +198,21 @@ width: 100% ;
     width: 97%;
     flex-direction: column;
 }
+
+.contenedor-inputs-asignedit-developers{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+width: 100% ;
+}
+
+.botton-assigrequirement-has-developers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
 /* -------------------------------- */
 
 /* 
