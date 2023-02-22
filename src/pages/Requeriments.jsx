@@ -205,7 +205,7 @@ const Requeriments = ({ setAlert }) => {
     if (items.length > 0) {
       const form = new FormData();
       items.forEach((item) =>
-        form.append("idassignment_requirements_has_developers", item)
+        form.append("idassignment_requirements_has_developers[]", item)
       );
       axios
         .post(RoutesList.api.assignment.developer.delete, form, getHeader())
@@ -217,7 +217,7 @@ const Requeriments = ({ setAlert }) => {
             severity: res.data.status,
           });
         });
-      handleReadAssigmentHasDevelopers();
+        handleReadAssigmentHasDevelopers();
     }
   };
 
