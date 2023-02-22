@@ -1,4 +1,9 @@
 export default {
+  fullDevelopers:[
+    { field: "developers_name", headerName: "NOMBRE", width: 180 },
+    { field: "developerscol_type", headerName: "TIPO", width: 180 },
+    { field: "states_name", headerName: "ESTADO", width: 200 },
+  ],
   assigmentHasDevelopers:[
     { field: "idassignment_requirements", headerName: "ASIGNACIÓN", width: 180,valueFormatter: ({ value }) => {
       return  "AS-"+ value;

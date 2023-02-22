@@ -22,6 +22,8 @@ import DeveloperSelector from "../components/common/DeveloperSelector";
 import TextArea from "../components/common/TextArea";
 import DataTableCheckBox from "../components/tools/DataTableCheckBox";
 import TypeDevelopers from "../components/common/TypeDevelopers";
+import RolesSelect from "../components/common/RolesSelect";
+import { SHA256 } from "crypto-js";
 
 const Requeriments = ({ setAlert }) => {
   const [pending, setPending] = useState([]);
@@ -30,6 +32,8 @@ const Requeriments = ({ setAlert }) => {
   const [readAssigmentHasDevelopers, setReadAssigmentHasDevelopers] = useState(
     []
   );
+  const [readFullDevelopers,setReadFullDevelopers]=useState([]);  
+
   const [readRequirementsAdm, setReadRequirementsAdm] = useState([]);
   const [items, setItems] = useState([]);
   const [render, setRender] = useState(false);
@@ -39,7 +43,8 @@ const Requeriments = ({ setAlert }) => {
   const [openDialogRequirements, setOpenDialogRequirements] = useState(false);
   const [openDialogEditHasDevelopers, setOpenDialogEditHasDevelopers] =
     useState(false);
-  const[openDialogCreateDevelopers,setOpenDialogCreateDevelopers]= useState(false);
+  const [openDialogCreateDevelopers, setOpenDialogCreateDevelopers] =
+    useState(false);
 
   const [idrequirements, setIdrequirements] = useState("");
   const [idcompanies, setIdcompanies] = useState("");
@@ -56,7 +61,17 @@ const Requeriments = ({ setAlert }) => {
   const [idstates, setIdstates] = useState("");
   const [requirements_date, setRequirements_date] = useState("");
   const [idstatesHasDevelopers, setIdstatesHasDevelopers] = useState("");
-  const [idassignment_requirements_has_developers, setIdassignment_requirements_has_developers] = useState("");
+  const [
+    idassignment_requirements_has_developers,
+    setIdassignment_requirements_has_developers,
+  ] = useState("");
+
+  const [idroles, setIdroles] = useState("");
+  const [idstatesCreate, setIstatesCreate] = useState("");
+  const [developers_nameCreate, setDevelopers_nameCreate] = useState("");
+  const [developerscol_type, setDeveloperscol_type] = useState("");
+  const [developers_email, setDdevelopers_email] = useState("");
+  const [developers_password, setDevelopers_password] = useState("");
 
   const setFields = (
     row = {
@@ -80,12 +95,14 @@ const Requeriments = ({ setAlert }) => {
   const setFieldsHasDevelopers = (
     row = {
       idstatesHasDevelopers: "",
-      idassignment_requirements_has_developers:""
+      idassignment_requirements_has_developers: "",
     }
   ) => {
     // console.log(row);
     setIdstatesHasDevelopers(row.idstates);
-    setIdassignment_requirements_has_developers(row.idassignment_requirements_has_developers);
+    setIdassignment_requirements_has_developers(
+      row.idassignment_requirements_has_developers
+    );
   };
 
   const handlerPending = () => {
@@ -125,6 +142,41 @@ const Requeriments = ({ setAlert }) => {
         // console.log(res.data)
         setReadRequirementsAdm(res.data);
       });
+  };
+
+  const readDevelopers = () =>{
+    axios.get(RoutesList.api.developer.read.full,getHeader()).then((res) => {
+      setReadFullDevelopers(!res.data.status ? res.data : []);
+    })
+
+  }
+
+  const handleCreateDevelopers = (e) => {
+    e.preventDefault();
+    console.log(developers_nameCreate)
+    console.log(developerscol_type)
+    console.log(developers_email)
+    console.log(developers_password)
+    const form = new FormData();
+    form.append("developers_name", developers_nameCreate);
+    form.append("developerscol_type", developerscol_type);
+    form.append("developers_email", developers_email);
+    form.append("developers_password",SHA256(developers_password));
+
+    axios
+      .post(RoutesList.api.developer.create,form, getHeader())
+      .then((res) => {
+        setAlert({
+          open: true,
+          message: res.data.message,
+          severity: res.data.status,
+        });
+      });
+      readDevelopers();
+    setDevelopers_nameCreate("");
+    setDeveloperscol_type("");
+    setDdevelopers_email("");
+    setDevelopers_password("");
   };
 
   const handleCreateAssingments = (e) => {
@@ -228,20 +280,24 @@ const Requeriments = ({ setAlert }) => {
     e.preventDefault();
 
     const form = new FormData();
-    form.append("idassignment_requirements_has_developers",idassignment_requirements_has_developers);
-    form.append("idstates",idstatesHasDevelopers);
+    form.append(
+      "idassignment_requirements_has_developers",
+      idassignment_requirements_has_developers
+    );
+    form.append("idstates", idstatesHasDevelopers);
 
-    axios.post(RoutesList.api.assignment.developer.update ,form,getHeader()).then((res) => {
-      setAlert({
-        open: true,
-        message: res.data.message,
-        severity: res.data.status,
+    axios
+      .post(RoutesList.api.assignment.developer.update, form, getHeader())
+      .then((res) => {
+        setAlert({
+          open: true,
+          message: res.data.message,
+          severity: res.data.status,
+        });
       });
-    });
     handleReadAssigmentHasDevelopers();
     setOpenDialogEditHasDevelopers(false);
-
-  }
+  };
 
   useEffect(() => {
     setFields();
@@ -257,6 +313,7 @@ const Requeriments = ({ setAlert }) => {
     handlerfinished();
     readRequirementsByAdmin();
     handleReadAssigmentHasDevelopers();
+    readDevelopers();
   }, []);
 
   return (
@@ -324,26 +381,25 @@ const Requeriments = ({ setAlert }) => {
                 toolbar={
                   <>
                     <Button
-                    type="button"
-                    color="white"
-                    onClick={() => {
-                      setOpen(true);
-                    }}
-                  >
-                    {"Asignaciónes"}
-                  </Button>
-                  
+                      type="button"
+                      color="white"
+                      onClick={() => {
+                        setOpen(true);
+                      }}
+                    >
+                      {"Asignaciónes"}
+                    </Button>
+
                     <Button
-                    type="button"
-                    color="white"
-                    onClick={() => {
-                      setOpenDialogCreateDevelopers(true);
-                    }}
-                  >
-                    {"developers"}
-                  </Button>
+                      type="button"
+                      color="white"
+                      onClick={() => {
+                        setOpenDialogCreateDevelopers(true);
+                      }}
+                    >
+                      {"developers"}
+                    </Button>
                   </>
-                
                 }
               />
             </div>
@@ -665,7 +721,7 @@ const Requeriments = ({ setAlert }) => {
               <div className="contenedor-inputs-asignedit-developers">
                 <StatesSelector
                   style={{
-                    width: "100%"
+                    width: "100%",
                   }}
                   value={idstatesHasDevelopers}
                   setValue={setIdstatesHasDevelopers}
@@ -686,7 +742,7 @@ const Requeriments = ({ setAlert }) => {
               <div className="botton-assigrequirement-has-developers">
                 <Button
                   type="submit"
-                  style={{ marginBottom: "10px",width:"60%" }}
+                  style={{ marginBottom: "10px", width: "60%" }}
                   // color="secondary"
                   variant="contained"
                 >
@@ -698,6 +754,7 @@ const Requeriments = ({ setAlert }) => {
         </div>
       </Dialog>
 
+      {/* esteeeee */}
       <Dialog
         fullWidth
         maxWidth={"xl"}
@@ -706,7 +763,7 @@ const Requeriments = ({ setAlert }) => {
           borderRadius: "55px",
         }}
         onClose={() => {
-          setOpenDialogRequirements(false);
+          setOpenDialogCreateDevelopers(false);
         }}
         TransitionComponent={DialogTransition}
       >
@@ -725,34 +782,35 @@ const Requeriments = ({ setAlert }) => {
 
         <Divider />
 
-        <div className="asignaciones__edit-container">
-          <section className="asignaciones__edit-container--form">
+        <div className="asignaciones__container">
+          <section className="asignaciones__container--form">
             <form
-              className="form-asignacionedit"
-              onSubmit={handleEditRequirements}
+              className="form-asignacion"
+              onSubmit={handleCreateDevelopers}
             >
               <div className="contenedor-inputs-asign">
                 <NormalInput
                   style={{ width: "95%" }}
-                  // value={requirements_date}
-                  // setValue={setRequirements_date}
+                  value={developers_nameCreate}
+                  setValue={setDevelopers_nameCreate}
                   label={"Nombre "}
                   type={"text"}
                   required
                 />
-                
-                <TypeDevelopers
-                  style={{width:"95%"}}
-                  required
-                  />
 
+                <TypeDevelopers
+                  style={{ width: "95%" }}
+                  value={developerscol_type}
+                  setValue={setDeveloperscol_type}
+                  required
+                />
               </div>
 
               <div className="contenedor-inputs-asign">
-              <NormalInput
+                <NormalInput
                   style={{ width: "95%" }}
-                  // value={requirements_name}
-                  // setValue={setRequirements_name}
+                  value={developers_password}
+                  setValue={setDevelopers_password}
                   label={"Contraseña"}
                   type={"password"}
                   required
@@ -760,32 +818,12 @@ const Requeriments = ({ setAlert }) => {
 
                 <NormalInput
                   style={{ width: "95%" }}
-                  //  value={requirements_name}
-                  //  setValue={setRequirements_name}
+                  value={developers_email}
+                  setValue={setDdevelopers_email}
                   label={"Email"}
                   type={"email"}
                   required
                 />
-              </div>
-
-              <div className="contenedor-inputs-asign">
-              <StatesSelector
-                  style={{ width: "95%" }}
-                  value={idstates}
-                  setValue={setIdstates}
-                  ignore={[
-                    "ASIGNADO",
-                    "RETRAZADO",
-                    "NOVEDAD",
-                    "RECHAZADO",
-                    "DESARROLLO",
-                    "PENDIENTE",
-                    "ACEPTADO",
-                    "TERMINADO"
-                  ]}
-                  required
-                />
-
               </div>
 
               <div className="botton-assigrequirement">
@@ -795,10 +833,51 @@ const Requeriments = ({ setAlert }) => {
                   // color="secondary"
                   variant="contained"
                 >
-                  {"Editar"}
+                  {"Crear"}
                 </Button>
               </div>
+
             </form>
+          </section>
+
+          <section className="asignaciones__container--table">
+            <DataTableBlack
+              reload={readDevelopers}
+              rows={readFullDevelopers}
+              columns={ColumnsTable.fullDevelopers}
+              getRowId={"iddevelopers"}
+              onRowClick={{
+                open: setOpenDialogEditHasDevelopers,
+                set: setFieldsHasDevelopers,
+              }}
+              sx={{
+                "@media screen and (max-width: 1024px)": {
+                  width: "96%",
+                  margin: "auto",
+                },
+                marginTop: "10px",
+                marginBottom: "20px",
+                width: "640px",
+                height: "470px",
+                borderRadius: "15px",
+                borderColor: "#0000000",
+                color: "#0000000",
+                "& .MuiDataGrid-iconButtonContainer": {
+                  button: {
+                    color: "#0000000",
+                  },
+                },
+                ".MuiTablePagination-root": {
+                  color: "#0000000",
+                },
+                "& .MuiDataGrid-columnHeaders": {
+                  borderColor: "#0000000",
+                },
+                "& .MuiDataGrid-cell": {
+                  borderColor: "#00000",
+                },
+              }}
+            />
           </section>
         </div>
       </Dialog>
