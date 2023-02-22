@@ -211,13 +211,14 @@ const Requeriments = ({ setAlert }) => {
         .post(RoutesList.api.assignment.developer.delete, form, getHeader())
         .then((res) => {
           console.log(res.data);
+
+          handleReadAssigmentHasDevelopers();
           setAlert({
             open: true,
             message: res.data.message,
             severity: res.data.status,
           });
         });
-        handleReadAssigmentHasDevelopers();
     }
   };
 
