@@ -32,7 +32,7 @@ const Requeriments = ({ setAlert }) => {
   const [readAssigmentHasDevelopers, setReadAssigmentHasDevelopers] = useState(
     []
   );
-  const [readFullDevelopers,setReadFullDevelopers]=useState([]);  
+  const [readFullDevelopers, setReadFullDevelopers] = useState([]);
 
   const [readRequirementsAdm, setReadRequirementsAdm] = useState([]);
   const [items, setItems] = useState([]);
@@ -144,39 +144,38 @@ const Requeriments = ({ setAlert }) => {
       });
   };
 
-  const readDevelopers = () =>{
-    axios.get(RoutesList.api.developer.read.full,getHeader()).then((res) => {
+  const readDevelopers = () => {
+    axios.get(RoutesList.api.developer.read.full, getHeader()).then((res) => {
       setReadFullDevelopers(!res.data.status ? res.data : []);
-    })
-
-  }
+    });
+  };
 
   const handleCreateDevelopers = (e) => {
     e.preventDefault();
-    console.log(developers_nameCreate)
-    console.log(developerscol_type)
-    console.log(developers_email)
-    console.log(developers_password)
+
     const form = new FormData();
     form.append("developers_name", developers_nameCreate);
     form.append("developerscol_type", developerscol_type);
     form.append("developers_email", developers_email);
-    form.append("developers_password",SHA256(developers_password));
+    form.append("developers_password", SHA256(developers_password));
 
     axios
-      .post(RoutesList.api.developer.create,form, getHeader())
+      .post(RoutesList.api.developer.create, form, getHeader())
       .then((res) => {
         setAlert({
           open: true,
           message: res.data.message,
           severity: res.data.status,
         });
+
+        if (res.data.status === "success") {
+          readDevelopers();
+          setDevelopers_nameCreate("");
+          setDeveloperscol_type("");
+          setDdevelopers_email("");
+          setDevelopers_password("");
+        }
       });
-      readDevelopers();
-    setDevelopers_nameCreate("");
-    setDeveloperscol_type("");
-    setDdevelopers_email("");
-    setDevelopers_password("");
   };
 
   const handleCreateAssingments = (e) => {
@@ -784,10 +783,7 @@ const Requeriments = ({ setAlert }) => {
 
         <div className="asignaciones__container">
           <section className="asignaciones__container--form">
-            <form
-              className="form-asignacion"
-              onSubmit={handleCreateDevelopers}
-            >
+            <form className="form-asignacion" onSubmit={handleCreateDevelopers}>
               <div className="contenedor-inputs-asign">
                 <NormalInput
                   style={{ width: "95%" }}
@@ -836,7 +832,6 @@ const Requeriments = ({ setAlert }) => {
                   {"Crear"}
                 </Button>
               </div>
-
             </form>
           </section>
 
