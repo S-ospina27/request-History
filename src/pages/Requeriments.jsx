@@ -21,6 +21,7 @@ import AssigmentSelector from "../components/common/AssigmentSelector";
 import DeveloperSelector from "../components/common/DeveloperSelector";
 import TextArea from "../components/common/TextArea";
 import DataTableCheckBox from "../components/tools/DataTableCheckBox";
+import TypeDevelopers from "../components/common/TypeDevelopers";
 
 const Requeriments = ({ setAlert }) => {
   const [pending, setPending] = useState([]);
@@ -38,6 +39,7 @@ const Requeriments = ({ setAlert }) => {
   const [openDialogRequirements, setOpenDialogRequirements] = useState(false);
   const [openDialogEditHasDevelopers, setOpenDialogEditHasDevelopers] =
     useState(false);
+  const[openDialogCreateDevelopers,setOpenDialogCreateDevelopers]= useState(false);
 
   const [idrequirements, setIdrequirements] = useState("");
   const [idcompanies, setIdcompanies] = useState("");
@@ -320,7 +322,8 @@ const Requeriments = ({ setAlert }) => {
                   },
                 }}
                 toolbar={
-                  <Button
+                  <>
+                    <Button
                     type="button"
                     color="white"
                     onClick={() => {
@@ -329,6 +332,18 @@ const Requeriments = ({ setAlert }) => {
                   >
                     {"Asignaciónes"}
                   </Button>
+                  
+                    <Button
+                    type="button"
+                    color="white"
+                    onClick={() => {
+                      setOpenDialogCreateDevelopers(true);
+                    }}
+                  >
+                    {"developers"}
+                  </Button>
+                  </>
+                
                 }
               />
             </div>
@@ -672,6 +687,111 @@ const Requeriments = ({ setAlert }) => {
                 <Button
                   type="submit"
                   style={{ marginBottom: "10px",width:"60%" }}
+                  // color="secondary"
+                  variant="contained"
+                >
+                  {"Editar"}
+                </Button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </Dialog>
+
+      <Dialog
+        fullWidth
+        maxWidth={"xl"}
+        open={openDialogCreateDevelopers}
+        sx={{
+          borderRadius: "55px",
+        }}
+        onClose={() => {
+          setOpenDialogRequirements(false);
+        }}
+        TransitionComponent={DialogTransition}
+      >
+        <div>
+          <span className="parrafo-modal">Crear desarrollador</span>
+        </div>
+
+        <span
+          className="button--close"
+          onClick={() => {
+            setOpenDialogCreateDevelopers(false);
+          }}
+        >
+          x
+        </span>
+
+        <Divider />
+
+        <div className="asignaciones__edit-container">
+          <section className="asignaciones__edit-container--form">
+            <form
+              className="form-asignacionedit"
+              onSubmit={handleEditRequirements}
+            >
+              <div className="contenedor-inputs-asign">
+                <NormalInput
+                  style={{ width: "95%" }}
+                  // value={requirements_date}
+                  // setValue={setRequirements_date}
+                  label={"Nombre "}
+                  type={"text"}
+                  required
+                />
+                
+                <TypeDevelopers
+                  style={{width:"95%"}}
+                  required
+                  />
+
+              </div>
+
+              <div className="contenedor-inputs-asign">
+              <NormalInput
+                  style={{ width: "95%" }}
+                  // value={requirements_name}
+                  // setValue={setRequirements_name}
+                  label={"Contraseña"}
+                  type={"password"}
+                  required
+                />
+
+                <NormalInput
+                  style={{ width: "95%" }}
+                  //  value={requirements_name}
+                  //  setValue={setRequirements_name}
+                  label={"Email"}
+                  type={"email"}
+                  required
+                />
+              </div>
+
+              <div className="contenedor-inputs-asign">
+              <StatesSelector
+                  style={{ width: "95%" }}
+                  value={idstates}
+                  setValue={setIdstates}
+                  ignore={[
+                    "ASIGNADO",
+                    "RETRAZADO",
+                    "NOVEDAD",
+                    "RECHAZADO",
+                    "DESARROLLO",
+                    "PENDIENTE",
+                    "ACEPTADO",
+                    "TERMINADO"
+                  ]}
+                  required
+                />
+
+              </div>
+
+              <div className="botton-assigrequirement">
+                <Button
+                  type="submit"
+                  style={{ marginBottom: "10px" }}
                   // color="secondary"
                   variant="contained"
                 >

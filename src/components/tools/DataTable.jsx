@@ -154,7 +154,7 @@ function DataTable({
         Toolbar: () => {
           return (
             <GridToolbarContainer>
-              <GridToolbarColumnsButton color={"white"} />
+              {/* <GridToolbarColumnsButton color={"white"} /> */}
               <GridToolbarFilterButton color={"white"} />
               <GridToolbarDensitySelector color={"white"} />
               <DefaultButtons />
