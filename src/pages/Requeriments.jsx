@@ -16,14 +16,16 @@ import StatesSelector from "../components/common/StatesSelector";
 import DataTableBlack from "../components/tools/DataTableBlack";
 import CompaniesSelect from "../components/common/CompaniesSelect";
 import InputDate from "../components/common/InputDate";
-import dayjs from "dayjs";
 import AssigmentSelector from "../components/common/AssigmentSelector";
 import DeveloperSelector from "../components/common/DeveloperSelector";
 import TextArea from "../components/common/TextArea";
 import DataTableCheckBox from "../components/tools/DataTableCheckBox";
 import TypeDevelopers from "../components/common/TypeDevelopers";
 import RolesSelect from "../components/common/RolesSelect";
+import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { SHA256 } from "crypto-js";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const Requeriments = ({ setAlert }) => {
   const [pending, setPending] = useState([]);
@@ -46,6 +48,9 @@ const Requeriments = ({ setAlert }) => {
   const [openDialogCreateDevelopers, setOpenDialogCreateDevelopers] =
     useState(false);
 
+  const [openDialogEditDevelopers, setOpenDialogEditDevelopers] =
+    useState(false);
+
   const [idrequirements, setIdrequirements] = useState("");
   const [idcompanies, setIdcompanies] = useState("");
   const [
@@ -66,6 +71,7 @@ const Requeriments = ({ setAlert }) => {
     setIdassignment_requirements_has_developers,
   ] = useState("");
 
+  const [iddevelopersEdit, setiddevelopersEdit] = useState("");
   const [idroles, setIdroles] = useState("");
   const [idstatesCreate, setIstatesCreate] = useState("");
   const [developers_nameCreate, setDevelopers_nameCreate] = useState("");
@@ -103,6 +109,28 @@ const Requeriments = ({ setAlert }) => {
     setIdassignment_requirements_has_developers(
       row.idassignment_requirements_has_developers
     );
+  };
+
+  const setDialogEditofCreateDevelopers = (
+    row = {
+      developers_name: "",
+      idstates: "",
+      iddevelopers: "",
+      iddevelopersEdit: "",
+      idroles: "",
+      idstatesCreate: "",
+      developers_nameCreate: "",
+      developerscol_type: "",
+      developers_email: "",
+      developers_password: "",
+    }
+  ) => {
+    setiddevelopersEdit(row.iddevelopers);
+    setIdroles(row.idroles);
+    setIstatesCreate(row.idstates);
+    setDevelopers_nameCreate(row.developers_name);
+    setDeveloperscol_type(row.developerscol_type);
+    setDdevelopers_email(row.developers_email);
   };
 
   const handlerPending = () => {
@@ -150,6 +178,13 @@ const Requeriments = ({ setAlert }) => {
     });
   };
 
+  const handleClearFieldDevelopers = () => {
+    setDevelopers_nameCreate("");
+    setDeveloperscol_type("");
+    setDdevelopers_email("");
+    setDevelopers_password("");
+  };
+
   const handleCreateDevelopers = (e) => {
     e.preventDefault();
 
@@ -162,6 +197,7 @@ const Requeriments = ({ setAlert }) => {
     axios
       .post(RoutesList.api.developer.create, form, getHeader())
       .then((res) => {
+        console.log(res.data);
         setAlert({
           open: true,
           message: res.data.message,
@@ -170,10 +206,7 @@ const Requeriments = ({ setAlert }) => {
 
         if (res.data.status === "success") {
           readDevelopers();
-          setDevelopers_nameCreate("");
-          setDeveloperscol_type("");
-          setDdevelopers_email("");
-          setDevelopers_password("");
+          handleClearFieldDevelopers();
         }
       });
   };
@@ -251,6 +284,8 @@ const Requeriments = ({ setAlert }) => {
         });
         setFields();
         setOpenDialogRequirements(false);
+        handlerfinished();
+        handlerAccept();
       });
   };
 
@@ -298,9 +333,44 @@ const Requeriments = ({ setAlert }) => {
     setOpenDialogEditHasDevelopers(false);
   };
 
+  const handleEditOfCreateDevelopers = (e) => {
+    e.preventDefault();
+    const form = new FormData();
+    form.append("iddevelopers", parseInt(iddevelopersEdit));
+    form.append("idroles", idroles);
+    form.append("idstates", idstatesCreate);
+    form.append("developers_name", developers_nameCreate);
+    form.append("developerscol_type", developerscol_type);
+    form.append("developers_email", developers_email);
+    form.append("developers_password", SHA256(developers_password));
+
+    axios
+      .post(RoutesList.api.developer.update, form, getHeader())
+      .then((res) => {
+        setAlert({
+          open: true,
+          message: res.data.message,
+          severity: res.data.status,
+        });
+
+        if (res.data.status === "success") {
+          setOpenDialogEditDevelopers(false);
+          readDevelopers();
+          handleClearFieldDevelopers();
+        }
+      });
+  };
+
+
+
   useEffect(() => {
     setFields();
   }, [open]);
+
+  useEffect(() => {
+    setOpenDialogCreateDevelopers(false);
+  }, [openDialogEditDevelopers]);
+  
 
   useEffect(() => {
     setOpen(false);
@@ -385,8 +455,10 @@ const Requeriments = ({ setAlert }) => {
                       onClick={() => {
                         setOpen(true);
                       }}
+                      startIcon={ <AddToPhotosIcon fontSize="small"/> }
                     >
                       {"Asignaciónes"}
+                     
                     </Button>
 
                     <Button
@@ -395,6 +467,7 @@ const Requeriments = ({ setAlert }) => {
                       onClick={() => {
                         setOpenDialogCreateDevelopers(true);
                       }}
+                      startIcon={<PersonAddIcon fontSize="small"/>}
                     >
                       {"developers"}
                     </Button>
@@ -564,6 +637,7 @@ const Requeriments = ({ setAlert }) => {
                   type="button"
                   color="error"
                   onClick={handleDeleteAssigmentDevelopers}
+                  startIcon={<DeleteOutlineIcon/>}
                 >
                   {"Eliminar"}
                 </Button>
@@ -611,7 +685,30 @@ const Requeriments = ({ setAlert }) => {
                   style={{ width: "90%" }}
                   value={idstates}
                   setValue={setIdstates}
-                  ignore={[
+                  ignore={ idstates ===1 ? [
+                    "ACTIVO",
+                    "INACTIVO",
+                    "ASIGNADO",
+                    "RETRAZADO",
+                    "NOVEDAD",
+                    "RECHAZADO",
+                    "DESARROLLO",
+                  ] 
+                  : idstates ===3 ?
+                  [ 
+                    "PENDIENTE",
+                    "ACTIVO",
+                    "INACTIVO",
+                    "ASIGNADO",
+                    "RETRAZADO",
+                    "NOVEDAD",
+                    "RECHAZADO",
+                    "DESARROLLO",
+                  ] 
+                    :
+                    [
+                    "ACEPTADO",  
+                    "PENDIENTE",
                     "ACTIVO",
                     "INACTIVO",
                     "ASIGNADO",
@@ -753,7 +850,6 @@ const Requeriments = ({ setAlert }) => {
         </div>
       </Dialog>
 
-      {/* esteeeee */}
       <Dialog
         fullWidth
         maxWidth={"xl"}
@@ -789,7 +885,7 @@ const Requeriments = ({ setAlert }) => {
                   style={{ width: "95%" }}
                   value={developers_nameCreate}
                   setValue={setDevelopers_nameCreate}
-                  label={"Nombre "}
+                  label={"Nombre"}
                   type={"text"}
                   required
                 />
@@ -842,8 +938,8 @@ const Requeriments = ({ setAlert }) => {
               columns={ColumnsTable.fullDevelopers}
               getRowId={"iddevelopers"}
               onRowClick={{
-                open: setOpenDialogEditHasDevelopers,
-                set: setFieldsHasDevelopers,
+                open: setOpenDialogEditDevelopers,
+                set: setDialogEditofCreateDevelopers,
               }}
               sx={{
                 "@media screen and (max-width: 1024px)": {
@@ -873,6 +969,108 @@ const Requeriments = ({ setAlert }) => {
                 },
               }}
             />
+          </section>
+        </div>
+      </Dialog>
+
+      <Dialog
+        fullWidth
+        maxWidth={"xl"}
+        open={openDialogEditDevelopers}
+        sx={{
+          borderRadius: "55px",
+        }}
+        onClose={() => {
+          setOpenDialogEditDevelopers(false);
+          setDialogEditofCreateDevelopers();
+        }}
+        TransitionComponent={DialogTransition}
+      >
+        <div>
+          <span className="parrafo-modal">Editar Desarrolladores</span>
+        </div>
+
+        <span
+          className="button--close"
+          onClick={() => {
+            setOpenDialogEditDevelopers(false);
+            setDialogEditofCreateDevelopers();
+          }}
+        >
+          x
+        </span>
+
+        <Divider />
+
+        <div className="asignaciones__edit-container">
+          <section className="asignaciones__edit-container--form">
+            <form
+              className="form-asignacionedit"
+              onSubmit={handleEditOfCreateDevelopers}
+            >
+              <div className="contenedor-inputs-asign">
+                <NormalInput
+                  style={{ width: "95%" }}
+                  value={developers_nameCreate}
+                  setValue={setDevelopers_nameCreate}
+                  label={"Nombre"}
+                  type={"text"}
+                  required
+                />
+
+                <TypeDevelopers
+                  style={{ width: "95%" }}
+                  value={developerscol_type}
+                  setValue={setDeveloperscol_type}
+                  required
+                />
+              </div>
+
+              <div className="contenedor-inputs-asign">
+                <NormalInput
+                  style={{ width: "95%" }}
+                  value={developers_email}
+                  setValue={setDdevelopers_email}
+                  label={"Email"}
+                  type={"email"}
+                  required
+                />
+                <StatesSelector
+                  style={{ width: "95%" }}
+                  value={idstatesCreate}
+                  setValue={setIstatesCreate}
+                  ignore={[
+                    "NOVEDAD",
+                    "PENDIENTE",
+                    "ACEPTADO",
+                    "TERMINADO",
+                    "ASIGNADO",
+                    "RETRAZADO",
+                    "DESARROLLO",
+                    "RECHAZADO",
+                  ]}
+                />
+              </div>
+
+              <div className="contenedor-inputs-asign">
+                <RolesSelect
+                  value={idroles}
+                  setValue={setIdroles}
+                  style={{ width: "79%" }}
+                  ignore={["Clientes", "Administrador"]}
+                />
+              </div>
+
+              <div className="botton-assigrequirement">
+                <Button
+                  type="submit"
+                  style={{ marginBottom: "10px" }}
+                  variant="contained"
+                >
+                  {"Editar"}
+                </Button>
+              </div>
+            </form>
           </section>
         </div>
       </Dialog>

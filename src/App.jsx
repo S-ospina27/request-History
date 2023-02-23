@@ -9,6 +9,9 @@ import Requeriments from "./pages/Requeriments";
 import CreateAssignments from "./pages/CreateAssignments";
 import AssignDevelopers from "./pages/AssignDevelopers";
 import ClientsWithAuthenticationMiddleware from "./middleware/ClientsWithAuthenticationMiddleware";
+import NotFound from "./pages/NotFound";
+import Loguin from "./pages/Loguin";
+
 function App() {
   const [alert, setAlert] = useState({
     open: false,
@@ -71,10 +74,13 @@ function App() {
           }
         />
         
-        <Route path="/" element={<Requeriments setAlert={setAlert} />} />
+        <Route path="/" element={<Loguin/>} />
+        <Route path="/requirements" element={<Requeriments setAlert={setAlert} />} />
         <Route path="/create-assignments" element={<CreateAssignments />} />
         
         <Route path="/Developers-assignments" element={<AssignDevelopers />} />
+
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     </ThemeProvider>
   );

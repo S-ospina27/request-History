@@ -41,6 +41,7 @@ export default {
     },
     developer:{
         create:`${host}/developers/create`,
+        update:`${host}/developers/update`,
       read:{
         full:`${host}/developers/read/`,
         select:`${host}/developers/read/select`,
