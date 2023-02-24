@@ -685,30 +685,7 @@ const Requeriments = ({ setAlert }) => {
                   style={{ width: "90%" }}
                   value={idstates}
                   setValue={setIdstates}
-                  ignore={ idstates ===1 ? [
-                    "ACTIVO",
-                    "INACTIVO",
-                    "ASIGNADO",
-                    "RETRAZADO",
-                    "NOVEDAD",
-                    "RECHAZADO",
-                    "DESARROLLO",
-                  ] 
-                  : idstates ===3 ?
-                  [ 
-                    "PENDIENTE",
-                    "ACTIVO",
-                    "INACTIVO",
-                    "ASIGNADO",
-                    "RETRAZADO",
-                    "NOVEDAD",
-                    "RECHAZADO",
-                    "DESARROLLO",
-                  ] 
-                    :
-                    [
-                    "ACEPTADO",  
-                    "PENDIENTE",
+                  ignore={ [
                     "ACTIVO",
                     "INACTIVO",
                     "ASIGNADO",

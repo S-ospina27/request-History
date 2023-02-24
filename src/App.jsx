@@ -7,7 +7,7 @@ import { Create } from "@mui/icons-material";
 import CreateRequirements from "./pages/CreateRequirements";
 import Requeriments from "./pages/Requeriments";
 import CreateAssignments from "./pages/CreateAssignments";
-import AssignDevelopers from "./pages/AssignDevelopers";
+import Developers from "./pages/Developers";
 import ClientsWithAuthenticationMiddleware from "./middleware/ClientsWithAuthenticationMiddleware";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
@@ -78,7 +78,7 @@ function App() {
         <Route path="/requirements" element={<Requeriments setAlert={setAlert} />} />
         <Route path="/create-assignments" element={<CreateAssignments />} />
         
-        <Route path="/Developers-assignments" element={<AssignDevelopers />} />
+        <Route path="/developers" element={<Developers />} />
 
         <Route path="*" element={<NotFound/>} />
       </Routes>

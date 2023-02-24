@@ -5,13 +5,13 @@ import DrawerLayout from '../components/Layout/DrawerLayout';
 
 // import Draw from '../components/common/Draw';
 
-const AssignDevelopers = () => {
+const Developers = () => {
   const [helpOpen, setHelpOpen] = useState(false);
   return (
     <div className={"contaniner contenedor-requirement"}>
            <DrawerLayout helpOpen={helpOpen}  setHelpOpen={setHelpOpen}/>
          <img src={menu} width="50px" className={"img-menu"} onClick={ () => setHelpOpen(true) } />
-          <h1 className={"h1-padre"}>Asignar desarrolladores</h1>
+          <h1 className={"h1-padre"}>Desarrolladores</h1>
          <div className={"contenedor-body"}>
            <div className={"contenedor-informativo"}>
              <div className={"contenedores-hijos"}>
@@ -35,4 +35,4 @@ const AssignDevelopers = () => {
   )
 }
 
-export default AssignDevelopers;
+export default Developers;
