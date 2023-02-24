@@ -5,7 +5,7 @@ import DrawerLayout from '../components/Layout/DrawerLayout';
 
 // import Draw from '../components/common/Draw';
 
-const Developers = () => {
+const Developers = ({setAlert}) => {
   const [helpOpen, setHelpOpen] = useState(false);
   return (
     <div className={"contaniner contenedor-requirement"}>

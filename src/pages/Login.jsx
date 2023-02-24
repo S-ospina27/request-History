@@ -8,8 +8,9 @@ import axios from "axios";
 import { getHeader, set } from "../components/tools/SessionSettings";
 import { SHA256 } from "crypto-js";
 import { useNavigate } from "react-router";
+import jwtDecode from "jwt-decode";
 
-const Login = ({ setAlert }) => {
+const Login = ({ setAlert, setUserSession }) => {
   const navigate = useNavigate();
   const [developers_password, setDevelopers_password] = useState("");
   const [developers_email, setDevelopers_email] = useState("");
@@ -24,7 +25,6 @@ const Login = ({ setAlert }) => {
     form.append("developers_password", SHA256(developers_password));
 
     axios.post(RoutesList.api.auth.login, form, getHeader()).then((res) => {
-      console.log(res.data);
       setAlert({
         open: true,
         message: res.data.message,
@@ -32,8 +32,11 @@ const Login = ({ setAlert }) => {
       });
 
       if (res.data.status === "success") {
+        setUserSession(true);
         set("jwt", res.data.data.jwt);
-        navigate("/requirements");
+        const jwt = jwtDecode(res.data.data.jwt);
+        navigate(jwt.data.idroles === 3 ? "/developers" : "/requirements");
+        console.log(jwt)
       }
     });
   };

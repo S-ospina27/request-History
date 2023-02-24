@@ -12,8 +12,11 @@ import ClientsWithAuthenticationMiddleware from "./middleware/ClientsWithAuthent
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import NotRolMiddleware from "./middleware/NotRolMiddleware";
+import WithAuthenticationMiddleware from "./middleware/WithAuthenticationMiddleware";
+import session from "./components/tools/SessionSettings";
 
 function App() {
+  const [userSession, setUserSession] = useState(session());
   const [alert, setAlert] = useState({
     open: false,
     severity: "",
@@ -57,8 +60,21 @@ function App() {
       )}
 
       <Routes>
-        <Route path="/" element={<Login setAlert={setAlert} />} />
-        <Route path="/developers" element={<Developers />} />
+        <Route
+          path="/"
+          element={
+            <Login setAlert={setAlert} setUserSession={setUserSession} />
+          }
+        />
+
+        <Route
+          path="/developers"
+          element={
+            <NotRolMiddleware roles={[1, 2, 4]}>
+              <Developers setAlert={setAlert} />
+            </NotRolMiddleware>
+          }
+        />
         <Route path="*" element={<NotFound />} />
 
         <Route
@@ -82,18 +98,28 @@ function App() {
         <Route
           path="/requirements"
           element={
-            <NotRolMiddleware roles={[2, 3]}>
-              <Requeriments setAlert={setAlert} />
-            </NotRolMiddleware>
+            <WithAuthenticationMiddleware
+              setAlert={setAlert}
+              setUserSession={setUserSession}
+            >
+              <NotRolMiddleware roles={[2, 3]}>
+                <Requeriments setAlert={setAlert} />
+              </NotRolMiddleware>
+            </WithAuthenticationMiddleware>
           }
         />
 
         <Route
           path="/create-assignments"
           element={
-            <NotRolMiddleware roles={[2, 3]}>
-              <CreateAssignments />
-            </NotRolMiddleware>
+            <WithAuthenticationMiddleware
+              setAlert={setAlert}
+              setUserSession={setUserSession}
+            >
+              <NotRolMiddleware roles={[2, 3]}>
+                <CreateAssignments />
+              </NotRolMiddleware>
+            </WithAuthenticationMiddleware>
           }
         />
       </Routes>

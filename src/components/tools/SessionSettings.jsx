@@ -31,6 +31,13 @@ export function clientsession() {
   return [undefined, null].includes(get("companies_nit")) ? false : true;
 
 }
+
+
+export default function session() {
+  return [undefined, null].includes(get("jwt")) ? false : true;
+}
+
+
 // export function getRol(rol, display = false) {
 //   if (!display) {
 //     return roles[rol];
