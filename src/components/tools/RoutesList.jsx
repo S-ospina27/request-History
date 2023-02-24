@@ -3,6 +3,9 @@ const host = import.meta.env.VITE_SERVER_URL_AUD;
 export default {
   host: host,
   api: {
+    auth:{
+      login:`${host}/auth/login`,
+    },
     roles:{
       read:`${host}/read-roles`
     },

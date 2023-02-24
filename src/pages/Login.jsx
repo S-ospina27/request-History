@@ -1,20 +1,51 @@
 import { Button } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import NormalInput from '../components/common/NormalInput'
 import "../components/Layout/Layout.css"
 import teclab from "../assets/img/teclab blanco.png";
-const Loguin = () => {
+import RoutesList from '../components/tools/RoutesList';
+import axios from 'axios';
+import { getHeader } from '../components/tools/SessionSettings';
+const Login = ({setAlert}) => {
+
+const [developers_password,setDevelopers_password] = useState("");
+const [developers_email,setDevelopers_email] = useState("");
+
+const handleAuthLogin = (e) =>{
+  e.preventDefault();
+  console.log(developers_email)
+  console.log(developers_password)
+  const form = new FormData();
+        form.append("developers_email",developers_email); 
+        form.append("developers_password",developers_password); 
+
+  axios.post(RoutesList.api.auth.login,form,getHeader()).then((res)=>{
+      console.log(res.data);
+    setAlert({
+      open: true,
+      message: res.data.message,
+      severity: res.data.status,
+    });
+  });
+}
+
   return (
     <div className={"Contenedor__padre__loguin"}>
         <section className={"section__izq"}>
-           <form className={"form__loguin"}>
+           <form className={"form__loguin"} onSubmit={handleAuthLogin} >
             <h1 className='loguin__title'>Login</h1>
             <div className="asignaciones__loguin__container">
                 <NormalInput
                     label={"Usuario"}
+                    value={developers_email}
+                    setValue={setDevelopers_email}
+                    type={"email"}
                 />
                 <NormalInput
                     label={"Contraseña"}
+                    value={developers_password}
+                    setValue={setDevelopers_password}
+                    type={"password"}
                 />
 
                 <Button
@@ -39,4 +70,4 @@ const Loguin = () => {
   )
 }
 
-export default Loguin
+export default Login

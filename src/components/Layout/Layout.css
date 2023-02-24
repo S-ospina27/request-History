@@ -356,6 +356,38 @@
   }
 }
 
+
+@media screen and (max-width: 1071px){
+  .parrafo__loguin{
+    color: white;
+    font-size: 14px;
+  }   
+}
+
+
+
+@media screen and (max-width: 784px){
+  .parrafo__loguin{
+    color: white;
+    font-size: 10px;
+  }   
+}
+
+
+@media screen and (max-width: 604px){
+  .parrafo__loguin{
+    color: white;
+    font-size: 10px;
+  }   
+}
+
+@media screen and (max-width: 430px){
+  .parrafo__loguin{
+    color: white;
+    font-size: 8px;
+  }   
+}
+
 /* ------------------------------------------------ */
 
 @media screen and (max-width: 1024px) {

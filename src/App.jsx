@@ -10,7 +10,7 @@ import CreateAssignments from "./pages/CreateAssignments";
 import AssignDevelopers from "./pages/AssignDevelopers";
 import ClientsWithAuthenticationMiddleware from "./middleware/ClientsWithAuthenticationMiddleware";
 import NotFound from "./pages/NotFound";
-import Loguin from "./pages/Loguin";
+import Login from "./pages/Login";
 
 function App() {
   const [alert, setAlert] = useState({
@@ -74,7 +74,7 @@ function App() {
           }
         />
         
-        <Route path="/" element={<Loguin/>} />
+        <Route path="/" element={<Login  setAlert={setAlert} />} />
         <Route path="/requirements" element={<Requeriments setAlert={setAlert} />} />
         <Route path="/create-assignments" element={<CreateAssignments />} />
         
