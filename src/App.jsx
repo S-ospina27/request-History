@@ -82,7 +82,7 @@ function App() {
         <Route
           path="/requirements"
           element={
-            <NotRolMiddleware roles={[2]}>
+            <NotRolMiddleware roles={[2, 3]}>
               <Requeriments setAlert={setAlert} />
             </NotRolMiddleware>
           }
@@ -91,7 +91,7 @@ function App() {
         <Route
           path="/create-assignments"
           element={
-            <NotRolMiddleware roles={[2]}>
+            <NotRolMiddleware roles={[2, 3]}>
               <CreateAssignments />
             </NotRolMiddleware>
           }

@@ -5,9 +5,12 @@ import "../components/Layout/Layout.css";
 import teclab from "../assets/img/teclab blanco.png";
 import RoutesList from "../components/tools/RoutesList";
 import axios from "axios";
-import { getHeader } from "../components/tools/SessionSettings";
+import { getHeader, set } from "../components/tools/SessionSettings";
 import { SHA256 } from "crypto-js";
+import { useNavigate } from "react-router";
+
 const Login = ({ setAlert }) => {
+  const navigate = useNavigate();
   const [developers_password, setDevelopers_password] = useState("");
   const [developers_email, setDevelopers_email] = useState("");
 
@@ -27,6 +30,11 @@ const Login = ({ setAlert }) => {
         message: res.data.message,
         severity: res.data.status,
       });
+
+      if (res.data.status === "success") {
+        set("jwt", res.data.data.jwt);
+        navigate("/requirements");
+      }
     });
   };
 
