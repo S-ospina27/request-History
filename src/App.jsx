@@ -11,6 +11,7 @@ import Developers from "./pages/Developers";
 import ClientsWithAuthenticationMiddleware from "./middleware/ClientsWithAuthenticationMiddleware";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
+import NotRolMiddleware from "./middleware/NotRolMiddleware";
 
 function App() {
   const [alert, setAlert] = useState({
@@ -56,31 +57,45 @@ function App() {
       )}
 
       <Routes>
-        <Route 
-          path="/register" 
+        <Route path="/" element={<Login setAlert={setAlert} />} />
+        <Route path="/developers" element={<Developers />} />
+        <Route path="*" element={<NotFound />} />
+
+        <Route
+          path="/register"
           element={
-          <ClientsWithAuthenticationMiddleware setAlert={setAlert}  >
-            <Register setAlert={setAlert} />
-          </ClientsWithAuthenticationMiddleware>
-          } 
+            <ClientsWithAuthenticationMiddleware setAlert={setAlert}>
+              <Register setAlert={setAlert} />
+            </ClientsWithAuthenticationMiddleware>
+          }
         />
 
-        <Route 
+        <Route
           path="/create"
           element={
-            <ClientsWithAuthenticationMiddleware setAlert={setAlert}  >
+            <ClientsWithAuthenticationMiddleware setAlert={setAlert}>
               <CreateRequirements setAlert={setAlert} />
             </ClientsWithAuthenticationMiddleware>
           }
         />
-        
-        <Route path="/" element={<Login  setAlert={setAlert} />} />
-        <Route path="/requirements" element={<Requeriments setAlert={setAlert} />} />
-        <Route path="/create-assignments" element={<CreateAssignments />} />
-        
-        <Route path="/developers" element={<Developers />} />
 
-        <Route path="*" element={<NotFound/>} />
+        <Route
+          path="/requirements"
+          element={
+            <NotRolMiddleware roles={[2]}>
+              <Requeriments setAlert={setAlert} />
+            </NotRolMiddleware>
+          }
+        />
+
+        <Route
+          path="/create-assignments"
+          element={
+            <NotRolMiddleware roles={[2]}>
+              <CreateAssignments />
+            </NotRolMiddleware>
+          }
+        />
       </Routes>
     </ThemeProvider>
   );
