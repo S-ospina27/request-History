@@ -545,8 +545,6 @@ const Requeriments = ({ setAlert }) => {
               <div className="botton-assigrequirement">
                 <Button
                   type="submit"
-                  // style={{backgroundImage: "radial-gradient(circle at -11.24% 85.36%, #ade5ff 0, #7dcefb 25%, #3cb5f2 50%, #009ce9 75%, #0085e0 100%);"}}
-                  // color="secondary"
                   variant="contained"
                   onClick={() => {
                     setOpen(true);
@@ -632,6 +630,7 @@ const Requeriments = ({ setAlert }) => {
                 },
               }}
               toolbar={
+                <>
                 <Button
                   disabled={items.length > 0 ? false : true}
                   type="button"
@@ -641,6 +640,15 @@ const Requeriments = ({ setAlert }) => {
                 >
                   {"Eliminar"}
                 </Button>
+
+                <Button
+                  type="button"
+                  color="primary"
+                  // startIcon={<DeleteOutlineIcon/>}
+                >
+                  {"asignación"}
+                </Button>
+             </>
               }
             />
           </section>

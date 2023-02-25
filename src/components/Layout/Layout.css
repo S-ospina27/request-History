@@ -32,6 +32,18 @@
   height: 95vh;
 }
 
+.foto-Notauthoritation {
+  background: url("/src/assets/img/401.png");
+  object-fit: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 95vw;
+  height: 95vh;
+}
+
+
+
 .avatar {
   width: 50%;
   height: auto;

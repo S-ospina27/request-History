@@ -67,15 +67,21 @@ function App() {
           }
         />
 
+        <Route path="*" element={<NotFound />} />
+        
         <Route
           path="/developers"
           element={
-            <NotRolMiddleware roles={[1, 2, 4]}>
-              <Developers setAlert={setAlert} />
-            </NotRolMiddleware>
+            <WithAuthenticationMiddleware
+              setAlert={setAlert}
+              setUserSession={setUserSession}
+            >
+              <NotRolMiddleware roles={[1, 2, 4]}>
+                <Developers setAlert={setAlert} />
+              </NotRolMiddleware>
+            </WithAuthenticationMiddleware>
           }
         />
-        <Route path="*" element={<NotFound />} />
 
         <Route
           path="/register"

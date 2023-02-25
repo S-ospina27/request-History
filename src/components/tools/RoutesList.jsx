@@ -38,6 +38,7 @@ export default {
         delete:`${host}/assignment/developers/delete`,
         update:`${host}/assignment/developers/update`,
         read:{
+          bydevelopers:`${host}/assignment/developers/read/bydevelopers`,
           assigment:`${host}/assignment/developers/read/assigment`,
         }
       }
