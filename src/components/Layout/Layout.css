@@ -17,9 +17,30 @@
 .img-menu {
   width: 50px;
   position: absolute;
-  right: 60px;
-  top: 30px;
+  left: 87%;
+  font-family: "Poppins", sans-serif;
+  border-radius: 22px;
+  top: 20px;
+  border: 1px  rgba(100, 100, 100, 0.1);
+  width: 10%;
+  height:7%;
+  background-image: radial-gradient(
+    circle at 0% 0%,
+    #ff78c0 0,
+    #fc6fc6 12.5%,
+    #eb65cc 25%,
+    #d75dd2 37.5%,
+    #be55d8 50%,
+    #a050de 62.5%,
+    #7a4fe3 75%,
+    #4250e9 87.5%,
+    #0052ed 100%
+  );
   cursor: pointer;
+  font-weight:bold ;
+  color: #fff;
+  background-size: 100%;
+  transition: all 1s linear;
 }
 
 .foto-nofound {
@@ -41,8 +62,6 @@
   width: 95vw;
   height: 95vh;
 }
-
-
 
 .avatar {
   width: 50%;
@@ -293,7 +312,6 @@
   align-items: center;
   width: 70%;
   height: 70%;
-
 }
 
 .asignaciones__loguin__container {
@@ -323,38 +341,38 @@
   border-bottom-left-radius: 10% 10%;
 }
 
-.loguin__container_foto_teclab{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 90%;
-    height: 70%;
+.loguin__container_foto_teclab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 90%;
+  height: 70%;
 }
-.loguin__foto_teclab{
-    width: 100%;
+.loguin__foto_teclab {
+  width: 100%;
 }
 
-.parrafo__loguin{
+.parrafo__loguin {
+  color: white;
+  font-size: 25px;
+}
+
+@media screen and (max-width: 1024px) {
+  .parrafo__loguin {
     color: white;
-    font-size: 25px;
-}
-
-@media screen and (max-width: 1024px){
-    .parrafo__loguin{
-        color: white;
-        font-size: 15px;
-    }   
+    font-size: 15px;
+  }
 }
 
 @media screen and (max-width: 425px) {
   .loguin__title {
     font-size: 30px;
-   }
+  }
 
-   .asignaciones__loguin__container .form__label-name{
+  .asignaciones__loguin__container .form__label-name {
     align-items: center;
-    }
+  }
 
   .section__izq {
     background: url("/src/assets/img/fondo-requirements.png");
@@ -368,36 +386,32 @@
   }
 }
 
-
-@media screen and (max-width: 1071px){
-  .parrafo__loguin{
+@media screen and (max-width: 1071px) {
+  .parrafo__loguin {
     color: white;
     font-size: 14px;
-  }   
+  }
 }
 
-
-
-@media screen and (max-width: 784px){
-  .parrafo__loguin{
+@media screen and (max-width: 784px) {
+  .parrafo__loguin {
     color: white;
     font-size: 10px;
-  }   
+  }
 }
 
-
-@media screen and (max-width: 604px){
-  .parrafo__loguin{
+@media screen and (max-width: 604px) {
+  .parrafo__loguin {
     color: white;
     font-size: 10px;
-  }   
+  }
 }
 
-@media screen and (max-width: 430px){
-  .parrafo__loguin{
+@media screen and (max-width: 430px) {
+  .parrafo__loguin {
     color: white;
     font-size: 8px;
-  }   
+  }
 }
 
 /* ------------------------------------------------ */
@@ -442,9 +456,49 @@
     width: 100%;
   }
 
+  
+}
+
+
+
+
+
+
+@media screen and (max-width: 1024px) {
+  .h1-padre {
+    font-size: 24px;
+  }
   .img-menu {
-    width: 40px;
-    right: 5px;
-    top: 20px;
+    position: absolute;
+    width: 70px;
+    height: 5%;
+    left: 80%;
+    top: 14px;
+  }
+} 
+
+ @media screen and (max-width: 767px) {
+  .h1-padre {
+    font-size: 24px;
+  }
+  .img-menu {
+    position: absolute;
+    width: 45px;
+    height: 3%;
+    left: 80%;
+    top: 13px;
+  }
+} 
+
+@media screen and (max-width: 575px) {
+  .h1-padre {
+    font-size: 22px;
+  }
+  .img-menu {
+    position: absolute;
+    width: 45px;
+    height: 5%;
+    left: 80%;
+    top: 13px;
   }
 }

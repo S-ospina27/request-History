@@ -7,11 +7,13 @@ import DrawerLayout from "../components/Layout/DrawerLayout";
 import ColumnsTable from "../components/tools/ColumnsTable";
 import DataTable from "../components/tools/DataTable";
 import RoutesList from "../components/tools/RoutesList";
-import { get, getHeader } from "../components/tools/SessionSettings";
+import { get, getHeader, remove } from "../components/tools/SessionSettings";
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useNavigate} from "react-router-dom";
 
-// import Draw from '../components/common/Draw';
 
 const Developers = ({ setAlert }) => {
+  const navigate = useNavigate();
   const [helpOpen, setHelpOpen] = useState(false);
   const [readDevelopers, setReadDevelopers] = useState([]);
 
@@ -35,26 +37,35 @@ const Developers = ({ setAlert }) => {
 
   return (
     <div className={"contaniner contenedor-requirement"}>
-      <DrawerLayout helpOpen={helpOpen} setHelpOpen={setHelpOpen} />
-      <img
+      {/* <DrawerLayout helpOpen={helpOpen} setHelpOpen={setHelpOpen} /> */}
+      {/* <img
         src={menu}
         width="50px"
         className={"img-menu"}
         onClick={() => setHelpOpen(true)}
-      />
+      /> */}
+      <button
+      className={"img-menu"}
+      variant={"contained"}
+      onClick={()=>{
+        remove("jwt")
+        navigate("/")
+        }}
+      >
+      
+      Salir
+      </button>
+
       <h1 className={"h1-padre"}>Desarrolladores</h1>
       <div className={"contenedor-body"}>
-        <div className={"contenedor-informativo"}>
+        <section className={"contenedor-informativo"}>
           <div className={"contenedores-hijos"}>
-            <label>Aceptados: 4</label>
+            <label>Asignados: 4</label>
           </div>
           <div className={"contenedores-hijos"}>
-            <label>Terminadas: 1</label>
+            <label>Terminados: 1</label>
           </div>
-          <div className={"contenedores-hijos"}>
-            <label>Promedio: 3</label>
-          </div>
-        </div>
+        </section>
 
         <div className={"conteniedor-tabla"}>
           <div className="tabla-admin">
