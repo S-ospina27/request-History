@@ -17,14 +17,13 @@ const Login = ({ setAlert, setUserSession }) => {
 
   const handleAuthLogin = (e) => {
     e.preventDefault();
-    console.log(developers_email);
-    console.log(developers_password);
 
     const form = new FormData();
     form.append("developers_email", developers_email);
     form.append("developers_password", SHA256(developers_password));
 
     axios.post(RoutesList.api.auth.login, form, getHeader()).then((res) => {
+      // console.log(res.data);
       setAlert({
         open: true,
         message: res.data.message,
@@ -36,7 +35,6 @@ const Login = ({ setAlert, setUserSession }) => {
         set("jwt", res.data.data.jwt);
         const jwt = jwtDecode(res.data.data.jwt);
         navigate(jwt.data.idroles === 3 ? "/developers" : "/requirements");
-        console.log(jwt)
       }
     });
   };

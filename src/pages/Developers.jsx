@@ -8,9 +8,8 @@ import ColumnsTable from "../components/tools/ColumnsTable";
 import DataTable from "../components/tools/DataTable";
 import RoutesList from "../components/tools/RoutesList";
 import { get, getHeader, remove } from "../components/tools/SessionSettings";
-import LogoutIcon from '@mui/icons-material/Logout';
-import { useNavigate} from "react-router-dom";
-
+import LogoutIcon from "@mui/icons-material/Logout";
+import { useNavigate } from "react-router-dom";
 
 const Developers = ({ setAlert }) => {
   const navigate = useNavigate();
@@ -45,15 +44,14 @@ const Developers = ({ setAlert }) => {
         onClick={() => setHelpOpen(true)}
       /> */}
       <button
-      className={"img-menu"}
-      variant={"contained"}
-      onClick={()=>{
-        remove("jwt")
-        navigate("/")
+        className={"img-menu"}
+        variant={"contained"}
+        onClick={() => {
+          remove("jwt");
+          navigate("/");
         }}
       >
-      
-      Salir
+        Salir
       </button>
 
       <h1 className={"h1-padre"}>Desarrolladores</h1>
@@ -70,40 +68,40 @@ const Developers = ({ setAlert }) => {
         <div className={"conteniedor-tabla"}>
           <div className="tabla-admin">
             <DataTable
-                reload={handleReadDevelopers}
-                rows={readDevelopers}
-                columns={ColumnsTable.assigmentBydevelopers}
-                getRowId={"idassignment_requirements"}
-                // onRowClick={{
-                //   open: setOpenDialogRequirements,
-                //   set: setFields,
-                // }}
-                sx={{
-                  "@media screen and (max-width: 768px)": {
-                    height: "98%",
-                  },
-                  marginTop: "3%",
-                  width: "500px",
-                  height: "370px",
-                  borderRadius: "15px",
-                  borderColor: "#FFFFFF",
-                  color: "#FFFFFF",
-                  "& .MuiDataGrid-iconButtonContainer": {
-                    button: {
-                      color: "#FFFFFF",
-                    },
-                  },
-                  ".MuiTablePagination-root": {
+              reload={handleReadDevelopers}
+              rows={readDevelopers}
+              columns={ColumnsTable.assigmentBydevelopers}
+              getRowId={"idassignment_requirements"}
+              // onRowClick={{
+              //   open: setOpenDialogRequirements,
+              //   set: setFields,
+              // }}
+              sx={{
+                "@media screen and (max-width: 768px)": {
+                  height: "98%",
+                },
+                marginTop: "3%",
+                width: "500px",
+                height: "370px",
+                borderRadius: "15px",
+                borderColor: "#FFFFFF",
+                color: "#FFFFFF",
+                "& .MuiDataGrid-iconButtonContainer": {
+                  button: {
                     color: "#FFFFFF",
                   },
-                  "& .MuiDataGrid-columnHeaders": {
-                    borderColor: "#FFFFFF",
-                  },
-                  "& .MuiDataGrid-cell": {
-                    borderColor: "#FFFFFF",
-                  },
-                }}
-              />
+                },
+                ".MuiTablePagination-root": {
+                  color: "#FFFFFF",
+                },
+                "& .MuiDataGrid-columnHeaders": {
+                  borderColor: "#FFFFFF",
+                },
+                "& .MuiDataGrid-cell": {
+                  borderColor: "#FFFFFF",
+                },
+              }}
+            />
           </div>
         </div>
       </div>

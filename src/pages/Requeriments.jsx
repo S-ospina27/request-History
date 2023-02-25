@@ -2,11 +2,10 @@ import { Button, Dialog, Divider } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import menu from "../assets/img/menu.png";
 import DrawerLayout from "../components/Layout/DrawerLayout";
 import DataTable from "../components/tools/DataTable";
 import RoutesList from "../components/tools/RoutesList";
-import { getHeader } from "../components/tools/SessionSettings";
+import { getHeader, remove } from "../components/tools/SessionSettings";
 import ColumnsTable from "../components/tools/ColumnsTable";
 import "../components/Layout/Layout.css";
 import DialogTransition from "../components/common/DialogTransition";
@@ -26,8 +25,10 @@ import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { SHA256 } from "crypto-js";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { useNavigate } from "react-router-dom";
 
 const Requeriments = ({ setAlert }) => {
+  const navigate = useNavigate();
   const [pending, setPending] = useState([]);
   const [accepted, setAccepted] = useState([]);
   const [finished, setFinished] = useState([]);
@@ -392,13 +393,25 @@ const Requeriments = ({ setAlert }) => {
   return (
     <>
       <div className={"contaniner contenedor-requirement"}>
-        <DrawerLayout helpOpen={helpOpen} setHelpOpen={setHelpOpen} />
+        {/* <DrawerLayout helpOpen={helpOpen} setHelpOpen={setHelpOpen} /> */}
 
-        <img
+        {/* <img
           src={menu}
           className={"img-menu"}
           onClick={() => setHelpOpen(true)}
-        />
+        /> */}
+
+        <button
+          className={"img-menu"}
+          variant={"contained"}
+          onClick={() => {
+            remove("jwt");
+            navigate("/");
+          }}
+        >
+          Salir
+        </button>
+
         <h1 className={"h1-padre"}>{"Requerimientos"}</h1>
 
         <div className={"contenedor-body"}>
