@@ -14,6 +14,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
 .img-menu {
   width: 50px;
   position: absolute;
@@ -21,9 +22,9 @@
   font-family: "Poppins", sans-serif;
   border-radius: 22px;
   top: 20px;
-  border: 1px  rgba(100, 100, 100, 0.1);
+  border: 1px rgba(100, 100, 100, 0.1);
   width: 10%;
-  height:7%;
+  height: 7%;
   background-image: radial-gradient(
     circle at 0% 0%,
     #ff78c0 0,
@@ -37,7 +38,7 @@
     #0052ed 100%
   );
   cursor: pointer;
-  font-weight:bold ;
+  font-weight: bold;
   color: #fff;
   background-size: 100%;
   transition: all 1s linear;
@@ -73,21 +74,25 @@
   box-shadow: 5px 15px 25px rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
+
 .TeclabLayout {
   margin: auto;
 }
+
 .h1-padre {
   font-size: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .contenedor-info {
   width: 100%;
   margin-top: 2px;
   margin-bottom: 30px;
   text-align: center;
 }
+
 .label-saludo {
   font-size: 2rem;
 }
@@ -122,6 +127,7 @@
   width: 95%;
   height: 60vh;
 }
+
 .contenedores-hijos {
   display: flex;
   justify-content: center;
@@ -132,9 +138,11 @@
   width: 20%;
   height: 80%;
 }
+
 .contenedores-hijos:nth-child(2) {
   border: 2px solid #f57c00;
 }
+
 .contenedores-hijos:nth-child(3) {
   border: 2px solid #388e3c;
 }
@@ -142,6 +150,7 @@
 .contenedor-informativo .contenedores-hijos label {
   text-align: center;
 }
+
 .tabla-admin {
   width: 90vw;
   height: 54vh;
@@ -188,10 +197,10 @@
   flex-direction: row;
   width: 100%;
 }
+
 .botton-assigrequirement {
   display: flex;
 }
-
 /* modal crear asignaciones */
 .asignaciones__container {
   display: flex;
@@ -199,15 +208,18 @@
   width: 100%;
   height: 100%;
 }
+
 .asignaciones__container--form {
   margin: auto;
   width: 50%;
   height: 100%;
 }
+
 .asignaciones__container--table {
   width: 50%;
   height: 100%;
 }
+
 .button--close {
   font-size: 30px;
   font-weight: bold;
@@ -216,6 +228,7 @@
   right: 25px;
   top: 1px;
 }
+
 .contenedor-inputs-asign .form__demo-container-name .form__select-name {
   width: 81%;
 }
@@ -225,7 +238,6 @@
   font-weight: 900;
   padding: 5px;
 }
-
 /* EDITAR REQUERMIENTOS */
 .asignaciones__edit-container {
   margin-top: 15px;
@@ -288,7 +300,6 @@
   align-items: center;
 }
 /* ------------loguin-------------------- */
-
 .Contenedor__padre__loguin {
   display: flex;
   flex-direction: row;
@@ -349,6 +360,7 @@
   width: 90%;
   height: 70%;
 }
+
 .loguin__foto_teclab {
   width: 100%;
 }
@@ -413,9 +425,7 @@
     font-size: 8px;
   }
 }
-
 /* ------------------------------------------------ */
-
 @media screen and (max-width: 1024px) {
   .asignaciones__container {
     flex-direction: column;
@@ -428,23 +438,14 @@
     width: 100%;
   }
 }
+
 @media screen and (max-width: 768px) {
   .contenedores-hijos {
     width: 28%;
   }
-  .h1-padre {
-    font-size: 28px;
-  }
-  .img-menu {
-    right: 30px;
-    top: 20px;
-  }
 }
 
 @media screen and (max-width: 425px) {
-  .h1-padre {
-    font-size: 24px;
-  }
   .contenedor-inputs-asign {
     flex-direction: column;
     width: 100%;
@@ -455,50 +456,94 @@
   .contenedor-inputs-asign .form__demo-container-name .form__select-name {
     width: 100%;
   }
-
-  
 }
-
-
-
-
-
-
-@media screen and (max-width: 1024px) {
-  .h1-padre {
-    font-size: 24px;
-  }
-  .img-menu {
-    position: absolute;
-    width: 70px;
-    height: 5%;
-    left: 80%;
-    top: 14px;
-  }
-} 
-
- @media screen and (max-width: 767px) {
-  .h1-padre {
-    font-size: 24px;
-  }
-  .img-menu {
-    position: absolute;
-    width: 45px;
-    height: 3%;
-    left: 80%;
-    top: 13px;
-  }
-} 
-
-@media screen and (max-width: 575px) {
+/* ------------------------------------------------ */
+/* extra small */
+@media screen and (min-width: 0px) and (max-width: 575px) {
   .h1-padre {
     font-size: 22px;
   }
+
   .img-menu {
     position: absolute;
-    width: 45px;
-    height: 5%;
+    width: 70px;
+    height: 2.5em;
     left: 80%;
-    top: 13px;
+    top: 12px;
+  }
+}
+
+/* SM */
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .h1-padre {
+    font-size: 24px;
+  }
+
+  .img-menu {
+    position: absolute;
+    width: 70px;
+    height: 2.5em;
+    left: 80%;
+    top: 15px;
+  }
+}
+
+/* MD */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .h1-padre {
+    font-size: 26px;
+  }
+
+  .img-menu {
+    position: absolute;
+    width: 70px;
+    height: 3em;
+    left: 80%;
+    top: 12px;
+  }
+}
+
+/* LG */
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .h1-padre {
+    font-size: 26px;
+  }
+
+  .img-menu {
+    position: absolute;
+    width: 70px;
+    height: 3em;
+    left: 80%;
+    top: 12px;
+  }
+}
+
+/* XL */
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+  .h1-padre {
+    font-size: 26px;
+  }
+
+  .img-menu {
+    position: absolute;
+    width: 70px;
+    height: 3em;
+    left: 80%;
+    top: 12px;
+  }
+}
+
+/* XXL */
+@media screen and (min-width: 1400px) {
+  .h1-padre {
+    font-size: 26px;
+  }
+
+  .img-menu {
+    position: absolute;
+    width: 70px;
+    height: 3em;
+    left: 80%;
+    top: 12px;
   }
 }
