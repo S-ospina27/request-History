@@ -8,7 +8,7 @@ const StatesSelector = ({
     setValue,
     required,
     ignore=[],
-    style={} 
+    style={}
   }) => {
 
   const [states, setStates] = useState([]);
@@ -16,7 +16,7 @@ const StatesSelector = ({
   const readStatesSelector = () => {
     axios.get(RoutesList.api.companies.requirements.read.read_StateSelector,getHeader()
       ).then((res) => {
-      
+
         setStates(res.data)
       });
   };
@@ -25,9 +25,9 @@ const StatesSelector = ({
     readStatesSelector();
   }, []);
   return (
-    
+
     <div className="form__demo-container-name" style={{ marginBottom: "20px" }}>
-   
+
       <label className={"form__label-name"}>Seleccione estado</label>
       <select
         style={style}

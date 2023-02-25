@@ -114,7 +114,7 @@ const Developers = ({ setAlert }) => {
           </section>
         </div>
       </div>
-      
+
       <Dialog
         fullWidth
         maxWidth={"md"}
@@ -161,14 +161,14 @@ const Developers = ({ setAlert }) => {
               </div>
 
               <div className="contenedor-inputs-asign">
-                <NormalInput 
+                <NormalInput
                  style={{width:"89%" }}
                    label={"Estado"}
                 />
                 <NormalInput
                 style={{width:"94%" }}
                 label={"prioridad"}
-                 />                
+                 />
               </div>
               <div className="contenedor-inputs-asign">
               <TextArea
@@ -194,7 +194,7 @@ const Developers = ({ setAlert }) => {
       </Dialog>
 
     </div>
-    
+
   );
 };
 
