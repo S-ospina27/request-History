@@ -22,10 +22,10 @@ import TextArea from "../components/common/TextArea";
 import DataTableCheckBox from "../components/tools/DataTableCheckBox";
 import TypeDevelopers from "../components/common/TypeDevelopers";
 import RolesSelect from "../components/common/RolesSelect";
-import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import AddToPhotosIcon from "@mui/icons-material/AddToPhotos";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { SHA256 } from "crypto-js";
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 const Requeriments = ({ setAlert }) => {
   const [pending, setPending] = useState([]);
@@ -213,6 +213,7 @@ const Requeriments = ({ setAlert }) => {
 
   const handleCreateAssingments = (e) => {
     e.preventDefault();
+
     const form = new FormData();
     form.append("idrequirements", idrequirements);
     form.append(
@@ -223,16 +224,18 @@ const Requeriments = ({ setAlert }) => {
     axios
       .post(RoutesList.api.assignment.create, form, getHeader())
       .then((res) => {
-        setRenderAssigments(false);
-        setTimeout(() => setRenderAssigments(true), 600);
-        setIdcompanies("");
-        setIdrequirements("");
-        setAssignment_requirements_deadline("");
         setAlert({
           open: true,
           message: res.data.message,
           severity: res.data.status,
         });
+
+        setIdcompanies("");
+        setIdrequirements("");
+        setAssignment_requirements_deadline("");
+        setRender(false);
+        setRenderAssigments(false);
+        setTimeout(() => setRenderAssigments(true), 600);
       });
   };
 
@@ -361,8 +364,6 @@ const Requeriments = ({ setAlert }) => {
       });
   };
 
-
-
   useEffect(() => {
     setFields();
   }, [open]);
@@ -370,7 +371,6 @@ const Requeriments = ({ setAlert }) => {
   useEffect(() => {
     setOpenDialogCreateDevelopers(false);
   }, [openDialogEditDevelopers]);
-
 
   useEffect(() => {
     setOpen(false);
@@ -455,10 +455,9 @@ const Requeriments = ({ setAlert }) => {
                       onClick={() => {
                         setOpen(true);
                       }}
-                      startIcon={ <AddToPhotosIcon fontSize="small"/> }
+                      startIcon={<AddToPhotosIcon fontSize="small" />}
                     >
                       {"Asignaciónes"}
-
                     </Button>
 
                     <Button
@@ -467,7 +466,7 @@ const Requeriments = ({ setAlert }) => {
                       onClick={() => {
                         setOpenDialogCreateDevelopers(true);
                       }}
-                      startIcon={<PersonAddIcon fontSize="small"/>}
+                      startIcon={<PersonAddIcon fontSize="small" />}
                     >
                       {"developers"}
                     </Button>
@@ -631,24 +630,24 @@ const Requeriments = ({ setAlert }) => {
               }}
               toolbar={
                 <>
-                <Button
-                  disabled={items.length > 0 ? false : true}
-                  type="button"
-                  color="error"
-                  onClick={handleDeleteAssigmentDevelopers}
-                  startIcon={<DeleteOutlineIcon/>}
-                >
-                  {"Eliminar"}
-                </Button>
+                  <Button
+                    disabled={items.length > 0 ? false : true}
+                    type="button"
+                    color="error"
+                    onClick={handleDeleteAssigmentDevelopers}
+                    startIcon={<DeleteOutlineIcon />}
+                  >
+                    {"Eliminar"}
+                  </Button>
 
-                <Button
-                  type="button"
-                  color="primary"
-                  // startIcon={<DeleteOutlineIcon/>}
-                >
-                  {"asignación"}
-                </Button>
-             </>
+                  <Button
+                    type="button"
+                    color="primary"
+                    // startIcon={<DeleteOutlineIcon/>}
+                  >
+                    {"asignación"}
+                  </Button>
+                </>
               }
             />
           </section>
@@ -693,7 +692,7 @@ const Requeriments = ({ setAlert }) => {
                   style={{ width: "90%" }}
                   value={idstates}
                   setValue={setIdstates}
-                  ignore={ [
+                  ignore={[
                     "ACTIVO",
                     "INACTIVO",
                     "ASIGNADO",
