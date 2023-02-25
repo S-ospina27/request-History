@@ -15,7 +15,7 @@ const NormalInput = ({
   style={}
 }) => {
   return (
-    <div className={`form__demo-container-name ${animation}`} style={{ marginBottom: "20px" }}>
+    <div className={`form__demo-container-name ${animation}`} style={{ marginBottom: "4px" }}>
       <label className={"form__label-name"}>{label}</label>
       <input
         className={"form__input-name"}
