@@ -2,26 +2,27 @@ export default {
   assigmentBydevelopers: [
     {
       field: "idassignment_requirements",
-      headerName: "ASIGNACIÓN",
-      width: 140,
+      headerName: "AS-DEV",
+      width: 200,
       valueFormatter: ({ value }) => {
         return "AS-" + value;
       },
     },
-    { field: "requirements_name", headerName: "REQUERIMIENTO", width: 220 },
-    { field: "idstates", headerName: "ESTADO DE ASIGNACIÓN", width: 200 },
+    { field: "states_name", headerName: "ESTADO AS-DEV", width: 200 },
+    { field: "states_name_ar", headerName: "ESTADO ASIGNACIÓN", width: 200 },
     {
       field: "assignment_requirements_deadline",
       headerName: "FECHA DE ENTREGA",
-      width: 180,
+      width: 240,
     },
-    { field: "requirements_priority", headerName: "TIPO", width: 180 },
-    { field: "states_name", headerName: "ESTADO", width: 200 },
+    { field: "requirements_name", headerName: "REQUERIMIENTO", width: 240 },
+    { field: "states_name_req", headerName: "ESTADO RQ", width: 200 },
+    
   ],
   fullDevelopers: [
-    { field: "developers_name", headerName: "NOMBRE", width: 180 },
+    { field: "developers_name", headerName: "NOMBRE", width: 200 },
     { field: "developerscol_type", headerName: "TIPO", width: 130 },
-    { field: "states_name", headerName: "ESTADO", width: 200 },
+  
   ],
   assigmentHasDevelopers: [
     {
