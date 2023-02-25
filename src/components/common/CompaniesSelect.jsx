@@ -4,20 +4,21 @@ import RoutesList from "../tools/RoutesList";
 import { getHeader } from "../tools/SessionSettings";
 
 const CompaniesSelect = ({
-    value,
-    setValue,
-    required,
-    setRender,
-    ignore=[],
-    disabled,
-    style={}
-  }) => {
+  value,
+  setValue,
+  required,
+  setRender,
+  ignore = [],
+  disabled,
+  style = {},
+}) => {
   const [companies, setCompanies] = useState([]);
 
   const readCompaniessSelector = () => {
     axios
       .get(RoutesList.api.companies.read.read_companies_selector, getHeader())
       .then((res) => {
+        // console.log(res.data);
         setCompanies(!res.data.status ? res.data : []);
       });
   };
@@ -31,7 +32,7 @@ const CompaniesSelect = ({
       <label className={"form__label-name"}>{" Compañias"}</label>
 
       <select
-        style={!style ?{ width: "98%" } : style}
+        style={!style ? { width: "100%" } : style}
         className={"form__select-name"}
         value={value}
         disabled={disabled}
@@ -49,12 +50,14 @@ const CompaniesSelect = ({
       >
         <option value={""}>{"Seleccione"}</option>
 
-        {companies.map((companie, index) =>
-          !ignore.includes(companie.states_name) &&  (
-          <option key={index} value={companie.idcompanies}>
-            {`${companie.companies_nit} - ${companie.companies_business_name} `}
-          </option>
-        ))}
+        {companies.map(
+          (companie, index) =>
+            !ignore.includes(companie.states_name) && (
+              <option key={index} value={companie.idcompanies}>
+                {`${companie.companies_nit} - ${companie.companies_business_name} `}
+              </option>
+            )
+        )}
       </select>
     </div>
   );

@@ -370,7 +370,7 @@ const Requeriments = ({ setAlert }) => {
   useEffect(() => {
     setOpenDialogCreateDevelopers(false);
   }, [openDialogEditDevelopers]);
-  
+
 
   useEffect(() => {
     setOpen(false);
@@ -458,7 +458,7 @@ const Requeriments = ({ setAlert }) => {
                       startIcon={ <AddToPhotosIcon fontSize="small"/> }
                     >
                       {"Asignaciónes"}
-                     
+
                     </Button>
 
                     <Button

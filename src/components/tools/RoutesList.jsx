@@ -12,7 +12,7 @@ export default {
     companies: {
       create: `${host}/companies/create`,
       read:{
-        read_companies_selector:`${host}/companies/readCompaniesSelector`,
+        read_companies_selector:`${host}/companies/read-companies-selector`,
       },
       requirements:{
         create: `${host}/companies/requirements/create`,
