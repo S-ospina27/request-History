@@ -23,7 +23,7 @@ export default {
           read_accept:`${host}/companies/requirements/accepted`,
           read_finished:`${host}/companies/requirements/finished`,
           read_requirementsByadmin:`${host}/companies/requirements/requirementsByadmin`,
-          read_requirementSelector:`${host}/companies/requirements/requirementselector`,
+          read_requirementSelector:`${host}/companies/requirements/requirements-selector`,
           read_StateSelector:`${host}/companies/requirements/stateselector`,
         }
       }
