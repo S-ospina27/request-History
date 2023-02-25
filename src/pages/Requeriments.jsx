@@ -269,6 +269,7 @@ const Requeriments = ({ setAlert }) => {
 
   const handleEditRequirements = (e) => {
     e.preventDefault();
+
     const form = new FormData();
     form.append("idrequirements", idrequirements);
     form.append("idcompanies", idcompanies);
@@ -276,6 +277,7 @@ const Requeriments = ({ setAlert }) => {
     form.append("requirements_description", requirements_description);
     form.append("idstates", idstates);
     form.append("requirements_date", requirements_date);
+
     axios
       .post(RoutesList.api.companies.requirements.update, form, getHeader())
       .then((res) => {
@@ -285,10 +287,12 @@ const Requeriments = ({ setAlert }) => {
           message: res.data.message,
           severity: res.data.status,
         });
+
         setFields();
         setOpenDialogRequirements(false);
         handlerfinished();
         handlerAccept();
+        handlerPending();
       });
   };
 
@@ -389,6 +393,7 @@ const Requeriments = ({ setAlert }) => {
     <>
       <div className={"contaniner contenedor-requirement"}>
         <DrawerLayout helpOpen={helpOpen} setHelpOpen={setHelpOpen} />
+
         <img
           src={menu}
           className={"img-menu"}
