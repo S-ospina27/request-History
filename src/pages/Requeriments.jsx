@@ -39,6 +39,9 @@ const Requeriments = ({ setAlert }) => {
   const [readFullDevelopers, setReadFullDevelopers] = useState([]);
   const [readRequirementsAdm, setReadRequirementsAdm] = useState([]);
   const [items, setItems] = useState([]);
+
+  const [readAssigmentsRequirements,setReadAssigmentsRequirements]=useState([]);
+
   const [render, setRender] = useState(false);
   const [renderAssigments, setRenderAssigments] = useState(true);
   const [helpOpen, setHelpOpen] = useState(false);
@@ -52,7 +55,7 @@ const Requeriments = ({ setAlert }) => {
 
   const [openDialogEditDevelopers, setOpenDialogEditDevelopers] =
     useState(false);
-
+  const[openeditAssigments,setOpeneditAssigments]= useState(false);
   const [idrequirements, setIdrequirements] = useState("");
   const [idcompanies, setIdcompanies] = useState("");
   const [
@@ -80,7 +83,20 @@ const Requeriments = ({ setAlert }) => {
   const [developerscol_type, setDeveloperscol_type] = useState("");
   const [developers_email, setDdevelopers_email] = useState("");
   const [developers_password, setDevelopers_password] = useState("");
+  const [idstatesedit,setIdstatesedit]=useState("");
+  const [idassignment_requirementsedit,setIdassignment_requirementsedit]=useState("");
 
+
+  const setFieldsAssigmentEdit =(
+    row={
+      idstatesedit:"",
+      idstates:"",
+      idassignment_requirementsedit:"",
+    }) =>{
+      console.log(row)
+      setIdstatesedit(row.idstates);
+      setIdassignment_requirementsedit(row.idassignment_requirements);
+  }
   const setFields = (
     row = {
       idrequirements: "",
@@ -370,9 +386,37 @@ const Requeriments = ({ setAlert }) => {
       });
   };
 
+  const handleReadAssigmentsRequirements = ()=>{
+    axios.get(RoutesList.api.assignment.read.read_assigments,getHeader()).then((res) => {
+      setReadAssigmentsRequirements( res.data);
+      // console.log(res.data)
+    
+    });
+
+  }
+
+  const handleAssigmentEdit = (e) =>{
+    e.preventDefault();
+    const form = new FormData();
+    form.append("idassignment_requirements",idassignment_requirementsedit);
+    form.append("idstates",idstatesedit);
+    axios.post().then((res)=>{
+      setAlert({
+        open: true,
+        message: res.data.message,
+        severity: res.data.status,
+      });
+      setOpeneditAssigments(false);
+    });
+  }
+
   useEffect(() => {
     setFields();
   }, [open]);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [openeditAssigmentStates]);
 
   useEffect(() => {
     setOpenDialogCreateDevelopers(false);
@@ -389,6 +433,7 @@ const Requeriments = ({ setAlert }) => {
     readRequirementsByAdmin();
     handleReadAssigmentHasDevelopers();
     readDevelopers();
+    handleReadAssigmentsRequirements();
   }, []);
 
   return (
@@ -1083,7 +1128,7 @@ const Requeriments = ({ setAlert }) => {
 
       <Dialog
         fullWidth
-        maxWidth={"sm"}
+        maxWidth={"md"}
         open={openeditAssigmentStates}
         sx={{
           borderRadius: "55px",
@@ -1094,7 +1139,7 @@ const Requeriments = ({ setAlert }) => {
         TransitionComponent={DialogTransition}
       >
         <div>
-          <span className="parrafo-modal">Editar Asignación</span>
+          <span className="parrafo-modal">Asignaciónes</span>
         </div>
 
         <span
@@ -1109,26 +1154,93 @@ const Requeriments = ({ setAlert }) => {
         <Divider />
 
         <div className="asignaciones__edit-container">
+        <section className="sectionAsigacion__container--table">
+            <DataTableBlack
+              reload={handleReadAssigmentsRequirements}
+              rows={readAssigmentsRequirements}
+              columns={ColumnsTable.assigments}
+              getRowId={"idassignment_requirements"}
+              onRowClick={{
+                open: setOpeneditAssigments,
+                set: setFieldsAssigmentEdit,
+              }}
+              sx={{
+                width: "764px",
+                "@media screen and (max-width: 1024px)": {
+                  width: "96%",
+                  margin: "auto",
+                },
+                marginTop: "10px",
+                marginBottom: "20px",
+                width: "740px",
+                height: "470px",
+                borderRadius: "15px",
+                borderColor: "#0000000",
+                color: "#0000000",
+                "& .MuiDataGrid-iconButtonContainer": {
+                  button: {
+                    color: "#0000000",
+                  },
+                },
+                ".MuiTablePagination-root": {
+                  color: "#0000000",
+                },
+                "& .MuiDataGrid-columnHeaders": {
+                  borderColor: "#0000000",
+                },
+                "& .MuiDataGrid-cell": {
+                  borderColor: "#00000",
+                },
+              }}
+            />
+          </section>
+        </div>
+      </Dialog>
+
+{/* estoy aqui trabajando  */}
+      <Dialog
+        fullWidth
+        maxWidth={"sm"}
+        open={openeditAssigments}
+        sx={{
+          borderRadius: "55px",
+        }}
+        onClose={() => {
+          setOpeneditAssigments(false);
+        }}
+        TransitionComponent={DialogTransition}
+      >
+        <div>
+          <span className="parrafo-modal">Editar Asignación</span>
+        </div>
+
+        <span
+          className="button--close"
+          onClick={() => {
+            setOpeneditAssigments(false);
+          }}
+        >
+          x
+        </span>
+
+        <Divider />
+
+        <div className="asignaciones__edit-container">
           <section className="asignaciones__edit-container--form">
             <form
               className="form-asignacionedit"
-              onSubmit={handleEditAssigmentsHasDevelopers}
+              onSubmit={handleAssigmentEdit}
             >
               <div className="contenedor-inputs-asignedit-developers">
-              <AssigmentSelector
-                    value={idassignment_requirements}
-                    setValue={setIdassignment_requirements}
-                    style={{ width: "95%" }}
-                    ignore={["ASIGNADO", "TERMINADO"]}
-                    required
-                  />
                 <StatesSelector
                   style={{
                     width: "100%",
                   }}
-                  value={idstatesHasDevelopers}
-                  setValue={setIdstatesHasDevelopers}
-                  ignore={[
+                  value={idstatesedit}
+                  setValue={setIdstatesedit}
+                  ignore={
+                    idstatesedit === 9? [
+                    "ASIGNADO",
                     "PENDIENTE",
                     "ACEPTADO",
                     "ACTIVO",
@@ -1136,9 +1248,22 @@ const Requeriments = ({ setAlert }) => {
                     "RETRAZADO",
                     "NOVEDAD",
                     "RECHAZADO",
-                    "DESARROLLO",
-                  ]}
+                  ]
+                  :
+                  [
+                    "PENDIENTE",
+                    "ACEPTADO",
+                    "ACTIVO",
+                    "INACTIVO",
+                    "RETRAZADO",
+                    "NOVEDAD",
+                    "RECHAZADO",
+                  ]
+                  }
                   required
+                  disabled={
+                    idstatesedit === 7 ?true :false
+                    }
                 />
               </div>
 

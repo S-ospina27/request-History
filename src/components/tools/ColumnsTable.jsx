@@ -1,4 +1,24 @@
 export default {
+  assigments: [
+    {
+      field: "idassignment_requirements",
+      headerName: "AS",
+      width: 70,
+      valueFormatter: ({ value }) => {
+        return "AS-" + value;
+      },
+    },
+    { field: "requirements_name", headerName: "REQUERIMIENTO", width: 140 },
+    { field: "states_name", headerName: "ESTADO", width: 115 },
+    { field: "assignment_requirements_date", headerName: "FECHA CREACIÓN", width: 150 },
+    {
+      field: "assignment_requirements_deadline",
+      headerName: "FECHA LIMITE",
+      width: 120,
+    },
+    { field: "assignment_requirements_finish_date", headerName: "FECHA CIERRE", width: 144 },
+    
+  ],
   assigmentBydevelopers: [
     {
       field: "idassignment_requirements",
