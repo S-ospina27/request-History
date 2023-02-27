@@ -40,6 +40,8 @@ export default {
         read:{
           bydevelopers:`${host}/assignment/developers/read/bydevelopers`,
           assigment:`${host}/assignment/developers/read/assigment`,
+          tasks_assigned_status:`${host}/assignment/developers/read/tasks-assigned-status`,
+          tasks_finished_status:`${host}/assignment/developers/read/tasks-finished-status`,
         }
       }
     },

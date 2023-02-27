@@ -1,6 +1,6 @@
 import React from "react";
 
-const TextArea = ({ label, value,required,disabled,setValue,style={} }) => {
+const TextArea = ({ label, value,required,disabled,setValue,style={}, readonly }) => {
   return (
     <div className="form__demo-container-name" style={{ marginBottom: "20px"}}>
       <label className={"form__label-name"}>{label}</label>
@@ -14,6 +14,7 @@ const TextArea = ({ label, value,required,disabled,setValue,style={} }) => {
         }}
         required={required}
         disabled={disabled}
+        readOnly={readonly}
       ></textarea>
     </div>
   );

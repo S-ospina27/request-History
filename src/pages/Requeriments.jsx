@@ -26,6 +26,7 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { SHA256 } from "crypto-js";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useNavigate } from "react-router-dom";
+import AssignmentIcon from "@mui/icons-material/Assignment";
 
 const Requeriments = ({ setAlert }) => {
   const navigate = useNavigate();
@@ -36,13 +37,13 @@ const Requeriments = ({ setAlert }) => {
     []
   );
   const [readFullDevelopers, setReadFullDevelopers] = useState([]);
-
   const [readRequirementsAdm, setReadRequirementsAdm] = useState([]);
   const [items, setItems] = useState([]);
   const [render, setRender] = useState(false);
   const [renderAssigments, setRenderAssigments] = useState(true);
   const [helpOpen, setHelpOpen] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openeditAssigmentStates,setOpeneditAssigmentStates] = useState(false);
   const [openDialogRequirements, setOpenDialogRequirements] = useState(false);
   const [openDialogEditHasDevelopers, setOpenDialogEditHasDevelopers] =
     useState(false);
@@ -550,7 +551,7 @@ const Requeriments = ({ setAlert }) => {
 
               <div className="contenedor-inputs-asign">
                 <InputDate
-                  style={{ width: "82%" }}
+                  style={{ width: "75%" }}
                   value={assignment_requirements_deadline}
                   setValue={setAssignment_requirements_deadline}
                   label={"Fecha limite"}
@@ -649,6 +650,17 @@ const Requeriments = ({ setAlert }) => {
               toolbar={
                 <>
                   <Button
+                    type="button"
+                    color="primary"
+                    startIcon={<AssignmentIcon />}
+                    onClick={
+                        ()=>{setOpeneditAssigmentStates(true)}
+                        }
+                  >
+                    {"asignación"}
+                  </Button>
+
+                  <Button
                     disabled={items.length > 0 ? false : true}
                     type="button"
                     color="error"
@@ -656,14 +668,6 @@ const Requeriments = ({ setAlert }) => {
                     startIcon={<DeleteOutlineIcon />}
                   >
                     {"Eliminar"}
-                  </Button>
-
-                  <Button
-                    type="button"
-                    color="primary"
-                    // startIcon={<DeleteOutlineIcon/>}
-                  >
-                    {"asignación"}
                   </Button>
                 </>
               }
@@ -707,7 +711,7 @@ const Requeriments = ({ setAlert }) => {
             >
               <div className="contenedor-inputs-asign">
                 <StatesSelector
-                  style={{ width: "90%" }}
+                  style={{ width: "95%" }}
                   value={idstates}
                   setValue={setIdstates}
                   ignore={[
@@ -734,7 +738,7 @@ const Requeriments = ({ setAlert }) => {
 
               <div className="contenedor-inputs-asign">
                 <NormalInput
-                  style={{ width: "95%" }}
+                  style={{ width: "85%" }}
                   value={idrequirements}
                   setValue={setAssignment_requirements_deadline}
                   label={"Requerimiento"}
@@ -742,7 +746,7 @@ const Requeriments = ({ setAlert }) => {
                   required
                 />
                 <CompaniesSelect
-                  style={{ width: "95%" }}
+                  style={{ width: "90%" }}
                   value={idcompanies}
                   setValue={setIdcompanies}
                   required
@@ -750,7 +754,7 @@ const Requeriments = ({ setAlert }) => {
                 />
 
                 <NormalInput
-                  style={{ width: "95%" }}
+                  style={{ width: "90%" }}
                   value={requirements_name}
                   setValue={setRequirements_name}
                   label={"Nombre"}
@@ -796,7 +800,7 @@ const Requeriments = ({ setAlert }) => {
         TransitionComponent={DialogTransition}
       >
         <div>
-          <span className="parrafo-modal">Editar Asignación</span>
+          <span className="parrafo-modal">Editar Tarea</span>
         </div>
 
         <span
@@ -884,7 +888,7 @@ const Requeriments = ({ setAlert }) => {
             <form className="form-asignacion" onSubmit={handleCreateDevelopers}>
               <div className="contenedor-inputs-asign">
                 <NormalInput
-                  style={{ width: "95%" }}
+                  style={{ width: "85%" }}
                   value={developers_nameCreate}
                   setValue={setDevelopers_nameCreate}
                   label={"Nombre"}
@@ -893,7 +897,7 @@ const Requeriments = ({ setAlert }) => {
                 />
 
                 <TypeDevelopers
-                  style={{ width: "95%" }}
+                  style={{ width: "85%" }}
                   value={developerscol_type}
                   setValue={setDeveloperscol_type}
                   required
@@ -902,7 +906,7 @@ const Requeriments = ({ setAlert }) => {
 
               <div className="contenedor-inputs-asign">
                 <NormalInput
-                  style={{ width: "95%" }}
+                  style={{ width: "85%" }}
                   value={developers_password}
                   setValue={setDevelopers_password}
                   label={"Contraseña"}
@@ -911,7 +915,7 @@ const Requeriments = ({ setAlert }) => {
                 />
 
                 <NormalInput
-                  style={{ width: "95%" }}
+                  style={{ width: "77%" }}
                   value={developers_email}
                   setValue={setDdevelopers_email}
                   label={"Email"}
@@ -1067,6 +1071,82 @@ const Requeriments = ({ setAlert }) => {
                 <Button
                   type="submit"
                   style={{ marginBottom: "10px" }}
+                  variant="contained"
+                >
+                  {"Editar"}
+                </Button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </Dialog>
+
+      <Dialog
+        fullWidth
+        maxWidth={"sm"}
+        open={openeditAssigmentStates}
+        sx={{
+          borderRadius: "55px",
+        }}
+        onClose={() => {
+          setOpeneditAssigmentStates(false);
+        }}
+        TransitionComponent={DialogTransition}
+      >
+        <div>
+          <span className="parrafo-modal">Editar Asignación</span>
+        </div>
+
+        <span
+          className="button--close"
+          onClick={() => {
+            setOpeneditAssigmentStates(false);
+          }}
+        >
+          x
+        </span>
+
+        <Divider />
+
+        <div className="asignaciones__edit-container">
+          <section className="asignaciones__edit-container--form">
+            <form
+              className="form-asignacionedit"
+              onSubmit={handleEditAssigmentsHasDevelopers}
+            >
+              <div className="contenedor-inputs-asignedit-developers">
+              <AssigmentSelector
+                    value={idassignment_requirements}
+                    setValue={setIdassignment_requirements}
+                    style={{ width: "95%" }}
+                    ignore={["ASIGNADO", "TERMINADO"]}
+                    required
+                  />
+                <StatesSelector
+                  style={{
+                    width: "100%",
+                  }}
+                  value={idstatesHasDevelopers}
+                  setValue={setIdstatesHasDevelopers}
+                  ignore={[
+                    "PENDIENTE",
+                    "ACEPTADO",
+                    "ACTIVO",
+                    "INACTIVO",
+                    "RETRAZADO",
+                    "NOVEDAD",
+                    "RECHAZADO",
+                    "DESARROLLO",
+                  ]}
+                  required
+                />
+              </div>
+
+              <div className="botton-assigrequirement-has-developers">
+                <Button
+                  type="submit"
+                  style={{ marginBottom: "10px", width: "60%" }}
+                  // color="secondary"
                   variant="contained"
                 >
                   {"Editar"}
