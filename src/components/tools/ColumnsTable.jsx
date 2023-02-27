@@ -22,6 +22,7 @@ export default {
   fullDevelopers: [
     { field: "developers_name", headerName: "NOMBRE", width: 200 },
     { field: "developerscol_type", headerName: "TIPO", width: 130 },
+    { field: "states_name", headerName: "ESTADO", width: 130 },
   
   ],
   assigmentHasDevelopers: [
