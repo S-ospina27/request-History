@@ -13,7 +13,7 @@ const RequirementsSelector = ({ value, setValue, required, idcompanies }) => {
         RoutesList.api.companies.requirements.read.read_requirementSelector;
 
       axios.get(route + `/${id}`, getHeader()).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setRequirementsSelector(!res.data.status ? res.data : []);
       });
     }

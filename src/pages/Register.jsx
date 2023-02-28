@@ -42,7 +42,7 @@ const Register = ({ setAlert }) => {
     axios
       .post(RoutesList.api.companies.create, form, getHeader())
       .then((res) => {
-        console.log(res.data.data.companies_nit);
+        // console.log(res.data.data.companies_nit);
 
         if (res.data.status === "info") {
           set("companies_nit",res.data.data.companies_nit);

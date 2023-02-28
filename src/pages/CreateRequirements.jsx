@@ -50,7 +50,8 @@ const CreateRequirements = ({ setAlert }) => {
     axios
       .post(RoutesList.api.companies.requirements.create, form, getHeader())
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
+
         if (res.data.status === "success") {
           setAlert({
             open: true,
@@ -93,7 +94,7 @@ const CreateRequirements = ({ setAlert }) => {
     remove("companies_nit");
     navigate("/register");
   };
-  
+
   useEffect(() => {
     handlerReadrequirementsByClients();
   }, []);

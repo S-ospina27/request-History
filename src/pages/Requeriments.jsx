@@ -40,13 +40,15 @@ const Requeriments = ({ setAlert }) => {
   const [readRequirementsAdm, setReadRequirementsAdm] = useState([]);
   const [items, setItems] = useState([]);
 
-  const [readAssigmentsRequirements,setReadAssigmentsRequirements]=useState([]);
+  const [readAssigmentsRequirements, setReadAssigmentsRequirements] = useState(
+    []
+  );
 
   const [render, setRender] = useState(false);
   const [renderAssigments, setRenderAssigments] = useState(true);
   const [helpOpen, setHelpOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const [openeditAssigmentStates,setOpeneditAssigmentStates] = useState(false);
+  const [openeditAssigmentStates, setOpeneditAssigmentStates] = useState(false);
   const [openDialogRequirements, setOpenDialogRequirements] = useState(false);
   const [openDialogEditHasDevelopers, setOpenDialogEditHasDevelopers] =
     useState(false);
@@ -55,7 +57,7 @@ const Requeriments = ({ setAlert }) => {
 
   const [openDialogEditDevelopers, setOpenDialogEditDevelopers] =
     useState(false);
-  const[openeditAssigments,setOpeneditAssigments]= useState(false);
+  const [openeditAssigments, setOpeneditAssigments] = useState(false);
   const [idrequirements, setIdrequirements] = useState("");
   const [idcompanies, setIdcompanies] = useState("");
   const [
@@ -83,20 +85,22 @@ const Requeriments = ({ setAlert }) => {
   const [developerscol_type, setDeveloperscol_type] = useState("");
   const [developers_email, setDdevelopers_email] = useState("");
   const [developers_password, setDevelopers_password] = useState("");
-  const [idstatesedit,setIdstatesedit]=useState("");
-  const [idassignment_requirementsedit,setIdassignment_requirementsedit]=useState("");
+  const [idstatesedit, setIdstatesedit] = useState("");
+  const [idassignment_requirementsedit, setIdassignment_requirementsedit] =
+    useState("");
 
+  const setFieldsAssigmentEdit = (
+    row = {
+      idstatesedit: "",
+      idstates: "",
+      idassignment_requirementsedit: "",
+    }
+  ) => {
+    // console.log(row);
+    setIdstatesedit(row.idstates);
+    setIdassignment_requirementsedit(row.idassignment_requirements);
+  };
 
-  const setFieldsAssigmentEdit =(
-    row={
-      idstatesedit:"",
-      idstates:"",
-      idassignment_requirementsedit:"",
-    }) =>{
-      console.log(row)
-      setIdstatesedit(row.idstates);
-      setIdassignment_requirementsedit(row.idassignment_requirements);
-  }
   const setFields = (
     row = {
       idrequirements: "",
@@ -386,29 +390,35 @@ const Requeriments = ({ setAlert }) => {
       });
   };
 
-  const handleReadAssigmentsRequirements = ()=>{
-    axios.get(RoutesList.api.assignment.read.read_assigments,getHeader()).then((res) => {
-      setReadAssigmentsRequirements( res.data);
-      // console.log(res.data)
-    
-    });
-
-  }
-
-  const handleAssigmentEdit = (e) =>{
-    e.preventDefault();
-    const form = new FormData();
-    form.append("idassignment_requirements",idassignment_requirementsedit);
-    form.append("idstates",idstatesedit);
-    axios.post().then((res)=>{
-      setAlert({
-        open: true,
-        message: res.data.message,
-        severity: res.data.status,
+  const handleReadAssigmentsRequirements = () => {
+    axios
+      .get(RoutesList.api.assignment.read.read_assigments, getHeader())
+      .then((res) => {
+        setReadAssigmentsRequirements(res.data);
+        // console.log(res.data)
       });
-      setOpeneditAssigments(false);
-    });
-  }
+  };
+
+  const handleAssigmentEdit = (e) => {
+    e.preventDefault();
+
+    const form = new FormData();
+    form.append("idassignment_requirements", idassignment_requirementsedit);
+    form.append("idstates", idstatesedit);
+
+    axios
+      .post(RoutesList.api.assignment.update, form, getHeader())
+      .then((res) => {
+        // console.log(res.data);
+
+        setAlert({
+          open: true,
+          message: res.data.message,
+          severity: res.data.status,
+        });
+        setOpeneditAssigments(false);
+      });
+  };
 
   useEffect(() => {
     setFields();
@@ -698,9 +708,9 @@ const Requeriments = ({ setAlert }) => {
                     type="button"
                     color="primary"
                     startIcon={<AssignmentIcon />}
-                    onClick={
-                        ()=>{setOpeneditAssigmentStates(true)}
-                        }
+                    onClick={() => {
+                      setOpeneditAssigmentStates(true);
+                    }}
                   >
                     {"asignación"}
                   </Button>
@@ -1154,7 +1164,7 @@ const Requeriments = ({ setAlert }) => {
         <Divider />
 
         <div className="asignaciones__edit-container">
-        <section className="sectionAsigacion__container--table">
+          <section className="sectionAsigacion__container--table">
             <DataTableBlack
               reload={handleReadAssigmentsRequirements}
               rows={readAssigmentsRequirements}
@@ -1197,7 +1207,6 @@ const Requeriments = ({ setAlert }) => {
         </div>
       </Dialog>
 
-{/* estoy aqui trabajando  */}
       <Dialog
         fullWidth
         maxWidth={"sm"}
@@ -1239,31 +1248,29 @@ const Requeriments = ({ setAlert }) => {
                   value={idstatesedit}
                   setValue={setIdstatesedit}
                   ignore={
-                    idstatesedit === 9? [
-                    "ASIGNADO",
-                    "PENDIENTE",
-                    "ACEPTADO",
-                    "ACTIVO",
-                    "INACTIVO",
-                    "RETRAZADO",
-                    "NOVEDAD",
-                    "RECHAZADO",
-                  ]
-                  :
-                  [
-                    "PENDIENTE",
-                    "ACEPTADO",
-                    "ACTIVO",
-                    "INACTIVO",
-                    "RETRAZADO",
-                    "NOVEDAD",
-                    "RECHAZADO",
-                  ]
+                    idstatesedit === 9
+                      ? [
+                          "ASIGNADO",
+                          "PENDIENTE",
+                          "ACEPTADO",
+                          "ACTIVO",
+                          "INACTIVO",
+                          "RETRAZADO",
+                          "NOVEDAD",
+                          "RECHAZADO",
+                        ]
+                      : [
+                          "PENDIENTE",
+                          "ACEPTADO",
+                          "ACTIVO",
+                          "INACTIVO",
+                          "RETRAZADO",
+                          "NOVEDAD",
+                          "RECHAZADO",
+                        ]
                   }
                   required
-                  disabled={
-                    idstatesedit === 7 ?true :false
-                    }
+                  disabled={idstatesedit === 7 ? true : false}
                 />
               </div>
 

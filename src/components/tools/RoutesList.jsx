@@ -30,6 +30,7 @@ export default {
     },
     assignment:{
       create: `${host}/assignment/create`,
+      update: `${host}/assignment/update`,
       read:{
         select:`${host}/assignment/read/select`,
         read_assigments:`${host}/assignment/read/read_assigments`,
