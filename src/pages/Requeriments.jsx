@@ -1182,7 +1182,6 @@ const Requeriments = ({ setAlert }) => {
                 },
                 marginTop: "10px",
                 marginBottom: "20px",
-                width: "740px",
                 height: "470px",
                 borderRadius: "15px",
                 borderColor: "#0000000",
