@@ -10,14 +10,21 @@ export default {
     },
     { field: "requirements_name", headerName: "REQUERIMIENTO", width: 140 },
     { field: "states_name", headerName: "ESTADO", width: 115 },
-    { field: "assignment_requirements_date", headerName: "FECHA CREACIÓN", width: 150 },
+    {
+      field: "assignment_requirements_date",
+      headerName: "FECHA CREACIÓN",
+      width: 150,
+    },
     {
       field: "assignment_requirements_deadline",
       headerName: "FECHA LIMITE",
       width: 120,
     },
-    { field: "assignment_requirements_finish_date", headerName: "FECHA CIERRE", width: 144 },
-    
+    {
+      field: "assignment_requirements_finish_date",
+      headerName: "FECHA CIERRE",
+      width: 144,
+    },
   ],
   assigmentBydevelopers: [
     {
@@ -37,13 +44,11 @@ export default {
     },
     { field: "requirements_name", headerName: "REQUERIMIENTO", width: 240 },
     { field: "states_name_req", headerName: "ESTADO RQ", width: 200 },
-    
   ],
   fullDevelopers: [
     { field: "developers_name", headerName: "NOMBRE", width: 200 },
     { field: "developerscol_type", headerName: "TIPO", width: 130 },
     { field: "states_name", headerName: "ESTADO", width: 130 },
-  
   ],
   assigmentHasDevelopers: [
     {
