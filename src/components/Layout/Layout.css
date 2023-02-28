@@ -591,3 +591,12 @@
   width: 97%;
   flex-direction: column;
 }
+
+
+/* 
+Dialog Asignaciones */
+.sectionAsigacion__container--table {
+  margin: 0 auto;
+  width: 80%;
+  height: 100%;
+}

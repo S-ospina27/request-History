@@ -32,6 +32,7 @@ export default {
       create: `${host}/assignment/create`,
       read:{
         select:`${host}/assignment/read/select`,
+        read_assigments:`${host}/assignment/read/read_assigments`,
       },
       developer:{
         create:`${host}/assignment/developers/create`,
