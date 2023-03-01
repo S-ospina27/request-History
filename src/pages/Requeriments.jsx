@@ -418,6 +418,7 @@ const Requeriments = ({ setAlert }) => {
           severity: res.data.status,
         });
         setOpeneditAssigments(false);
+        handleReadAssigmentsRequirements();
       });
   };
 
