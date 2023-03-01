@@ -41,31 +41,29 @@ const CreateRequirements = ({ setAlert }) => {
 
   const handlerCreateRequirements = (e) => {
     e.preventDefault();
-    clearInputs();
+
     const form = new FormData();
     form.append("idcompanies", idcompanies);
     form.append("requirements_name", name_requirement);
-    form.append("requirements_priority",priority);
+    form.append("requirements_priority", priority);
     form.append("requirements_description", description);
+
     axios
       .post(RoutesList.api.companies.requirements.create, form, getHeader())
       .then((res) => {
         // console.log(res.data)
 
-        if (res.data.status === "success") {
-          setAlert({
-            open: true,
-            message: res.data.message,
-            severity: res.data.status,
-          });
-          setLoading(true);
-          handlerReadrequirementsByClients();
-        }
         setAlert({
           open: true,
           message: res.data.message,
           severity: res.data.status,
         });
+
+        if (res.data.status === "success") {
+          clearInputs();
+          setLoading(true);
+          handlerReadrequirementsByClients();
+        }
       });
   };
 
@@ -79,14 +77,17 @@ const CreateRequirements = ({ setAlert }) => {
 
   const handlerReadrequirementsByClients = () => {
     const form = new FormData();
-    if (![undefined,null].includes(idcompanies)) {
+    if (![undefined, null].includes(idcompanies)) {
       form.append("idcompanies", idcompanies);
-
     }
     axios
-      .post(RoutesList.api.companies.requirements.read.read_requirementsByclients,form, getHeader())
+      .post(
+        RoutesList.api.companies.requirements.read.read_requirementsByclients,
+        form,
+        getHeader()
+      )
       .then((res) => {
-        setReadrequirements(res.data.status === "success"? []: res.data);
+        setReadrequirements(res.data.status === "success" ? [] : res.data);
       });
   };
 
