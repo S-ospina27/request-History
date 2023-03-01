@@ -1260,6 +1260,19 @@ const Requeriments = ({ setAlert }) => {
                           "NOVEDAD",
                           "RECHAZADO",
                         ]
+                      : idstatesedit === 7
+                      ? [
+                          "TERMINADO",
+                          "DESARROLLO",
+                          "ASIGNADO",
+                          "PENDIENTE",
+                          "ACEPTADO",
+                          "ACTIVO",
+                          "INACTIVO",
+                          "RETRAZADO",
+                          "NOVEDAD",
+                          "RECHAZADO",
+                        ]
                       : [
                           "ASIGNADO",
                           "PENDIENTE",
