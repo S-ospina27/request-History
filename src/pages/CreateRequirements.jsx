@@ -93,6 +93,8 @@ const CreateRequirements = ({ setAlert }) => {
 
   const handlerClosepage = () => {
     remove("companies_nit");
+    remove("idroles");
+    remove("idcompanies");
     navigate("/register");
   };
 
@@ -104,11 +106,6 @@ const CreateRequirements = ({ setAlert }) => {
     <div className={" container contenedor"}>
       <Draw helpOpen={helpOpen} setHelpOpen={setHelpOpen} />
       <img src={Teclab} className={"foto-teclab-req"} />
-      {/* <img
-        src={ayuda}
-        className={"img-ayuda"}
-        onClick={() => setHelpOpen(true)}
-      /> */}
 
       <Grid className={"pantalla-dividida-requirements"}>
         <Grid item className={"izquierda-requiremients"}>

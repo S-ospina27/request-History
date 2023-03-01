@@ -310,7 +310,7 @@ body {
 }
 
 .btn {
-  border: 1px solid rgba(100, 100, 100, 0.1);
+  border:  transparent;
   width: 40%;
   height: 20vh;
   font-family: "Poppins", sans-serif;
