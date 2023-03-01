@@ -15,20 +15,27 @@ const Developers = ({ setAlert }) => {
   const navigate = useNavigate();
   const [helpOpen, setHelpOpen] = useState(false);
   const [readDevelopers, setReadDevelopers] = useState([]);
-  const [readtasksAssignedStatus,setReadtasksAssignedStatus] = useState([]);
-  const [readtasksFinishedStatus,setReadtasksFinishedStatus] = useState([]);
+  const [readtasksAssignedStatus, setReadtasksAssignedStatus] = useState([]);
+  const [readtasksFinishedStatus, setReadtasksFinishedStatus] = useState([]);
   const [open, setOpen] = useState(false);
 
-  const [requirements_name,setRequirements_name]=useState("");
-  const [requirements_priority,setRequirements_priority]=useState("");
-  const [requirements_description,setRequirements_description]=useState("");
-  const [requirements_date,setRequirements_date]=useState("");
-  const [states_name_req,setStates_name_req]=useState("");
+  const [requirements_name, setRequirements_name] = useState("");
+  const [requirements_priority, setRequirements_priority] = useState("");
+  const [requirements_description, setRequirements_description] = useState("");
+  const [requirements_date, setRequirements_date] = useState("");
+  const [states_name_req, setStates_name_req] = useState("");
 
-  const [assignment_requirements_date,setAssignment_requirements_date]=useState("");
-  const [assignment_requirements_deadline,setAssignment_requirements_deadline]=useState("");
-  const [assignment_requirements_finish_date,setAssignment_requirements_finish_date]=useState("");
-  const [states_name_ar,setStates_name_ar]=useState("");
+  const [assignment_requirements_date, setAssignment_requirements_date] =
+    useState("");
+  const [
+    assignment_requirements_deadline,
+    setAssignment_requirements_deadline,
+  ] = useState("");
+  const [
+    assignment_requirements_finish_date,
+    setAssignment_requirements_finish_date,
+  ] = useState("");
+  const [states_name_ar, setStates_name_ar] = useState("");
 
   const handleReadDevelopers = () => {
     const jwt = jwtDecode(get("jwt"));
@@ -44,18 +51,20 @@ const Developers = ({ setAlert }) => {
       });
   };
 
-  const setFields = (row = {
-    requirements_name:"",
-    requirements_priority:"",
-    requirements_description:"",
-    requirements_date:"",
-    states_name_req:"",
-    assignment_requirements_date:"",
-    assignment_requirements_deadline:"",
-    assignment_requirements_finish_date:"",
-    states_name_ar:""
-  }) => {
-    console.log(row)
+  const setFields = (
+    row = {
+      requirements_name: "",
+      requirements_priority: "",
+      requirements_description: "",
+      requirements_date: "",
+      states_name_req: "",
+      assignment_requirements_date: "",
+      assignment_requirements_deadline: "",
+      assignment_requirements_finish_date: "",
+      states_name_ar: "",
+    }
+  ) => {
+    // console.log(row);
     setRequirements_name(row.requirements_name);
     setRequirements_priority(row.requirements_priority);
     setRequirements_description(row.requirements_description);
@@ -63,24 +72,35 @@ const Developers = ({ setAlert }) => {
     setStates_name_req(row.states_name_req);
     setAssignment_requirements_date(row.assignment_requirements_date);
     setAssignment_requirements_deadline(row.assignment_requirements_deadline);
-    setAssignment_requirements_finish_date(row.assignment_requirements_finish_date ===null ?"": row.assignment_requirements_finish_date );
+    setAssignment_requirements_finish_date(
+      row.assignment_requirements_finish_date === null
+        ? ""
+        : row.assignment_requirements_finish_date
+    );
     setStates_name_ar(row.states_name_ar);
-
   };
 
-const ReadtasksAssignedStatus = () =>{
-  axios.get(RoutesList.api.assignment.developer.read.tasks_assigned_status,getHeader()).then((res)=>{
-    setReadtasksAssignedStatus(res.data.cont);
+  const ReadtasksAssignedStatus = () => {
+    axios
+      .get(
+        RoutesList.api.assignment.developer.read.tasks_assigned_status,
+        getHeader()
+      )
+      .then((res) => {
+        setReadtasksAssignedStatus(res.data.cont);
+      });
+  };
 
-  })
-}
-
-const ReadtasksFinishedStatus = () =>{
-  axios.get(RoutesList.api.assignment.developer.read.tasks_finished_status,getHeader()).then((res)=>{
-    setReadtasksFinishedStatus(res.data.cont);
-
-  })
-}
+  const ReadtasksFinishedStatus = () => {
+    axios
+      .get(
+        RoutesList.api.assignment.developer.read.tasks_finished_status,
+        getHeader()
+      )
+      .then((res) => {
+        setReadtasksFinishedStatus(res.data.cont);
+      });
+  };
 
   useEffect(() => {
     handleReadDevelopers();
@@ -90,7 +110,6 @@ const ReadtasksFinishedStatus = () =>{
 
   return (
     <div className={"contaniner contenedor-requirement"}>
-
       <button
         className={"img-menu"}
         variant={"contained"}
@@ -192,27 +211,17 @@ const ReadtasksFinishedStatus = () =>{
                 <NormalInput
                   style={{ width: "89%" }}
                   label={"Nombre"}
-                 />
-                <NormalInput
-                 style={{width:"94%" }}
-                label={"Fecha requerimiento"}
-                 />
-              </div>
-
-              <div className="contenedor-inputs-asign">
-                <NormalInput
-                 style={{width:"89%" }}
-                   label={"Estado"}
+                  value={requirements_name}
+                  setValue={setRequirements_name}
+                  readonly
+                  required
                 />
                 <NormalInput
-                style={{width:"94%" }}
-                label={"prioridad"}
-                 />
-              </div>
-              <div className="contenedor-inputs-asign">
-              <TextArea
-                  style={{ width: "100%" }}
-                  label={"Descripción"}
+                  style={{ width: "94%" }}
+                  label={"Fecha requerimiento"}
+                  value={requirements_date}
+                  setValue={setRequirements_date}
+                  readonly
                   required
                 />
               </div>
