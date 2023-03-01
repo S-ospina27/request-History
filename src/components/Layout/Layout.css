@@ -553,8 +553,9 @@
 Dialog Asignaciones */
 .sectionAsigacion__container--table {
   margin: 0 auto;
-  width: 80%;
+  width: 90%;
   height: 100%;
+
 }
 .parrafo-modal {
   font-size: 30px;
@@ -569,7 +570,54 @@ Dialog Asignaciones */
   }
 }
 
+/* DIALOG DE EDITAR ASIGNACION */
+.EditarAsignacion__Dialog{
+ margin: 0 auto;
+  width: 90%;
+  height: 100%;
+
+}
+
+.EditarAsignacion__formDialog{
+
+  background-image: radial-gradient(
+    circle at 50% -20.71%,
+    #a9d9f1 0,
+    #add8f3 6.25%,
+    #b2d6f5 12.5%,
+    #b7d5f6 18.75%,
+    #bdd3f7 25%,
+    #c3d2f6 31.25%,
+    #c9d0f6 37.5%,
+    #cfcff4 43.75%,
+    #d5cdf2 50%,
+    #dbcbef 56.25%,
+    #e0caec 62.5%,
+    #e5c9e9 68.75%,
+    #eac8e5 75%,
+    #eec7e1 81.25%,
+    #f2c6dc 87.5%,
+    #f4c5d7 93.75%,
+    #f7c5d3 100%
+  );
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 6px;
+  border-radius: 23px;
+  height: 95%;
+  padding: 22px;
+  width: 90%;
+  flex-direction: column;
+}
+
+
 /*Dialog Editar desarrolladores */
+.parrafo__editardev{
+  font-size: 30px;
+  font-weight: 900;
+  padding: 5px;
+}
 .EditarDesarrolladores__Container {
   margin-top: 15px;
   margin-bottom: 15px;
@@ -579,7 +627,6 @@ Dialog Asignaciones */
   height: 100%;
 }
 .EditarDesarrolladores__section{
-  border: 1px solid red;
   padding: 7px;
   margin: auto;
   width: 90%;
@@ -651,8 +698,122 @@ Dialog Asignaciones */
     flex-direction: column;
   }
 
-  .editardesarrolladores__formulario .contenedor-inputs-asign .form__select-name{
-    width: 95%;
-  } 
+}
+/* 
+DIALOG EDITAR TAREA */
+.EditarTarea__Seccion{
+  padding: 7px;
+  margin: auto;
+  width: 90%;
+  height: 90%;
+
+}
+.EditarTarea__Dialog{
+  background-image: radial-gradient(
+    circle at 50% -20.71%,
+    #a9d9f1 0,
+    #add8f3 6.25%,
+    #b2d6f5 12.5%,
+    #b7d5f6 18.75%,
+    #bdd3f7 25%,
+    #c3d2f6 31.25%,
+    #c9d0f6 37.5%,
+    #cfcff4 43.75%,
+    #d5cdf2 50%,
+    #dbcbef 56.25%,
+    #e0caec 62.5%,
+    #e5c9e9 68.75%,
+    #eac8e5 75%,
+    #eec7e1 81.25%,
+    #f2c6dc 87.5%,
+    #f4c5d7 93.75%,
+    #f7c5d3 100%
+  );
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 6px;
+  border-radius: 23px;
+  height: 95%;
+  padding: 22px;
+  width: 90%;
+  flex-direction: column;
+}
+
+/* EDITAR REQUERIMIENTOS DIALOG */
+
+.EditarRequerimientos__Dialog{
+  padding: 10px;
+  margin: auto;
+  width: 90%;
+  height: 90%;
+
+}
+.EditarRequerimientos__Form_Dialog{
+  background-image: radial-gradient(
+    circle at 50% -20.71%,
+    #a9d9f1 0,
+    #add8f3 6.25%,
+    #b2d6f5 12.5%,
+    #b7d5f6 18.75%,
+    #bdd3f7 25%,
+    #c3d2f6 31.25%,
+    #c9d0f6 37.5%,
+    #cfcff4 43.75%,
+    #d5cdf2 50%,
+    #dbcbef 56.25%,
+    #e0caec 62.5%,
+    #e5c9e9 68.75%,
+    #eac8e5 75%,
+    #eec7e1 81.25%,
+    #f2c6dc 87.5%,
+    #f4c5d7 93.75%,
+    #f7c5d3 100%
+  );
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 6px;
+  border-radius: 23px;
+  height: 95%;
+  padding: 22px;
+  width: 90%;
+  flex-direction: column;
+  padding: 30px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 575px) {
   
+  .EditarRequerimientos__Form_Dialog{
+    background-image: radial-gradient(
+      circle at 50% -20.71%,
+      #a9d9f1 0,
+      #add8f3 6.25%,
+      #b2d6f5 12.5%,
+      #b7d5f6 18.75%,
+      #bdd3f7 25%,
+      #c3d2f6 31.25%,
+      #c9d0f6 37.5%,
+      #cfcff4 43.75%,
+      #d5cdf2 50%,
+      #dbcbef 56.25%,
+      #e0caec 62.5%,
+      #e5c9e9 68.75%,
+      #eac8e5 75%,
+      #eec7e1 81.25%,
+      #f2c6dc 87.5%,
+      #f4c5d7 93.75%,
+      #f7c5d3 100%
+    );
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 6px;
+    border-radius: 23px;
+    height: 95%;
+    padding: 22px;
+    width: 82%;
+    flex-direction: column;
+    padding: 25px;
+  }
 }

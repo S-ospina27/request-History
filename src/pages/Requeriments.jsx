@@ -761,9 +761,9 @@ const Requeriments = ({ setAlert }) => {
         <Divider />
 
         <div className="asignaciones__edit-container">
-          <section className="asignaciones__edit-container--form">
+          <section className="EditarRequerimientos__Dialog">
             <form
-              className="form-asignacionedit"
+              className="EditarRequerimientos__Form_Dialog"
               onSubmit={handleEditRequirements}
             >
               <div className="contenedor-inputs-asign">
@@ -872,9 +872,9 @@ const Requeriments = ({ setAlert }) => {
         <Divider />
 
         <div className="asignaciones__edit-container">
-          <section className="asignaciones__edit-container--form">
+          <section className="EditarTarea__Seccion">
             <form
-              className="form-asignacionedit"
+              className="EditarTarea__Dialog"
               onSubmit={handleEditAssigmentsHasDevelopers}
             >
               <div className="contenedor-inputs-asignedit-developers">
@@ -1050,7 +1050,7 @@ const Requeriments = ({ setAlert }) => {
         TransitionComponent={DialogTransition}
       >
         <div>
-          <span className="parrafo-modal">Editar Desarrolladores</span>
+          <span className="parrafo__editardev">Editar Desarrolladores</span>
         </div>
 
         <span
@@ -1177,7 +1177,7 @@ const Requeriments = ({ setAlert }) => {
                 set: setFieldsAssigmentEdit,
               }}
               sx={{
-                width: "764px",
+                width: "796px",
                 "@media screen and (max-width: 1024px)": {
                   width: "96%",
                   margin: "auto",
@@ -1236,9 +1236,9 @@ const Requeriments = ({ setAlert }) => {
         <Divider />
 
         <div className="asignaciones__edit-container">
-          <section className="asignaciones__edit-container--form">
+          <section className="EditarAsignacion__Dialog">
             <form
-              className="form-asignacionedit"
+              className="EditarAsignacion__formDialog"
               onSubmit={handleAssigmentEdit}
             >
               <div className="contenedor-inputs-asignedit-developers">
