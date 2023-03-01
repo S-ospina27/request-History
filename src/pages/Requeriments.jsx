@@ -1065,10 +1065,10 @@ const Requeriments = ({ setAlert }) => {
 
         <Divider />
 
-        <div className="asignaciones__edit-container">
-          <section className="asignaciones__edit-container--form">
+        <div className="EditarDesarrolladores__Container">
+          <section className="EditarDesarrolladores__section">
             <form
-              className="form-asignacionedit"
+              className="editardesarrolladores__formulario"
               onSubmit={handleEditOfCreateDevelopers}
             >
               <div className="contenedor-inputs-asign">
