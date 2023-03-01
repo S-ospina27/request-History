@@ -258,6 +258,7 @@ const Requeriments = ({ setAlert }) => {
         setRender(false);
         setRenderAssigments(false);
         setTimeout(() => setRenderAssigments(true), 600);
+        handleReadAssigmentsRequirements();
       });
   };
 
@@ -1259,6 +1260,7 @@ const Requeriments = ({ setAlert }) => {
                           "RECHAZADO",
                         ]
                       : [
+                          "ASIGNADO",
                           "PENDIENTE",
                           "ACEPTADO",
                           "ACTIVO",
