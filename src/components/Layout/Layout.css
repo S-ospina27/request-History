@@ -159,7 +159,7 @@
   align-items: center;
   justify-content: center;
 }
-/* //requirement */
+/* Crear Desarrollador */
 .form-asignacion {
   background-image: radial-gradient(
     circle at 50% -20.71%,
@@ -201,7 +201,7 @@
 .botton-assigrequirement {
   display: flex;
 }
-/* modal crear asignaciones */
+/* modal crear desarrollador */
 .asignaciones__container {
   display: flex;
   flex-direction: row;

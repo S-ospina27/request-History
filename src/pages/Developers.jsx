@@ -186,7 +186,7 @@ const Developers = ({ setAlert }) => {
         TransitionComponent={DialogTransition}
       >
         <div>
-          <span className="parrafo-modal">Visualizar datos</span>
+          <span className="parrafo__editardev">Visualizar datos</span>
         </div>
 
         <span
@@ -200,8 +200,8 @@ const Developers = ({ setAlert }) => {
 
         <Divider />
 
-        <div className="contenedor__visualizar-container">
-          <section className="asignaciones__edit-container--form">
+        <div className="EditarDesarrolladores__Container ">
+          <section className="EditarDesarrolladores__section">
             <form
               className="form-visualizar-datos-developers"
               // onSubmit={handleEditRequirements}
