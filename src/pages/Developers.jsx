@@ -217,42 +217,49 @@ const Developers = ({ setAlert }) => {
               <h3>Requerimiento</h3>
               <div className="contenedor-inputs-asign">
                 <NormalInput
-                  style={{ width: "89%" }}
                   label={"Nombre"}
                   value={requirements_name}
                   setValue={setRequirements_name}
                   readonly
                   required
+                  containerInput={"form__demo-container-edit-develop"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
                 <NormalInput
-                  style={{ width: "94%" }}
-                  label={"Fecha requerimiento"}
+                  label={"Fecha"}
                   value={requirements_date}
                   setValue={setRequirements_date}
                   readonly
                   required
+                  containerInput={"form__demo-container-edit-develop"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
               </div>
 
               <div className="contenedor-inputs-asign">
                 <NormalInput
-                  style={{ width: "89%" }}
                   label={"Estado"}
                   value={states_name_req}
                   setValue={setStates_name_req}
                   readonly
+                  containerInput={"form__demo-container-edit-develop"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
                 <NormalInput
-                  style={{ width: "94%" }}
                   label={"Prioridad"}
                   value={requirements_priority}
                   setValue={setRequirements_priority}
                   readonly
+                  containerInput={"form__demo-container-edit-develop"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
               </div>
               <div className="contenedor-inputs-asign">
                 <TextArea
-                  style={{ width: "100%" }}
                   label={"Descripción"}
                   value={requirements_description}
                   setValue={setRequirements_description}
@@ -263,34 +270,42 @@ const Developers = ({ setAlert }) => {
               <h3>Asignación</h3>
               <div className="contenedor-inputs-asign">
                 <NormalInput
-                  style={{ width: "90%" }}
                   label={"Estado"}
                   value={states_name_ar}
                   setValue={setStates_name_ar}
                   readonly
+                  containerInput={"form__demo-container-edit-develop"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
                 <NormalInput
-                  style={{ width: "94%" }}
                   label={"Fecha Asignación"}
                   value={assignment_requirements_date}
                   setValue={setAssignment_requirements_date}
                   readonly
+                  containerInput={"form__demo-container-edit-develop"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
               </div>
               <div className="contenedor-inputs-asign">
                 <NormalInput
-                  style={{ width: "90%" }}
                   label={"Fecha Limite"}
                   value={assignment_requirements_deadline}
                   setValue={setAssignment_requirements_deadline}
                   readonly
+                  containerInput={"form__demo-container-edit-develop"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
                 <NormalInput
-                  style={{ width: "94%" }}
                   label={"Fecha Finalización"}
                   value={assignment_requirements_finish_date}
                   setValue={setAssignment_requirements_finish_date}
                   readonly
+                  containerInput={"form__demo-container-edit-develop"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
               </div>
             </form>
