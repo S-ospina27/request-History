@@ -133,6 +133,9 @@ const CreateRequirements = ({ setAlert }) => {
                   value={name_requirement}
                   setValue={setName_requirement}
                   required
+                  containerInput={"form__demo-container-name"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
 
                 <PrioritySelect

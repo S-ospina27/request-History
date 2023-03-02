@@ -12,15 +12,18 @@ const InputDate = ({
   animation,
   min,
   max,
-  style
+  style={},
+  containerInput,
+  labelInputName,
+  inputName,
 }) => {
 
   
   return (
-    <div className={`form__demo-container-name ${animation}`} style={{ marginBottom: "20px" }}>
-      <label className={"form__label-name"}>{label}</label>
+    <div className={`${containerInput} ${animation}`} style={{ marginBottom: "20px" }}>
+      <label className={`${labelInputName}`}>{label}</label>
       <input
-        className={"form__input-name"}
+        className={`${inputName}`}
         style={style}
         type="date"
         placeholder={placeholder}

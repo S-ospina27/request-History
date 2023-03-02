@@ -25,7 +25,7 @@ const AssigmentSelector = ({
   }, []);
   return (
     <div className="form__demo-container-name" style={{ marginBottom: "20px" }}>
-      <label className={"form__label-name"}>Seleccione asignación</label>
+      <label className={"form__label-name"}>Asignaciónes</label>
       <select
         style={style}
         className={"form__select-name"}

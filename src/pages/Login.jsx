@@ -50,12 +50,18 @@ const Login = ({ setAlert, setUserSession }) => {
               value={developers_email}
               setValue={setDevelopers_email}
               type={"email"}
+              containerInput={"form__demo-container-name"}
+              labelInputName={"form__label-name"}
+              inputName={"form__input-name"}
             />
             <NormalInput
               label={"Contraseña"}
               value={developers_password}
               setValue={setDevelopers_password}
               type={"password"}
+              containerInput={"form__demo-container-name"}
+              labelInputName={"form__label-name"}
+              inputName={"form__input-name"}
             />
 
             <Button

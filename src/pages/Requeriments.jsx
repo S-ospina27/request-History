@@ -608,12 +608,13 @@ const Requeriments = ({ setAlert }) => {
 
               <div className="contenedor-inputs-asign">
                 <InputDate
-                  style={{ width: "75%" }}
                   value={assignment_requirements_deadline}
                   setValue={setAssignment_requirements_deadline}
                   label={"Fecha limite"}
-                  // min={"2023-02-16"}
                   required
+                  containerInput={"form__demo-container-date"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
               </div>
 

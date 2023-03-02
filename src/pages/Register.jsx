@@ -45,7 +45,7 @@ const Register = ({ setAlert }) => {
         // console.log(res.data);
 
         if (res.data.status === "info") {
-          set("companies_nit",res.data.data.companies_nit);
+          set("companies_nit", res.data.data.companies_nit);
           set("idroles", res.data.data.idroles);
           set("idcompanies", res.data.data.idcompanies);
           clearInputs();
@@ -102,6 +102,9 @@ const Register = ({ setAlert }) => {
               value={companies_nit}
               setValue={setCompanies_nit}
               required
+              containerInput={"form__demo-container-name"}
+              labelInputName={"form__label-name"}
+              inputName={"form__input-name"}
             />
             <NormalInput
               label={"Correo"}
@@ -110,6 +113,9 @@ const Register = ({ setAlert }) => {
               value={companies_email}
               setValue={setCompanies_email}
               required
+              containerInput={"form__demo-container-name"}
+              labelInputName={"form__label-name"}
+              inputName={"form__input-name"}
             />
             {isuser && (
               <>
@@ -120,6 +126,9 @@ const Register = ({ setAlert }) => {
                   value={companies_business_name}
                   setValue={setCompanies_business_name}
                   required
+                  containerInput={"form__demo-container-name"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                   animation={"animate__animated animate__backInDown"}
                 />
                 <NormalInput
@@ -130,6 +139,9 @@ const Register = ({ setAlert }) => {
                   setValue={setCompanies_username}
                   required
                   animation={"animate__animated animate__backInDown"}
+                  containerInput={"form__demo-container-name"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
               </>
             )}

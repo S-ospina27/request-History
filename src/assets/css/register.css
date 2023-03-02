@@ -127,12 +127,19 @@ body {
 }
 
 /* div */
-.form__demo-container-name {
+.form__demo-container-name,
+.form__demo-container-date {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 60%;
   margin-top: 10px;
+}
+.form__demo-container-date {
+  width: 50%;
+}
+.form__demo-container-date .form__input-name {
+  width: 75%;
 }
 
 /* labels */
@@ -413,6 +420,12 @@ a {
   }
   .form__demo-container-name {
     width: 80%;
+  }
+  .form__demo-container-date {
+    width: 90%;
+  }
+  .form__demo-container-date .form__input-name {
+    width: 100%;
   }
   .form__label-name {
     font-size: 16px;
