@@ -128,18 +128,41 @@ body {
 
 /* div */
 .form__demo-container-name,
-.form__demo-container-date {
+.form__demo-container-date,
+.form__demo-container-select-develop,
+.form__demo-container-select-type,
+.form__demo-container-edit-develop,
+.form__demo-container-states-selector,
+.form__demo-container-roles-select,
+.form__demo-container-text-area {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 60%;
   margin-top: 10px;
 }
-.form__demo-container-date {
+.form__demo-container-date,
+.form__demo-container-select-develop,
+.form__demo-container-edit-develop,
+.form__demo-container-select-type,
+.form__demo-container-states-selector,
+.form__demo-container-roles-select {
   width: 50%;
 }
-.form__demo-container-date .form__input-name {
+
+.form__demo-container-date .form__input-name,
+.form__demo-container-edit-develop .form__input-name,
+.form__demo-container-states-selector .form__input-name
+{
   width: 75%;
+}
+.form__demo-container-roles-select .form__select-name,
+.form__demo-container-select-type .form__select-name,
+.form__demo-container-states-selector .form__select-name {
+  width: 80%;
+}
+.form__demo-container-text-area{
+  width: 90%;
 }
 
 /* labels */
@@ -424,8 +447,23 @@ a {
   .form__demo-container-date {
     width: 90%;
   }
-  .form__demo-container-date .form__input-name {
+  .form__demo-container-date .form__input-name,
+  .form__demo-container-select-develop,
+  .form__demo-container-select-type, 
+  .form__demo-container-edit-develop,
+  .form__demo-container-states-selector,
+  .form__demo-container-roles-select {
     width: 100%;
+  }
+  .form__demo-container-states-selector .form__select-name,
+  .form__demo-container-roles-select .form__select-name {
+    width: 100%;
+  }
+  .form__demo-container-edit-develop .form__input-name {
+    width: 90%;
+  }
+  .form__demo-container-select-type .form__select-name{
+    width: 98%;
   }
   .form__label-name {
     font-size: 16px;
@@ -433,5 +471,8 @@ a {
   }
   .form__input-name {
     font-size: 16px;
+  }
+  .parrafo__editardev {
+    font-size: 15px;
   }
 }

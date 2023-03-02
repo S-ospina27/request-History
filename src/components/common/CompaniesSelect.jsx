@@ -28,7 +28,7 @@ const CompaniesSelect = ({
   }, []);
 
   return (
-    <div className="form__demo-container-name" style={{ marginBottom: "20px" }}>
+    <div className="form__demo-container-select-type" style={{ marginBottom: "20px" }}>
       <label className={"form__label-name"}>{" Compañias"}</label>
 
       <select

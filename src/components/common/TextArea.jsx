@@ -2,7 +2,7 @@ import React from "react";
 
 const TextArea = ({ label, value,required,disabled,setValue,style={}, readonly }) => {
   return (
-    <div className="form__demo-container-name" style={{ marginBottom: "20px"}}>
+    <div className="form__demo-container-text-area" style={{ marginBottom: "20px"}}>
       <label className={"form__label-name"}>{label}</label>
       <textarea
         style={style}

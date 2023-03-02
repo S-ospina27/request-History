@@ -26,9 +26,9 @@ const StatesSelector = ({
   }, []);
   return (
 
-    <div className="form__demo-container-name" style={{ marginBottom: "20px" }}>
+    <div className="form__demo-container-select-type" style={{ marginBottom: "20px" }}>
 
-      <label className={"form__label-name"}>Seleccione estado</label>
+      <label className={"form__label-name"}>Estado</label>
       <select
         style={style}
         className={"form__select-name"}

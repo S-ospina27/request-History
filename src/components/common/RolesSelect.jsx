@@ -22,7 +22,7 @@ const RolesSelect = ({
     handleReadRoles();
   }, []);
   return (
-    <div className="form__demo-container-name" style={{ marginBottom: "20px" }}>
+    <div className="form__demo-container-roles-select" style={{ marginBottom: "20px" }}>
       <label className={"form__label-name"}>Seleccione Rol</label>
       <select
          style={style}

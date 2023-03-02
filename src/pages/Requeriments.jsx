@@ -769,7 +769,6 @@ const Requeriments = ({ setAlert }) => {
             >
               <div className="contenedor-inputs-asign">
                 <StatesSelector
-                  style={{ width: "95%" }}
                   value={idstates}
                   setValue={setIdstates}
                   ignore={[
@@ -785,39 +784,45 @@ const Requeriments = ({ setAlert }) => {
                 />
 
                 <NormalInput
-                  style={{ width: "95%" }}
                   value={requirements_date}
                   setValue={setRequirements_date}
-                  label={"Fecha de creación"}
+                  label={"Creación"}
                   required
                   readonly
+                  containerInput={"form__demo-container-edit-develop"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
               </div>
 
               <div className="contenedor-inputs-asign">
                 <NormalInput
-                  style={{ width: "85%" }}
                   value={idrequirements}
                   setValue={setAssignment_requirements_deadline}
                   label={"Requerimiento"}
                   readonly
                   required
+                  containerInput={"form__demo-container-edit-develop"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
-                <CompaniesSelect
-                  style={{ width: "90%" }}
-                  value={idcompanies}
-                  setValue={setIdcompanies}
-                  required
-                  disabled
-                />
-
                 <NormalInput
-                  style={{ width: "90%" }}
                   value={requirements_name}
                   setValue={setRequirements_name}
                   label={"Nombre"}
                   readonly
                   required
+                  containerInput={"form__demo-container-edit-develop"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
+                />
+              </div>
+              <div className="contenedor-inputs-asign">
+              <CompaniesSelect
+                  value={idcompanies}
+                  setValue={setIdcompanies}
+                  required
+                  disabled
                 />
               </div>
               <div className="contenedor-inputs-asign">
@@ -946,16 +951,17 @@ const Requeriments = ({ setAlert }) => {
             <form className="form-asignacion" onSubmit={handleCreateDevelopers}>
               <div className="contenedor-inputs-asign">
                 <NormalInput
-                  style={{ width: "85%" }}
                   value={developers_nameCreate}
                   setValue={setDevelopers_nameCreate}
                   label={"Nombre"}
                   type={"text"}
                   required
+                  containerInput={"form__demo-container-date"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
 
                 <TypeDevelopers
-                  style={{ width: "85%" }}
                   value={developerscol_type}
                   setValue={setDeveloperscol_type}
                   required
@@ -964,21 +970,25 @@ const Requeriments = ({ setAlert }) => {
 
               <div className="contenedor-inputs-asign">
                 <NormalInput
-                  style={{ width: "85%" }}
                   value={developers_password}
                   setValue={setDevelopers_password}
                   label={"Contraseña"}
                   type={"password"}
                   required
+                  containerInput={"form__demo-container-date"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
 
                 <NormalInput
-                  style={{ width: "77%" }}
                   value={developers_email}
                   setValue={setDdevelopers_email}
                   label={"Email"}
                   type={"email"}
                   required
+                  containerInput={"form__demo-container-date"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
               </div>
 
@@ -1074,16 +1084,17 @@ const Requeriments = ({ setAlert }) => {
             >
               <div className="contenedor-inputs-asign">
                 <NormalInput
-                  style={{ width: "95%" }}
                   value={developers_nameCreate}
                   setValue={setDevelopers_nameCreate}
                   label={"Nombre"}
                   type={"text"}
                   required
+                  containerInput={"form__demo-container-edit-develop"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
 
                 <TypeDevelopers
-                  style={{ width: "95%" }}
                   value={developerscol_type}
                   setValue={setDeveloperscol_type}
                   required
@@ -1092,15 +1103,16 @@ const Requeriments = ({ setAlert }) => {
 
               <div className="contenedor-inputs-asign">
                 <NormalInput
-                  style={{ width: "95%" }}
                   value={developers_email}
                   setValue={setDdevelopers_email}
                   label={"Email"}
                   type={"email"}
                   required
+                  containerInput={"form__demo-container-edit-develop"}
+                  labelInputName={"form__label-name"}
+                  inputName={"form__input-name"}
                 />
                 <StatesSelector
-                  style={{ width: "95%" }}
                   value={idstatesCreate}
                   setValue={setIstatesCreate}
                   ignore={[
@@ -1120,7 +1132,7 @@ const Requeriments = ({ setAlert }) => {
                 <RolesSelect
                   value={idroles}
                   setValue={setIdroles}
-                  style={{ width: "79%" }}
+                  // style={{ width: "70%" }}
                   ignore={["Clientes", "Administrador"]}
                 />
               </div>
