@@ -83,11 +83,11 @@ const Developers = ({ setAlert }) => {
   const ReadtasksAssignedStatus = () => {
     const jwt = jwtDecode(get("jwt"));
     const iddevelopers = jwt.data.iddevelopers;
-   
+
     axios
       .get(
-        RoutesList.api.assignment.developer.read.tasks_assigned_status  +
-        `/${iddevelopers}`,
+        RoutesList.api.assignment.developer.read.tasks_assigned_status +
+          `/${iddevelopers}`,
         getHeader()
       )
       .then((res) => {
@@ -98,16 +98,13 @@ const Developers = ({ setAlert }) => {
   const ReadtasksFinishedStatus = () => {
     const jwt = jwtDecode(get("jwt"));
     const iddevelopers = jwt.data.iddevelopers;
-    axios
-      .get(
-        RoutesList.api.assignment.developer.read.tasks_finished_status +
-        `/${iddevelopers}`,
-        getHeader()
-      )
-      .then((res) => {
-        console.log(res.data)
-        setReadtasksFinishedStatus(res.data.cont);
-      });
+    const route =
+      RoutesList.api.assignment.developer.read.tasks_finished_status;
+
+    axios.get(`${route}/${iddevelopers}`, getHeader()).then((res) => {
+      // console.log(res.data)
+      setReadtasksFinishedStatus(res.data.cont);
+    });
   };
 
   useEffect(() => {
