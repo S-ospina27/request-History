@@ -272,6 +272,7 @@ const Requeriments = ({ setAlert }) => {
       .post(RoutesList.api.assignment.developer.create, form, getHeader())
       .then((res) => {
         handleReadAssigmentHasDevelopers();
+        handleReadAssigmentsRequirements();
         setIdassignment_requirements("");
         setIddevelopers("");
         setAlert({
@@ -771,7 +772,16 @@ const Requeriments = ({ setAlert }) => {
                 <StatesSelector
                   value={idstates}
                   setValue={setIdstates}
-                  ignore={[
+                  ignore={idstates ===3 ?[
+                    "PENDIENTE",
+                    "ACTIVO",
+                    "INACTIVO",
+                    "ASIGNADO",
+                    "RETRAZADO",
+                    "NOVEDAD",
+                    "RECHAZADO",
+                    "DESARROLLO",
+                  ]:[
                     "ACTIVO",
                     "INACTIVO",
                     "ASIGNADO",
@@ -781,6 +791,7 @@ const Requeriments = ({ setAlert }) => {
                     "DESARROLLO",
                   ]}
                   required
+                  disabled={idstates === 7 ?true : false}
                 />
 
                 <NormalInput
@@ -901,6 +912,7 @@ const Requeriments = ({ setAlert }) => {
                     "DESARROLLO",
                   ]}
                   required
+                  disabled={idstatesHasDevelopers === 7 ?true : false}
                 />
               </div>
 
@@ -1275,7 +1287,6 @@ const Requeriments = ({ setAlert }) => {
                         ]
                       : idstatesedit === 7
                       ? [
-                          "TERMINADO",
                           "DESARROLLO",
                           "ASIGNADO",
                           "PENDIENTE",

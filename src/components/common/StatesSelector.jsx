@@ -8,7 +8,8 @@ const StatesSelector = ({
     setValue,
     required,
     ignore=[],
-    style={}
+    style={},
+    disabled
   }) => {
 
   const [states, setStates] = useState([]);
@@ -35,6 +36,7 @@ const StatesSelector = ({
         value={value}
         onChange={(e) => setValue(e.target.value)}
         required={required}
+        disabled={disabled}
       >
       <option value={""}>Seleccione</option>
         {states.map((item)=>

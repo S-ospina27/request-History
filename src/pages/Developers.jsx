@@ -91,6 +91,7 @@ const Developers = ({ setAlert }) => {
         getHeader()
       )
       .then((res) => {
+        console.log(res.data.cont)
         setReadtasksAssignedStatus(res.data.cont);
       });
   };
@@ -102,7 +103,7 @@ const Developers = ({ setAlert }) => {
       RoutesList.api.assignment.developer.read.tasks_finished_status;
 
     axios.get(`${route}/${iddevelopers}`, getHeader()).then((res) => {
-      // console.log(res.data)
+
       setReadtasksFinishedStatus(res.data.cont);
     });
   };
