@@ -91,7 +91,7 @@ const Developers = ({ setAlert }) => {
         getHeader()
       )
       .then((res) => {
-        console.log(res.data.cont)
+        // console.log(res.data.cont)
         setReadtasksAssignedStatus(res.data.cont);
       });
   };
