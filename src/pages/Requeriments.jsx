@@ -195,9 +195,14 @@ const Requeriments = ({ setAlert }) => {
   };
 
   const readDevelopers = () => {
-    axios.get(import.meta.env.VITE_SERVER_URL_AUD + "/api/developers/read/", getHeader()).then((res) => {
-      setReadFullDevelopers(!res.data.status ? res.data : []);
-    });
+    axios
+      .get(
+        import.meta.env.VITE_SERVER_URL_AUD + "/api/developers/read",
+        getHeader()
+      )
+      .then((res) => {
+        setReadFullDevelopers(!res.data.status ? res.data : []);
+      });
   };
 
   const handleClearFieldDevelopers = () => {
@@ -772,26 +777,30 @@ const Requeriments = ({ setAlert }) => {
                 <StatesSelector
                   value={idstates}
                   setValue={setIdstates}
-                  ignore={idstates ===3 ?[
-                    "PENDIENTE",
-                    "ACTIVO",
-                    "INACTIVO",
-                    "ASIGNADO",
-                    "RETRAZADO",
-                    "NOVEDAD",
-                    "RECHAZADO",
-                    "DESARROLLO",
-                  ]:[
-                    "ACTIVO",
-                    "INACTIVO",
-                    "ASIGNADO",
-                    "RETRAZADO",
-                    "NOVEDAD",
-                    "RECHAZADO",
-                    "DESARROLLO",
-                  ]}
+                  ignore={
+                    idstates === 3
+                      ? [
+                          "PENDIENTE",
+                          "ACTIVO",
+                          "INACTIVO",
+                          "ASIGNADO",
+                          "RETRAZADO",
+                          "NOVEDAD",
+                          "RECHAZADO",
+                          "DESARROLLO",
+                        ]
+                      : [
+                          "ACTIVO",
+                          "INACTIVO",
+                          "ASIGNADO",
+                          "RETRAZADO",
+                          "NOVEDAD",
+                          "RECHAZADO",
+                          "DESARROLLO",
+                        ]
+                  }
                   required
-                  disabled={idstates === 7 ?true : false}
+                  disabled={idstates === 7 ? true : false}
                 />
 
                 <NormalInput
@@ -829,7 +838,7 @@ const Requeriments = ({ setAlert }) => {
                 />
               </div>
               <div className="contenedor-inputs-asign">
-              <CompaniesSelect
+                <CompaniesSelect
                   value={idcompanies}
                   setValue={setIdcompanies}
                   required
@@ -912,7 +921,7 @@ const Requeriments = ({ setAlert }) => {
                     "DESARROLLO",
                   ]}
                   required
-                  disabled={idstatesHasDevelopers === 7 ?true : false}
+                  disabled={idstatesHasDevelopers === 7 ? true : false}
                 />
               </div>
 
