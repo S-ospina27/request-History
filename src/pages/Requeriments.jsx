@@ -195,7 +195,7 @@ const Requeriments = ({ setAlert }) => {
   };
 
   const readDevelopers = () => {
-    axios.get(RoutesList.api.developer.read.full, getHeader()).then((res) => {
+    axios.get(import.meta.env.VITE_SERVER_URL_AUD + "/api/developers/read/", getHeader()).then((res) => {
       setReadFullDevelopers(!res.data.status ? res.data : []);
     });
   };
