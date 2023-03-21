@@ -67,7 +67,7 @@ export default function session() {
 export function getHeader() {
   return {
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
       Authorization: `Bearer ` + get("jwt"),
     },
   };
